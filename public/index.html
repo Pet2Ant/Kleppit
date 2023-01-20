@@ -4,27 +4,47 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/tailwind.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Kleppit</title>
     <link rel="icon" href="/assets/kleppit-website-favicon-color.png" />
+    <link rel="stylesheet" href="./css/style.css">
   </head>
-
-  <body class="bg-zinc-900">
+<!-- COLORS: 
+Background: bg-zinc-900
+Red text: text-[#ff4057] hover:text-[#ff4957]
+Post content title: text-gray-400
+Post content text: text-gray-500
+-->
+  <body class="scroll-smooth bg-zinc-900 md:scrollbar-default">
     <!-- Header Bar -->
-    <header class="fixed inset-0 z-50 flex h-14 bg-[#1a1a1b] select-none">
+    <header id="header" class="fixed inset-0 z-50 flex h-14 bg-[#1a1a1b] select-none">
       <div
         class="flex flex-1 items-center space-x-4 border-b border-[#343536] px-5"
       >
-        <!-- Icon + Search bar -->
+        <!-- Icon + Post button + Search bar -->
         <div class="flex flex-1 items-center space-x-4">
-          <!-- Icon -->
-          <a href="#"
+          <!-- Large screen icon -->
+          <a href="/public/index.html"
             ><img
               src="/assets/kleppit-high-resolution-logo-color-on-transparent-background.png"
               class="hidden lg:block h-10 transition duration-500 ease-in-out hover:opacity-75"
               alt="logo"
             />
           </a>
+          <!-- Small screen icon -->
+          <a href="/public/index.html"
+            ><img
+              src="..//assets/kleppit-website-favicon-color.png"
+              class="lg:hidden h-12 w-14 transition duration-500 ease-in-out hover:opacity-75 mr-10"
+              alt="small logo"
+            />
+          </a>
+          <!-- Post button -->
+          <button onclick="location.href = '/public/createPost.html';"
+           class="w-14 text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1 lg:hidden"
+          >
+          Post
+          </button>
           <!-- Search bar -->
           <div
             class="mx-4 flex flex-1 items-center space-x-3 rounded border border-[#343536] bg-[#272729] px-4 py-1.5"
@@ -52,24 +72,17 @@
           </div>
         </div>
         <!-- User button -->
-        <div class="space-x-4 py-6 flex flex-col justify-center sm:py-12">
+        <div class="space-x-4 py-6 flex flex-col justify-center ">
           <div class="flex items-center justify-center">
             <div class="relative inline-block text-left dropdown">
               <span class="rounded-md shadow-sm">
-                <button
-                  class="flex items-center w-full text-sm font-medium leading-5 text-[#ff4057] transition duration-150 ease-in-out hover:text-red-700"
-                  type="button"
-                  aria-haspopup="true"
-                  aria-expanded="true"
-                  aria-controls="headlessui-menu-items-117"
-                >
-                  <span class="sr-only">Open user menu</span>
+                <button class="flex items-center w-full text-sm font-medium leading-5 text-[#ff4057] transition duration-150 ease-in-out hover:text-red-600" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
                   <img
                     class="w-8 h-8 mr-2 rounded-full"
                     src="/assets/tacejm6avjx41.jpg"
                     alt="user photo"
                   />
-                  Bonnie Green
+                  <p class="hidden lg:block">Bonnie Green</p>
                   <svg
                     class="w-4 h-4 mx-1"
                     aria-hidden="true"
@@ -85,52 +98,58 @@
                   </svg>
                 </button>
               </span>
+              
               <!-- User Dropdown menu -->
               <div
                 class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95"
               >
                 <div
-                  class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-[#343536] divide-y divide-gray-100 rounded-md shadow-lg outline-none"
+                  class="absolute right-0 w-56 mt-2 origin-top-right bg-[#1a1a1b] border border-[#343536] divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                   aria-labelledby="headlessui-menu-button-1"
                   id="headlessui-menu-items-117"
                   role="menu"
                 >
                   <div class="px-4 py-3">
-                    <p class="text-sm leading-5">Signed in as</p>
+                    <p class="text-sm leading-5 text-[#ff4057]">Signed in as</p>
                     <p
-                      class="text-sm font-medium leading-5 text-gray-900 truncate"
+                      class="text-md font-semibold leading-5 text-[#ff4957] truncate"
                     >
                       tom@example.com
+                    </p>
+                    <p
+                      class="text-sm leading-5 text-[#ff4957] truncate py-1"
+                    >
+                      1234 Upvotes
                     </p>
                   </div>
                   <div class="py-1">
                     <a
                       href="javascript:void(0)"
                       tabindex="0"
-                      class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:text-gray-500"
+                      class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500"
                       role="menuitem"
                       >Account settings</a
                     >
                     <a
                       href="javascript:void(0)"
                       tabindex="1"
-                      class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:text-gray-500"
+                      class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500"
                       role="menuitem"
-                      >Support</a
+                      >Contact Us</a
                     >
                     <a
                       href="javascript:void(0)"
                       tabindex="2"
-                      class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:text-gray-500"
+                      class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500"
                       role="menuitem"
-                      >License</a
+                      >Policy</a
                     >
                   </div>
                   <div class="py-1">
                     <a
                       href="javascript:void(0)"
                       tabindex="3"
-                      class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"
+                      class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500"
                       role="menuitem"
                       >Sign out</a
                     >
@@ -144,12 +163,13 @@
     </header>
 
     <!-- Main content -->
-    <div class="py-12 mt-12">
+    <div class="py-12 mt-12 ">
       <div class="container mx-auto ">
         <div class="flex w-960 mx-auto">
+          <!-- Posts -->
           <div class="w-11/12 ml-5">
             <!-- Post 1 -->
-            <div class="py-2 mb-4">
+            <div id="" class="py-2 mb-4">
               <div
                 class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer"
               >
@@ -1119,10 +1139,10 @@
                       <hr class="border-1 border-slate-700" />
                     </div>
                     <div class="mt-5 flex flex-col gap-2">
-                      <button
+                      <button onclick="location.href = '/public/createPost.html';"
                         class="w-full text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1"
                       >
-                        Create Post
+                      Create Post
                       </button>
                     </div>
                   </div>
@@ -1187,21 +1207,7 @@
                     <a
                       href="/public/terms&conditions.html"
                       class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500"
-                      >Terms & Conditions</a
-                    >
-                    |
-                    <a
-                      href="/public/ModPolicy.html"
-                      class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500"
-                    >
-                      Mod Policy</a
-                    >
-                  </p>
-                  <p class="text-xs leading-tight text-gray-400 font-medium">
-                    <a
-                      href="/public/informationDataPolicy.html"
-                      class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500"
-                      >Information Data Policy</a
+                      >User Agreement</a
                     >
                     |
                     <a
@@ -1222,14 +1228,16 @@
         </div>
       </div>
     </div>
-    <script src="/main.js"></script>
+    <!-- Scroll to the top button -->
+    <div class="fixed bottom-0 right-0 mb-10 mr-10">
+      <div class="flex flex-col gap-2">   
+        <button onclick="topFunction()" class="w-full w-12 h-12 bg-[#ff4057] rounded-full hover:bg-red-600 transition ease-in duration-300 flex justify-center "> 
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 place-self-center">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
+                </svg>
+                
+        </button>
+      </div>
   </body>
-
-  <style>
-    .dropdown:focus-within .dropdown-menu {
-      opacity: 1;
-      transform: translate(0) scale(1);
-      visibility: visible;
-    }
-  </style>
+  <script src="./main.js"></script>
 </html>
