@@ -28,3 +28,11 @@
     background: rgb(220 38 38); 
     transition: 0,5s;
   }
+
+  .wrapper{
+    -webkit-filter: blur(8px);
+    -ms-filter: blur(8px);
+    -moz-filter: blur(8px);
+    -o-filter: blur(8px);
+    filter: blur(8px);
+} 

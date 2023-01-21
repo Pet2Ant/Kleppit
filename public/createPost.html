@@ -7,126 +7,196 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Kleppit</title>
-    <link rel="icon" href="/assets/kleppit-website-favicon-color.png" />
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="icon" href="../assets/kleppit-website-favicon-color.png" />
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
-<body class="bg-zinc-900">
-    <!-- Header Bar -->
-    <header id="header" class="fixed inset-0 z-50 flex h-14 bg-[#1a1a1b] select-none">
-        <div class="flex flex-1 items-center space-x-4 border-b border-[#343536] px-5">
-            <!-- Icon + Post button + Search bar -->
-            <div class="flex flex-1 items-center space-x-4">
-                <!-- Large screen icon -->
-                <a href="/public/index.html"><img
-                        src="/assets/kleppit-high-resolution-logo-color-on-transparent-background.png"
-                        class="hidden lg:block h-10 transition duration-500 ease-in-out hover:opacity-75" alt="logo" />
-                </a>
-                <!-- Small screen icon -->
-                <a href="/public/index.html"><img src="/assets/kleppit-website-favicon-color.png"
-                        class="lg:hidden h-12 w-14 transition duration-500 ease-in-out hover:opacity-75 mr-10"
-                        alt="small logo" />
-                </a>
-                <!-- Post button -->
-                <button onclick="location.href = '/public/createPost.html';"
-                    class="w-14 text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1 lg:hidden">
-                    Post
-                </button>
-                <!-- Search bar -->
-                <div
-                    class="mx-4 flex flex-1 items-center space-x-3 rounded border border-[#343536] bg-[#272729] px-4 py-1.5">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                        stroke="currentColor" aria-hidden="true" class="h-5 w-5 text-[#878A8C]">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+<body class="bg-zinc-900 ">
+    <!-- Loader -->
+    <div id="loader" class="loader fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
+        <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-[#ff4057]"></div>
+     </div>
+      <!-- Header Bar -->
+      <header id="header" class="fixed inset-0 z-50 flex h-14 bg-[#1a1a1b] select-none">
+        <div
+          class="flex flex-1 items-center space-x-4 border-b border-[#343536] px-5"
+        >
+          <!-- Icon + Post button + Search bar -->
+          <div class="flex flex-1 items-center space-x-4">
+            <!-- Large screen icon -->
+            <a href="./index.html"
+              ><img
+                src="..//assets/kleppit-high-resolution-logo-color-on-transparent-background.png"
+                class="hidden lg:block h-10 transition duration-500 ease-in-out hover:opacity-75"
+                alt="logo"
+              />
+            </a>
+            <!-- Small screen icon -->
+            <a href="./index.html"
+              ><img
+                src="..//assets/kleppit-website-favicon-color.png"
+                class="lg:hidden h-12 w-14 transition duration-500 ease-in-out hover:opacity-75 mr-10"
+                alt="small logo"
+              />
+            </a>
+            <!-- Post button -->
+            <button onclick="location.href = './createPost.html';"
+             class="w-14 text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1 lg:hidden"
+            >
+            Post
+            </button>
+            <!-- Search bar -->
+            <div
+              class="mx-4 flex flex-1 items-center space-x-3 rounded border border-[#343536] bg-[#272729] px-4 py-1.5"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                aria-hidden="true"
+                class="h-5 w-5 text-[#878A8C]"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+              <input
+                class="flex-1 bg-transparent text-sm focus:outline-none text-gray-400"
+                type="text"
+                placeholder="Search Kleppit"
+              />
+            </div>
+          </div>
+          <!-- User button -->
+          <div class="space-x-4 py-6 flex flex-col justify-center ">
+            <div class="flex items-center justify-center">
+              <div class="relative inline-block text-left dropdown">
+                <span class="rounded-md shadow-sm">
+                  <button class="flex items-center w-full text-sm font-medium leading-5 text-[#ff4057] transition duration-150 ease-in-out hover:text-red-600" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
+                    <img
+                      class="w-8 h-8 mr-2 rounded-full"
+                      src="../assets/tacejm6avjx41.jpg"
+                      alt="user photo"
+                    />
+                    <p class="hidden lg:block">Bonnie Green</p>
+                    <svg
+                      class="w-4 h-4 mx-1"
+                      aria-hidden="true"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
                     </svg>
-                    <input class="flex-1 bg-transparent text-sm focus:outline-none text-gray-400" type="text"
-                        placeholder="Search Kleppit" />
-                </div>
-            </div>
-            <!-- User button -->
-            <div class="space-x-4 py-6 flex flex-col justify-center ">
-                <div class="flex items-center justify-center">
-                    <div class="relative inline-block text-left dropdown">
-                        <span class="rounded-md shadow-sm">
-                            <button
-                                class="flex items-center w-full text-sm font-medium leading-5 text-[#ff4057] transition duration-150 ease-in-out hover:text-red-700"
-                                type="button" aria-haspopup="true" aria-expanded="true"
-                                aria-controls="headlessui-menu-items-117">
-                                <img class="w-8 h-8 mr-2 rounded-full" src="/assets/tacejm6avjx41.jpg"
-                                    alt="user photo" />
-                                Bonnie Green
-                                <svg class="w-4 h-4 mx-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </button>
-                        </span>
-
-                        <!-- User Dropdown menu -->
-                        <div
-                            class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
-                            <div class="absolute right-0 w-56 mt-2 origin-top-right bg-[#1a1a1b] border border-[#343536] divide-y divide-gray-100 rounded-md shadow-lg outline-none"
-                                aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
-                                <div class="px-4 py-3">
-                                    <p class="text-sm leading-5 text-[#ff4057]">Signed in as</p>
-                                    <p class="text-md font-semibold leading-5 text-[#ff4957] truncate">
-                                        tom@example.com
-                                    </p>
-                                    <p class="text-sm leading-5 text-[#ff4957] truncate py-1">
-                                        1234 Upvotes
-                                    </p>
-                                </div>
-                                <div class="py-1">
-                                    <a href="javascript:void(0)" tabindex="0"
-                                        class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500"
-                                        role="menuitem">Account settings</a>
-                                    <a href="javascript:void(0)" tabindex="1"
-                                        class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500"
-                                        role="menuitem">Contact Us</a>
-                                    <a href="javascript:void(0)" tabindex="2"
-                                        class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500"
-                                        role="menuitem">Policy</a>
-                                </div>
-                                <div class="py-1">
-                                    <a href="javascript:void(0)" tabindex="3"
-                                        class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500"
-                                        role="menuitem">Sign out</a>
-                                </div>
-                            </div>
-                        </div>
+                  </button>
+                </span>
+                
+                <!-- User Dropdown menu -->
+                <div
+                  class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95"
+                >
+                  <div
+                    class="absolute right-0 w-56 mt-2 origin-top-right bg-[#1a1a1b] border border-[#343536] divide-y divide-gray-100 rounded-md shadow-lg outline-none"
+                    aria-labelledby="headlessui-menu-button-1"
+                    id="headlessui-menu-items-117"
+                    role="menu"
+                  >
+                    <div class="px-4 py-3">
+                      <p class="text-sm leading-5 text-[#ff4057]">Signed in as</p>
+                      <p
+                        class="text-md font-semibold leading-5 text-[#ff4957] truncate"
+                      >
+                        tom@example.com
+                      </p>
+                      <p
+                        class="text-sm leading-5 text-[#ff4957] truncate py-1"
+                      >
+                        1234 Upvotes
+                      </p>
                     </div>
+                    <div class="py-1">
+                      <a
+                        href="./AccountSettings.html"
+                        tabindex="0"
+                        class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500"
+                        role="menuitem"
+                        >Account settings</a
+                      >
+                      <a
+                        href="./ContactUs.html"
+                        tabindex="1"
+                        class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500"
+                        role="menuitem"
+                        >Contact Us</a
+                      >
+                    </div>
+                    <div class="py-1">
+                      <a
+                        href="./userAgreement.html"
+                        tabindex="2"
+                        class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500"
+                        role="menuitem"
+                        >User Agreement</a
+                      >
+                    
+                    
+                      <a
+                        href="./privacyPolicy.html"
+                        tabindex="2"
+                        class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500"
+                        role="menuitem"
+                        >Privacy Policy</a
+                      >
+                    </div>
+                    <div class="py-1">
+                      <a
+                        href="javascript:void(0)"
+                        tabindex="4"
+                        class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500"
+                        role="menuitem"
+                        >Sign out</a
+                      >
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </header>
+      </header>
 
     <div class="py-36 mt-12">
         <div class="flex flex-row justify-center">
             <div class="flex flex-row ">
                 <!-- Post Body -->
-                <div class="flex-1 border border-[#878A8C] bg-zinc-800 rounded-md  max-w-lg max-h-lg mx-auto px-14 ">
-                    <img src="/assets/kleppit-high-resolution-logo-color-on-transparent-background.png" alt="logo"
+                <div class="flex-1 border border-[#878A8C] bg-zinc-800 rounded-md max-w-lg max-h-lg mx-auto px-14 ">
+                    <img src="../assets/kleppit-high-resolution-logo-color-on-transparent-background.png" alt="logo"
                         class="py-6 w-1/2 mx-auto"/>
                         <div class="w-full">
                             <div class="mt-6">
                                 <div class="text-center font-semibold text-2xl text-[#ff4057]">
                                     What's on your mind?
                                 </div>
-                                <!-- 2 buttons to choose from text and image -->
+                                <!-- 3 buttons to choose from, text, image and polls -->
                                 <div class="mt-6">
                                     <div class="flex justify-center">
                                         <div class="flex">
                                             <span class="inline-flex rounded-md shadow-sm">
-                                                <button onclick="changeToTextArea()" type="button" id="textButton"
+                                                <button onclick="changeButton()" type="button" id="textButton"
                                                     class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-[#ff4057] hover:bg-[#ff4957] focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-[#ff4957] transition duration-300 ease-in-out">
                                                     Text
                                                 </button>
                                             </span>
                                             <span class="ml-3 inline-flex rounded-md shadow-sm">
-                                                <button onclick="changeToImageUpload()" type="button" id="imageButton"
+                                                <button onclick="changeButton()" type="button" id="imageButton"
                                                     class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-[#ff4057] bg-zinc-800 hover:text-[#ff4957] focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-[#ff4957] transition duration-300 ease-in-out hover:bg-[#ff4957] hover:text-white">
                                                     Image
                                                 </button>
@@ -182,14 +252,13 @@
                             </div>
                         </div>
                 </div>
-
                 <!-- Rules Sidebar -->
                 <div class="flex-1 max-w-sm pl-9  hidden lg:block ">
                     <div class="py-2">
                         <div class="flex justify-center ">
                             <div class="w-80 pb-2 border bg-zinc-900 border-gray-500 rounded-lg ">
                                 <div
-                                    class="p-3 bg-[url('/assets/kleppit-high-resolution-logo-white-on-black-background-cropped.png')] bg-contain rounded-lg object-cover h-16">
+                                    class="p-3 bg-[url('../assets/kleppit-high-resolution-logo-white-on-black-background-cropped.png')] bg-contain rounded-lg object-cover h-16">
                                     <div class="mt-12 pt-1">
                                         <hr class="w-full border-1 border-slate-700" />
                                     </div>
@@ -239,7 +308,7 @@
     </div>
 
 
-    <script src="/public/main.js"></script>
+    <script src="./main.js"></script>
 </body>
 
 </html>
