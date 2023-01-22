@@ -25,7 +25,7 @@ function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     //smooth transition
-    document.documentElement.style.transition = "top 0.8s";
+    document.getElementById("page").style.transition = "top 0.8s";
     
     }
 
@@ -64,13 +64,13 @@ function changeButton() {
   }
 }
 
-// Loader function that transitions smoothly from loader to page
+// Loader function that transitions from loader to page
 document.onreadystatechange = function() {
     if (document.readyState !== "complete") {
       document.querySelector("body").style.visibility = "hidden";
       document.querySelector("#loader").style.visibility = "visible";
     } else {
-      // Make the body visible again with a smooth transition
+      // Make the body visible again
       document.querySelector("#loader").style.display = "none";
       document.querySelector("body").style.visibility = "visible";
     }
@@ -85,10 +85,26 @@ setTimeout(function() {
   document.querySelector("header").classList.add("hidden");
   // automatically bring user to top of page when pop-up window opens
   window.scrollTo(0, 0);
+  // Allow scrolling when it is mobile
+    if (window.innerWidth < 768) {
+      document.getElementById("container").classList.add("backdrop-blur-md");
+      document.querySelector("body").classList.remove("overflow-hidden");
+  }
 }, 3000);
 }
 
-// Close pop-up window with id of "survey-popup" when the user clicks on the "X" button, then add to the id of the pop-up window the class of "hidden"
+//remove the logo from the header when screen width is less than 500px
+//repeat the function when the screen is resized
+window.addEventListener("resize", function() {
+  if (window.innerWidth < 500) {
+    document.getElementById("smallLogo").classList.add("hidden");
+  }
+    else {
+      document.getElementById("smallLogo").classList.remove("hidden");
+  }
+});
+
+// Close pop-up window with id of "survey-popup" when the user clicks on the "X" button
 function closeSurvey() {
   document.getElementById("survey-popup").classList.add("hidden");
   document.getElementById("survey-popup").classList.remove("flex");
