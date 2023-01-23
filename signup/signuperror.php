@@ -6,7 +6,7 @@ class Signup extends SignupDb
     private $email;
     private $password;
     private $confirm;
-
+  
 
     public function __construct($username,$email,$password,$confirm)
     {
@@ -14,45 +14,46 @@ class Signup extends SignupDb
         $this -> email=  $email;
         $this -> password =  $password;
         $this -> confirm =  $confirm;
+       
     }
 
     public function signupUser()
     {
-        if($this->emptyInput() == false)
+        if($this->emptyInput() )
         {
-            // echo "empty input";
-            header('location:../index.php?error=emptyinput');
+            echo "empty input";
+            
             exit();
         }
-        if($this->invalidUsername() == false)
+        if($this->invalidUsername() ==false )
         {
 
-            // echo "invalid username";
-            header('location:../index.php?error=invalidusername');
+            echo "invalid username";
+          
             exit();
         }
         if($this->invalidEmail() == false)
         {
-            // echo "invalid emailL";
-            header('location:../index.php?error=invalidemail');
+             echo "invalid emailL";
+            
             exit();
         }
         if($this->invalidPassword() == false)
         {
-            // echo " invalid password ";
-            header('location:../index.php?error=invalidpassword');
+             echo " invalid password ";
+             
             exit();
         }
         if($this->passwordMatch() == false)
         {
-            // echo "password dont match ";
-            header('location:../index.php?error=passworddontmatch');
+            echo "password dont match ";
+           
             exit();
         }
         if($this->alreadyExists() == false)
         {
-            // echo "username or email already has an account";
-            header('location:../index.php?error=userexists');
+             echo "username or email already has an account";
+            
             exit();
         }
         $this->setUser($this->username,$this->email,$this->password);
@@ -65,16 +66,17 @@ class Signup extends SignupDb
         //all the fields are not empty
         if(empty($this->username)  ||  empty($this->email)  ||  empty($this->password)  ||  empty($this->confirm) )
         {
-                return false;
+            
+                return true;
         }
-        return true;
+        return false;
     }
     //invalid username(can use a-z , A-z , 0-9, no special chars)
     private function invalidUsername()
     {
         if(!preg_match("/^[a-zA-Z0-9]*$/",$this->username))
         {
-
+            
             return false;
         }
         return true;
@@ -99,12 +101,14 @@ class Signup extends SignupDb
     // invalid password (one upper one lower one number one special bigger than 8)
     private function invalidPassword()
     {
+        
         $uppercase = preg_match('@[A-Z]@', $this->password);
         $lowercase = preg_match('@[a-z]@', $this->password);
         $number    = preg_match('@[0-9]@', $this->password);
         $specialChars = preg_match('@[^\w]@', $this->password);
         if(!$uppercase || !$lowercase || !$number || !$specialChars || (strlen($this->password) < 8))
         {
+            
             return false;
         }
         return true;

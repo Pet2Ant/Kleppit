@@ -16,6 +16,8 @@ if(isset($_POST["submit"]))
     $signup = new Signup($username,$email,$password,$confirm);
     //errors
     $signup->signupUser();
+    
+
     header('location:public/index.php');
 
 }

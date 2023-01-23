@@ -1,3 +1,5 @@
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -44,6 +46,7 @@
                           type="text"
                           class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-[#ff4957] focus:outline-none"
                         />
+                       
                       </div>
                       <div class="py-1">
                         <span class="px-1 text-md text-[#ff4057]">Email</span>
@@ -53,6 +56,7 @@
                           type="email"
                           class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-[#ff4957] focus:outline-none"
                         />
+                       
                       </div>
                     </div>
                     <div class="py-1">
@@ -63,6 +67,7 @@
                         name="password"
                         class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-[#ff4957] focus:outline-none"
                       />
+                     
                     </div>
                     <div class="py-1">
                       <span class="px-1 text-md text-[#ff4057]"
@@ -74,7 +79,9 @@
                         name="confirm"
                         class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-[#ff4957] focus:outline-none"
                       />
+                      <div class="error-text"></div>
                     </div>
+                    
                     <button type="submit" name="submit"
                   class="w-full text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1"
                 >
