@@ -80,8 +80,6 @@ setTimeout(function() {
   document.getElementById("survey-popup").classList.remove("hidden");
   document.getElementById("survey-popup").classList.add("flex");
   document.getElementById("survey-popup").classList.add("justify-center");
-// add to body the class of "overflow-hidden" to prevent scrolling when the pop-up window is open
-  document.querySelector("body").classList.add("overflow-hidden");
   document.querySelector("header").classList.add("hidden");
   // automatically bring user to top of page when pop-up window opens
   window.scrollTo(0, 0);
