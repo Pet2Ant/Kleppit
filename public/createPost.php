@@ -81,7 +81,7 @@ session_start();
                       </p>
                     </div>
                     <div class="py-1">
-                      <a href="./AccountSettings.php" tabindex="0" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Account settings</a>
+                      <a href="./Profile.php" tabindex="0" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Account settings</a>
                       <a href="./ContactUs.php" tabindex="1" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Contact Us</a>
                     </div>
                     <div class="py-1">
@@ -124,7 +124,7 @@ session_start();
                                 <div class="text-center font-semibold text-2xl text-[#ff4057]">
                                     What's on your mind?
                                 </div>
-                                <!-- 3 buttons to choose from, text, image and polls -->
+                                <!-- 2 buttons to choose from, text and image-->
                                 <div class="mt-6">
                                     <div class="flex justify-center">
                                         <div class="flex">

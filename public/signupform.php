@@ -80,7 +80,7 @@
                   </p>
                 </div>
                 <div class="py-1">
-                  <a href="./AccountSettings.php" tabindex="0" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Account settings</a>
+                  <a href="./Profile.php" tabindex="0" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Account settings</a>
                   <a href="./ContactUs.php" tabindex="1" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Contact Us</a>
                 </div>
                 <div class="py-1">
@@ -184,37 +184,44 @@
                   </form>
                 </div>
                 <div class="flex justify-start mt-3 ml-4 p-1">
-                <?php
-                      $fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-  
-                          if(strpos($fullUrl,"signup=empty") == true)
-                          {
-                            echo "<p style='color:red'>Fields cannot be empty</p>";
-                          }
-                          if(strpos($fullUrl,"signup=invalidusername") == true)
-                          {
-                            echo "<p style='color:red'>username is invalid</p>";
-                          }
-                          if(strpos($fullUrl,"signup=invalidemail") == true)
-                          {
-                            echo "<p style='color:red'>email is invalid</p>";
-                          }
-                          if(strpos($fullUrl,"signup=invalidpassword") == true)
-                          {
-                            echo "<p style='color:red'>Password must contain at least one capital letter (A,B,C...), 
-                            one number (1,2,3...) & one special character (#,?,%...).Password cannot be smaller than 8 letters.</p>";
-                          }
-                          if(strpos($fullUrl,"signup=passwordDoesntMatch") == true)
-                          {
-                            echo "<p style='color:red'>Passwords dont match</p>";
-                          }
-                          if(strpos($fullUrl,"signup=alreadyexists") == true)
-                          {
-                            echo "<p style='color:red'>Username or email already in use!</p>";
-                          }
-                          
-                        
-                  ?>
+                  <ul>
+                    <li class="flex items-center py-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="#ff4057"
+                        class="w-6 h-6"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                      <p class="px-2 font-semibold text-sm text-[#ff4057]">
+                        Password cannot be smaller than 8 letters.
+                      </p>
+                    </li>
+                    <li class="flex items-center py-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="#ff4057"
+                        class="w-18 h-16"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                      <p class="px-2 font-semibold text-sm text-[#ff4057]">
+                        Password must contain at least one capital letter
+                        (A,B,C...), one number (1,2,3...) & one special
+                        character (#,?,%...)
+                      </p>
+                    </li>
+                  </ul>
                 </div>
                 <div class="flex justify-start">
                   <label class="text-gray-400 font-bold my-4 flex items-center">
@@ -240,10 +247,10 @@
                   </label>
                 </div>
                     <button type="submit" name="submit"
-                  class="w-full text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1"
-                >
-                  Register
-                </button>
+                    class="w-full text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1"
+                    >
+                      Register
+                    </button>
                   </form>
                 </div>
                
