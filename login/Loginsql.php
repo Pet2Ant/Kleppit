@@ -44,6 +44,7 @@ class Login extends DbCon
             session_start();
             $_SESSION["id"] = $user[0]["id"];
             $_SESSION["username"] = $user[0]["username"];
+            $_SESSION["email"] = $user[0]["email"];
             $input = null;
         }
         
