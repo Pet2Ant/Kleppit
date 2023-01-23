@@ -32,7 +32,7 @@
                   >
                     Sign up
                   </div>
-                  <form class="mt-8">
+                  <form action="signup.php"  method="post" class="mt-8">
                     <div class="mx-auto max-w-lg">
                       <div class="py-1">
                         <span class="px-1 text-md text-[#ff4057]"
@@ -40,6 +40,7 @@
                         >
                         <input
                           placeholder="Username..."
+                          name="username"
                           type="text"
                           class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-[#ff4957] focus:outline-none"
                         />
@@ -48,6 +49,7 @@
                         <span class="px-1 text-md text-[#ff4057]">Email</span>
                         <input
                           placeholder="Email Address..."
+                          name="email"
                           type="email"
                           class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-[#ff4957] focus:outline-none"
                         />
@@ -58,6 +60,7 @@
                       <input
                         placeholder="Password..."
                         type="password"
+                        name="password"
                         class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-[#ff4957] focus:outline-none"
                       />
                     </div>
@@ -68,6 +71,7 @@
                       <input
                         placeholder="Confirm Password..."
                         type="password"
+                        name="confirm"
                         class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-[#ff4957] focus:outline-none"
                       />
                     </div>
@@ -136,7 +140,7 @@
                     </span>
                   </label>
                 </div>
-                <button
+                <button type="submit" name="submit"
                   class="w-full text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1"
                 >
                   Register
@@ -145,7 +149,7 @@
                   <li class="flex items-center py-1">
                     <p class="text-sm text-red-900 py-1">Already a member?</p>
                     <a
-                      href="./login.html"
+                      href="./login.php"
                       class="underline text-sm text-red-900 transition duration-300 ease-in-out hover:text-red-700 px-1"
                       >Log in!</a
                     >
@@ -157,6 +161,28 @@
         </div>
       </div>
     </div>
+    <?php
+//checking connection
+if(isset($_POST["submit"]))
+{
+    
+    //getting the user data
+    $username = $_POST["username"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $confirm = $_POST["confirm"];
+    include "dbcon.php";
+    include "../signup/signupsql.php";
+    include "../signup/signuperrors.php";
+    
+    
+    $signup = new Signup($username,$email,$password,$confirm);
+    //errors
+    $signup->signupUser();
+    header('location:index.php');
+
+}
+?>
     <script src="./main.js"></script>
   </body>
 </html>
