@@ -20,40 +20,40 @@ class Signup extends SignupDb
     {
         if($this->emptyInput() == false)
         {
-             echo "empty input";
-            // header('location:../index.php?error=emptyinput');
-            // exit();
+            // echo "empty input";
+            header('location:../index.php?error=emptyinput');
+            exit();
         }
         if($this->invalidUsername() == false)
         {
 
-             echo "invalid username";
-            // header('location:../index.php?error=invalidusername');
-            // exit();
+            // echo "invalid username";
+            header('location:../index.php?error=invalidusername');
+            exit();
         }
         if($this->invalidEmail() == false)
         {
-             echo "invalid emailL";
-            // header('location:../index.php?error=invalidemail');
-            // exit();
+            // echo "invalid emailL";
+            header('location:../index.php?error=invalidemail');
+            exit();
         }
         if($this->invalidPassword() == false)
         {
-             echo " invalid password ";
-            // header('location:../index.php?error=invalidpassword');
-            // exit();
+            // echo " invalid password ";
+            header('location:../index.php?error=invalidpassword');
+            exit();
         }
         if($this->passwordMatch() == false)
         {
-            echo "password dont match ";
-            // header('location:../index.php?error=passworddontmatch');
-            // exit();
+            // echo "password dont match ";
+            header('location:../index.php?error=passworddontmatch');
+            exit();
         }
         if($this->alreadyExists() == false)
         {
-            echo "username or email already has an account";
-            // header('location:../index.php?error=userexists');
-            // exit();
+            // echo "username or email already has an account";
+            header('location:../index.php?error=userexists');
+            exit();
         }
         $this->setUser($this->username,$this->email,$this->password);
 

@@ -8,10 +8,9 @@ class SignupDb extends DbCon
         $hashedpassword = password_hash($password, PASSWORD_DEFAULT);
         if(!$input->execute(array($username,$email,$hashedpassword)))
         {
-            echo "FUCK THIS  ";
             $input = null;
-            // header("location:../index.php?checkdberror");
-            // exit();
+            header("location:../index.php?checkdberror");
+            exit();
 
         }
         $input = null;
@@ -23,10 +22,9 @@ class SignupDb extends DbCon
 
         if(!$checkdb->execute(array($username,$email)))
         {
-            echo "FUCK THIS SHIT ";
             $checkdb = null;
-            // header("location:../index.php?checkdberror");
-            // exit();
+            header("location:../index.php?checkdberror");
+            exit();
         }
         if($checkdb->rowCount() > 0)
         {

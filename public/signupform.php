@@ -32,7 +32,7 @@
                   >
                     Sign up
                   </div>
-                  <form action="signup.php"  method="post" class="mt-8">
+                  <form action="../signup.php"  method="post" class="mt-8">
                     <div class="mx-auto max-w-lg">
                       <div class="py-1">
                         <span class="px-1 text-md text-[#ff4057]"
@@ -75,6 +75,11 @@
                         class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-[#ff4957] focus:outline-none"
                       />
                     </div>
+                    <button type="submit" name="submit"
+                  class="w-full text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1"
+                >
+                  Register
+                </button>
                   </form>
                 </div>
                 <div class="flex justify-start mt-3 ml-4 p-1">
@@ -140,11 +145,7 @@
                     </span>
                   </label>
                 </div>
-                <button type="submit" name="submit"
-                  class="w-full text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1"
-                >
-                  Register
-                </button>
+               
                 <ul>
                   <li class="flex items-center py-1">
                     <p class="text-sm text-red-900 py-1">Already a member?</p>
@@ -161,28 +162,7 @@
         </div>
       </div>
     </div>
-    <?php
-//checking connection
-if(isset($_POST["submit"]))
-{
     
-    //getting the user data
-    $username = $_POST["username"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $confirm = $_POST["confirm"];
-    include "dbcon.php";
-    include "../signup/signupsql.php";
-    include "../signup/signuperrors.php";
-    
-    
-    $signup = new Signup($username,$email,$password,$confirm);
-    //errors
-    $signup->signupUser();
-    header('location:index.php');
-
-}
-?>
     <script src="./main.js"></script>
   </body>
 </html>

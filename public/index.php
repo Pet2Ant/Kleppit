@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -102,7 +105,23 @@ Post content text: text-gray-500
                   </svg>
                 </button>
               </span>
-              
+              <?php       
+                    if(isset($_SESSION["id"]))
+                    {
+                ?>
+                    
+                    <li><a href="#"><?php echo $_SESSION["username"]; ?></a></li>
+                    <li><a href="..\login\logout.php">Logout</a></li>
+                <?php	
+                    }else
+                    {
+                        ?>
+                        
+                        <li><a href="signupform.php">Sign up</a></li>
+                        <li><a href="loginform.php">Login</a></li>
+                <?php	
+                    }
+                    ?>
               <!-- User Dropdown menu -->
               <div
                 class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95"

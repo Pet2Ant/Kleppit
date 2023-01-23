@@ -9,7 +9,6 @@ class DbCon
                 $username  = "Chris";
                 $password = "yoloswag1234";
                 $dbh = new PDO('mysql:host=localhost;dbname=athtech_forum',$username,$password);
-            
                 return $dbh;
         }catch(PDOException $e)
         {
