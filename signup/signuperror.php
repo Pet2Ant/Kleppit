@@ -41,7 +41,7 @@ class Signup extends SignupDb
         if($this->invalidPassword() == false)
         {
            
-            header('Location:public/signupform.php?signup=invallidpassword');
+            header('Location:public/signupform.php?signup=invalidpassword');
             exit();
         }
         if($this->passwordMatch() == false)
