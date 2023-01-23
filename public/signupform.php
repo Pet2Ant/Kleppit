@@ -80,7 +80,7 @@
                   </p>
                 </div>
                 <div class="py-1">
-                  <a href="./AccountSettings.php" tabindex="0" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Account settings</a>
+                  <a href="./Profile.php" tabindex="0" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Account settings</a>
                   <a href="./ContactUs.php" tabindex="1" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Contact Us</a>
                 </div>
                 <div class="py-1">
@@ -174,83 +174,76 @@
                         class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-[#ff4957] focus:outline-none"
                       />
                       <div class="error-text"></div>
+                    </div>         
                     </div>
-                    
+                    <div class="flex justify-start mt-3 ml-4 p-1">
+                      <ul>
+                        <li class="flex items-center py-1">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="#ff4057"
+                            class="w-6 h-6"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                              clip-rule="evenodd"
+                            ></path>
+                          </svg>
+                          <p class="px-2 font-semibold text-sm text-[#ff4057]">
+                            Password cannot be smaller than 8 letters.
+                          </p>
+                        </li>
+                        <li class="flex items-center py-1">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="#ff4057"
+                            class="w-18 h-16"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                              clip-rule="evenodd"
+                            ></path>
+                          </svg>
+                          <p class="px-2 font-semibold text-sm text-[#ff4057]">
+                            Password must contain at least one capital letter
+                            (A,B,C...), one number (1,2,3...) & one special
+                            character (#,?,%...)
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="flex justify-start">
+                      <label class="text-gray-400 font-bold my-4 flex items-center">
+                        <input
+                          class="leading-loose text-pink-600 top-0"
+                          type="checkbox"
+                        />
+                        <span class="ml-2 text-sm py-2 text-gray-400 text-left"
+                          >I Accept
+                          <a
+                            href="./userAgreement.html"
+                            class="font-semibold text-[#ff4057] transition duration-300 ease-in-out hover:text-red-700 border-b-2 border-[#ff4057] hover:border-red-700"
+                          >
+                            Kleppit's User Agreement </a
+                          >and
+                          <a
+                            href="./privacyPolicy.html"
+                            class="font-semibold text-[#ff4057] transition duration-300 ease-in-out hover:text-red-700 border-b-2 border-[#ff4057] hover:border-red-700"
+                          >
+                            our Privacy Policy.</a
+                          >
+                        </span>
+                      </label>
+                    </div>
                     <button type="submit" name="submit"
-                  class="w-full text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1"
-                >
-                  Register
-                </button>
-                  </form>
-                </div>
-                <div class="flex justify-start mt-3 ml-4 p-1">
-                  <ul>
-                    <li class="flex items-center py-1">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="#ff4057"
-                        class="w-6 h-6"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      <p class="px-2 font-semibold text-sm text-[#ff4057]">
-                        Password cannot be smaller than 8 letters.
-                      </p>
-                    </li>
-                    <li class="flex items-center py-1">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="#ff4057"
-                        class="w-18 h-16"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      <p class="px-2 font-semibold text-sm text-[#ff4057]">
-                        Password must contain at least one capital letter
-                        (A,B,C...), one number (1,2,3...) & one special
-                        character (#,?,%...)
-                      </p>
-                    </li>
-                  </ul>
-                </div>
-                <div class="flex justify-start">
-                  <label class="text-gray-400 font-bold my-4 flex items-center">
-                    <input
-                      class="leading-loose text-pink-600 top-0"
-                      type="checkbox"
-                    />
-                    <span class="ml-2 text-sm py-2 text-gray-400 text-left"
-                      >I Accept
-                      <a
-                        href="./userAgreement.html"
-                        class="font-semibold text-[#ff4057] transition duration-300 ease-in-out hover:text-red-700 border-b-2 border-[#ff4057] hover:border-red-700"
-                      >
-                        Kleppit's User Agreement </a
-                      >and
-                      <a
-                        href="./privacyPolicy.html"
-                        class="font-semibold text-[#ff4057] transition duration-300 ease-in-out hover:text-red-700 border-b-2 border-[#ff4057] hover:border-red-700"
-                      >
-                        our Privacy Policy.</a
-                      >
-                    </span>
-                  </label>
-                </div>
-                    <button type="submit" name="submit"
-                  class="w-full text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1"
-                >
-                  Register
-                </button>
+                    class="w-full text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1"
+                    >
+                      Register
+                    </button>
                   </form>
                 </div>
                
