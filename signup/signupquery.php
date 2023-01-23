@@ -9,7 +9,7 @@ class SignupDb extends DbCon
         if(!$input->execute(array($username,$email,$hashedpassword)))
         {
             $input = null;
-            header("location:../index.php?checkdberror");
+            header("location:../index.php?signup=checkdberror");
             exit();
 
         }
@@ -23,7 +23,7 @@ class SignupDb extends DbCon
         if(!$checkdb->execute(array($username,$email)))
         {
             $checkdb = null;
-            header("location:../index.php?checkdberror");
+            header("location:../index.php?signup=checkdberror");
             exit();
         }
         if($checkdb->rowCount() > 0)

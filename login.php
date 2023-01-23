@@ -8,8 +8,8 @@ if (isset($_POST["submit"])) {
     $username = $_POST["emailorusername"];
     $pwd = $_POST["pwd"];
     include "databasecon\dbcon.php";
-    include "login\loginquery.php";
-    include "login\loginerror.php";
+    include "login\loginsql.php";
+    include "login\loginerrors.php";
     
 
 

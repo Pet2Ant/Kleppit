@@ -21,39 +21,39 @@ class Signup extends SignupDb
     {
         if($this->emptyInput() )
         {
-            echo "empty input";
             
+            header('Location:public/signupform.php?signup=empty');
             exit();
         }
         if($this->invalidUsername() ==false )
         {
 
-            echo "invalid username";
-          
+            
+            header('Location:public/signupform.php?signup=invalidusername');
             exit();
         }
         if($this->invalidEmail() == false)
         {
-             echo "invalid emailL";
             
+            header('Location:public/signupform.php?signup=invalidemail');
             exit();
         }
         if($this->invalidPassword() == false)
         {
-             echo " invalid password ";
-             
+           
+            header('Location:public/signupform.php?signup=invallidpassword');
             exit();
         }
         if($this->passwordMatch() == false)
         {
-            echo "password dont match ";
-           
+            
+            header('Location:public/signupform.php?signup=passwordDoesntMatch');
             exit();
         }
         if($this->alreadyExists() == false)
         {
-             echo "username or email already has an account";
             
+             header('Location:public/signupform.php?signup=alreadyexists');
             exit();
         }
         $this->setUser($this->username,$this->email,$this->password);

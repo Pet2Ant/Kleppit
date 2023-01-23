@@ -18,9 +18,9 @@ class LoginEr extends Login
     {
         if($this->emptyInput() == false)
         {
-            echo "empty input";
-            // header('location:../index.php?error=emptyinput');
-            // exit();
+            
+            header('location:public/loginform.php?error=emptyinput');
+            exit();
         }
         $this->getUser($this->username,$this->pwd);
 

@@ -52,6 +52,7 @@
                   class="italic text-sm text-red-900 transition duration-300 ease-in-out hover:text-red-700 px-1 py-2">
                   Forgot Password?
                 </a>
+                
               </div>
              
               <ul>
@@ -63,6 +64,31 @@
                 </li>
               </ul>
             </div>
+            <div>
+                  
+                  <?php
+                      $fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+  
+                      if(strpos($fullUrl,"error=checkdberror") == true)
+                        {
+                          echo "<p style='color:red'>Could not connect to the database.
+                          Check your connection</p>";
+                        }
+                        if(strpos($fullUrl,"error=wrongpassword") == true)
+                        {
+                          echo "<p style='color:red'>Wrong password.</p>";
+                        }
+                        if(strpos($fullUrl,"error=usernotfound") == true)
+                        {
+                          echo "<p style='color:red'>Username or E-mail is not in use.</p>";
+                        }
+                        if(strpos($fullUrl,"error=emptyinput") == true)
+                        {
+                          echo "<p style='color:red'>You need to fill all of the fields.</p>";
+                        }
+                        
+                  ?>
+                  </div>
 
           </div>
         </div>
