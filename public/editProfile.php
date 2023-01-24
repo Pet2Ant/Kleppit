@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -122,7 +120,7 @@ session_start();
                 <div class="container mx-auto">
                     <div class="inputs w-full max-w-2xl p-6 mx-auto">
                         <h2 class="text-2xl font-bold text-red-500">Account Security</h2>
-                        <form method="post" class="mt-6 border-t border-gray-400 pt-4">
+                        <form action="../profile.php" method="post" class="mt-6 border-t border-gray-400 pt-4">
                             <div class='flex flex-wrap -mx-3 mb-6'>
                                 <div class='w-full md:w-full px-3 mb-6'>
                                     <label class='block uppercase tracking-wide text-red-500 text-xs font-bold mb-2'>email address</label>
@@ -157,14 +155,14 @@ session_start();
 
                                     <div class='w-full md:w-full px-3 mb-6'>
                                         <label class="block uppercase tracking-wide text-red-500 text-xs font-bold mb-2">Username</label>
-                                        <input placeholder="Update Username..." type="text" name="username" class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-[#ff4957] focus:outline-none ">
+                                        <input placeholder="Display name" type="text" name="name" class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-[#ff4957] focus:outline-none ">
                                     </div>
                                     <div class='w-full md:w-full px-3 mb-6'>
                                         <label class='block uppercase tracking-wide text-red-500 text-xs font-bold mb-2'>Description</label>
                                         <textarea id="textArea" placeholder="Write something about yourself!" type="text" name="description" class="resize-y text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-[#ff4957] focus:outline-none"></textarea>
                                     </div>
                                     <div class="flex justify-end">
-                                        <button class="w-full text-md font-bold bg-red-500 transition duration-500 ease-in-out hover:bg-red-600 rounded-md p-1">
+                                        <button type="submit" name="submit" class="w-full text-md font-bold bg-red-500 transition duration-500 ease-in-out hover:bg-red-600 rounded-md p-1">
                                             Save Changes
                                         </button>
                                     </div>
