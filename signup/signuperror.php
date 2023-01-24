@@ -122,6 +122,11 @@ class Signup extends SignupDb
         }
         return true;
     }
+    public function fetchUserId($username)
+    {
+        $id = $this->getUserId($username);
+        return $id[0]["id"];
+    }
 
 }
 

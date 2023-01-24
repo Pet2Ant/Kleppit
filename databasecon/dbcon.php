@@ -6,9 +6,9 @@ class DbCon
     protected function connect()
     {
         try{
-                $username  = "antonisu";
-                $password = "1234";
-                $dbh = new PDO('mysql:host=localhost;dbname=kleppit',$username,$password);
+                $username  = "Chris";
+                $password = "yoloswag1234";
+                $dbh = new PDO('mysql:host=localhost;dbname=athtech_forum',$username,$password);
                 return $dbh;
         }catch(PDOException $e)
         {

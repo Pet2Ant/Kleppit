@@ -176,7 +176,7 @@ session_start();
                         }
                         if(strpos($fullUrl,"error=usernotfound") == true)
                         {
-                          echo "<p style='color:red'>Username or E-mail is not in use.</p>";
+                          echo "<p style='color:red'>Username not found.</p>";
                         }
                         if(strpos($fullUrl,"error=emptyinput") == true)
                         {

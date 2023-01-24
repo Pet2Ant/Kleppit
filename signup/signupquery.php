@@ -32,6 +32,27 @@ class SignupDb extends DbCon
         }
         return true;
     }
+    protected function getUserId($username)
+    {
+        $stmt = $this -> connect()->prepare('SELECT id FROM users where username= ?;');
+        if(!$stmt->execute(array($username)))
+        {
+            $stmt = null;
+            header('location: profile.php?error=stmtfailed');
+            exit();
+        }
+        if($stmt->rowCount() == 0)
+        {
+            $stmt = null;
+            header('location: profile.php?error=profilenotfound');
+            exit();
+        }
+
+        $profileData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $profileData;
+
+    }
+
 }
 
 ?>

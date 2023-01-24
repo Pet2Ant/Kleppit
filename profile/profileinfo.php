@@ -5,7 +5,7 @@ class ProfileInfo extends DbCon
 
     protected function getProfileInfo($id)
     {
-        $stmt = $this -> connect()->prepare('SELECT * profiles where users_id= ?;');
+        $stmt = $this -> connect()->prepare('SELECT * FROM profiles where users_id= ?;');
         if(!$stmt->execute(array($id)))
         {
             $stmt = null;
@@ -15,8 +15,8 @@ class ProfileInfo extends DbCon
         if($stmt->rowCount() == 0)
         {
             $stmt = null;
-            header('location: profile.php?error=profilenotfound');
-            exit();
+            // header('location: profile.php?error=profilenotfound');
+            // exit();
         }
 
         $profileData = $stmt->fetchAll(PDO::FETCH_ASSOC);

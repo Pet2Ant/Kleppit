@@ -19,5 +19,25 @@ class ProfileInfoController extends ProfileInfo
         
     }   
 
+    public function updateProfileInfo($about,$intro,$text)
+    {
+        //error handlers
+        if($this->emptyInputsCheck($about,$intro,$text))
+        {
+            header('Location:public/profilesettings.php?error=emptyinput');
+            exit();
+        }
+        //update profile info
+        $this->setNewProfileInfo($about, $intro, $text, $this->id);
+
+    }
+    private function emptyInputsCheck($about,$intro,$text)
+    {
+        if(empty($about) || empty($intro) || empty($text))
+        {
+            return true;
+        }
+        return false;
+    }
 }
 ?>
