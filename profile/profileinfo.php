@@ -33,6 +33,7 @@ class ProfileInfo extends DbCon
             header('location: profile.php?error=stmtfailed');
             exit();
         }
+               
 
         $stmt = null;
     }
