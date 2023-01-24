@@ -19,7 +19,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     
     $placeholder = "this is a text";
     $profileInfo->updateProfileInfo($description, $name,$placeholder);
-     
+    header('location:public/profile.php');
     
     
 }

@@ -6,7 +6,12 @@ include "../databasecon/dbcon.php";
 include "../profile/profileinfo.php";
 include "../profile/profilecontr.php";
 include "../profile/profileview.php";
+include "../post/postsql.php";
+include "../post/postcont.php";
+include "../post/postview.php";
 $profileInfo = new ProfileInfoView();
+$postInfo = new PostInfoView();
+
 
 
 ?>
@@ -179,14 +184,12 @@ Post content text: text-gray-500
                                     <!-- Post Title -->
                                     <div>
                                         <h2 class="text-lg font-bold mb-1 text-gray-400">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            Suspendisse tempor placerat turpis eu semper.
+                                        <?php $postInfo->fetchTitle($_SESSION["id"]); ?>
                                         </h2>
                                     </div>
                                     <!-- Post Description -->
                                     <p class="text-gray-500">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Praesent euismod congue nibh, in placerat risus pretium at.
+                                        <?php $postInfo->fetchContent($_SESSION["id"]); ?>
 
                                     </p>
                                     <!-- Comments -->

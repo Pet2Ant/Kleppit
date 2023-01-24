@@ -143,17 +143,23 @@ session_start();
                                         </div>
                                     </div>
                                 </div>
-                                <form class="mt-8">
+
+
+
+
+
+
+                                <form action="../post.php" method="post" class="mt-8">
                                     <div class="mx-auto max-w-lg">
                                         <div class="py-1">
                                             <span class="px-1 text-md text-[#ff4057]">Title</span>
-                                            <input placeholder="Title..." type="text"
+                                            <input placeholder="Title..." type="text" name="title"
                                                 class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-[#ff4957] focus:outline-none" />
                                         </div>
                                         <div class="py-1">
                                             <span class="px-1 text-md text-[#ff4057]">Content</span>
                                             <!-- Text Area -->
-                                            <textarea id="textArea" placeholder="Share your thoughts" type="text"
+                                            <textarea id="textArea" name="content" placeholder="Share your thoughts" type="text"
                                                 class="resize-y text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-[#ff4957] focus:outline-none"></textarea>
                                             <!-- Image Area -->
                                             <div class="flex items-center justify-center w-full hidden"
@@ -182,12 +188,45 @@ session_start();
                                         </div>
                                     </div>
                                     <div class="py-2">
-                                        <button type="submit"
+                                        <button type="submit" name="submit"
                                             class="mt-3 w-full bg-[#ff4957] text-white active:bg-[#ff4957] text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition duration-150 ease-in-out hover:bg-red-700">
                                             Create Post
                                         </button>
                                     </div>
                                 </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             </div>
                         </div>
                 </div>
