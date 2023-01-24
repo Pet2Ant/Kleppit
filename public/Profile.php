@@ -1,5 +1,3 @@
-
-
 <?php
 session_start();
 include "../databasecon/dbcon.php";
@@ -739,7 +737,7 @@ Post content text: text-gray-500
                                         </h1>
                                     </div>
                                     <div class="flex justify-center items-center py-1">
-                                        <p class="text-sm text-gray-400">Kleppit Member</p>
+                                        <p class="text-sm text-gray-400"><?php $profileInfo->fetchTitle($_SESSION["id"]); ?></p>
                                     </div>
                                     <div class="flex justify-center items-center py-1">
                                         <p class="text-xs text-gray-400">Joined 01/01/2021</p>
@@ -747,7 +745,7 @@ Post content text: text-gray-500
                                     <!-- Profile Button -->
                                     <div class="flex justify-center items-center py-1">
                                         <button onclick="location.href = './editProfile.php';" class="w-40 text-sm font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1">
-                                           Edit Profile
+                                            Edit Profile
                                         </button>
                                     </div>
 
@@ -755,81 +753,69 @@ Post content text: text-gray-500
                                         <div class="mt-5">
                                             <hr class="border-1 border-slate-700" />
                                         </div>
-                                        <div class="mt-2">
-                                            <p class="text-sm font-semibold text-gray-400">
-                                                <?php $profileInfo->fetchIntroduction($_SESSION["id"]); ?>
-                                            </p>
-                                        </div>
-                                        <div class="mt-5">
-                                            <hr class="border-1 border-slate-700" />
-                                        </div>
-                                        <div class="mt-5 flex flex-col gap-2">
-                                            <button onclick="location.href = './createPost.php';" class="w-full text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1">
-                                                Create Post
-                                            </button>
+
+                                        <div class="mt-5 overflow-visible ">
+                                            <div class="flex justify-center items-center ">
+                                                <p class="overflow-visible text-sm text-gray-400 break-all">
+                                                    <?php $profileInfo->fetchAbout($_SESSION["id"]); ?>
+                                                </p>
+                                            </div>
+                                            <div class="mt-5">
+                                                <hr class="border-1 border-slate-700" />
+                                            </div>
+                                            <div class="mt-5 flex flex-col gap-2">
+                                                <button onclick="location.href = './createPost.php';" class="w-full text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1">
+                                                    Create Post
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Kleppit Information Sidebar -->
-                        <div class="rounded border border-gray-500 my-10 mb-4">
-                            <div class="p-3">
-                                <div class="flex justify-between">
-                                    <div>
-                                        <a href="./About.php" class="block no-underline text-xs font-semibold text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">About</a>
+                            <!-- Kleppit Information Sidebar -->
+                            <div class="rounded border border-gray-500 my-10 mb-4">
+                                <div class="p-3">
+                                    <div class="flex justify-between">
+                                        <div>
+                                            <a href="./About.php" class="block no-underline text-xs font-semibold text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">About</a>
+                                        </div>
+                                        <div>
+                                            <a href="./ContactUs.php" class="block no-underline text-xs font-semibold text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Contact Us</a>
+                                        </div>
+                                        <div>
+                                            <a href="./nonprofit.php" class="block no-underline text-xs font-semibold text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Non-Profit
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <a href="./ContactUs.php" class="block no-underline text-xs font-semibold text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Contact Us</a>
+                                    <div class="text-center mt-6">
+                                        <p class="text-xs leading-tight text-gray-400 font-medium">
+                                            <a href="./userAgreement.html" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">User Agreement</a>
+                                            |
+                                            <a href="./PrivacyPolicy.html" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Privacy Policy</a>
+                                        </p>
+                                        <p class="text-xs leading-tight font-medium text-[#ff4057] my-1">
+                                            © 2023 Kleppit, Inc. All rights reserved
+                                        </p>
                                     </div>
-                                    <div>
-                                        <a href="./nonprofit.php" class="block no-underline text-xs font-semibold text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Non-Profit
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="text-center mt-6">
-                                    <p class="text-xs leading-tight text-gray-400 font-medium">
-                                        <a href="./userAgreement.html" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">User Agreement</a>
-                                        |
-                                        <a href="./PrivacyPolicy.html" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Privacy Policy</a>
-                                    </p>
-                                    <p class="text-xs leading-tight font-medium text-[#ff4057] my-1">
-                                        © 2023 Kleppit, Inc. All rights reserved
-                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Scroll to the top button -->
-        <div class="fixed bottom-0 right-0 mb-10 mr-10">
-            <div class="flex flex-col gap-2">
-                <button onclick="topFunction()" class="w-full w-12 h-12 bg-[#ff4057] rounded-full hover:bg-red-600 transition ease-in duration-300 flex justify-center ">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 place-self-center">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
-                    </svg>
+            <!-- Scroll to the top button -->
+            <div class="fixed bottom-0 right-0 mb-10 mr-10">
+                <div class="flex flex-col gap-2">
+                    <button onclick="topFunction()" class="w-full w-12 h-12 bg-[#ff4057] rounded-full hover:bg-red-600 transition ease-in duration-300 flex justify-center ">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 place-self-center">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
+                        </svg>
 
-                </button>
+                    </button>
+                </div>
             </div>
-        </div>
 </body>
 <script src="./main.js"></script>
 
 </html>
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
