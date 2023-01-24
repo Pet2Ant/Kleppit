@@ -50,6 +50,7 @@ class ProfileInfo extends DbCon
 
         $stmt = null;
     }
+    
 
 }
 ?>

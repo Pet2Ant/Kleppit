@@ -23,6 +23,27 @@ class PostInfo extends DbCon
         return $profileData;
 
     }
+    protected function getUser($id)
+    {
+        $stmt = $this -> connect()->prepare('SELECT * FROM users where id= ?;');
+        if(!$stmt->execute(array($id)))
+        {
+            $stmt = null;
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+        if($stmt->rowCount() == 0)
+        {
+            $stmt = null;
+            // header('location: profile.php?error=profilenotfound');
+            // exit();
+        }
+
+        $profileData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $profileData;
+
+    }
+
     protected function getPostId($id)
     {
         $stmt = $this -> connect()->prepare('SELECT post_id FROM post where users_id= ?;');
@@ -38,9 +59,15 @@ class PostInfo extends DbCon
             // header('location: profile.php?error=profilenotfound');
             // exit();
         }
+        $count = 0;
+        while($count<=$stmt->rowCount())
+        {
+            $count++;
+        }
 
-        $post_id = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $post_id;
+        // $post_id = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // return $post_id;
+        return $count;
 
     }
     protected function updatePost($post_title,$post_content,$id)
@@ -71,6 +98,7 @@ class PostInfo extends DbCon
 
         $stmt = null;
     }
+    
     // protected function deletePost($id)
     // {
 

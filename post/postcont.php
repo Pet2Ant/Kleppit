@@ -40,5 +40,6 @@ class PostContr extends PostInfo
         }
         return false;
     }
+   
 }
 ?>

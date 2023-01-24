@@ -10,12 +10,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     include "databasecon/dbcon.php";
     include "post/postsql.php";
     include "post/postcont.php";
-
+    include "post/postview.php";
+    $postInfo = new PostInfoView();
     $post = new PostContr($post_title, $post_content, $id);
     $post->newPost();
    
     header('location:public/profile.php');
-    
-    
+   
 }
 ?>
