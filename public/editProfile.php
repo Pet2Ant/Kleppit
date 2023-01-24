@@ -81,7 +81,7 @@ session_start();
                                     </p>
                                 </div>
                                 <div class="py-1">
-                                    <a href="./Profile.php" tabindex="0" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Account settings</a>
+                                    <a href="./Profile.php" tabindex="0" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Profile</a>
                                     <a href="./ContactUs.php" tabindex="1" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Contact Us</a>
                                 </div>
                                 <div class="py-1">
@@ -116,7 +116,7 @@ session_start();
     <div id="main" class=" py-12 mt-12 relative">
 
         <div id="container" class=" container mx-auto">
-            <h2 class="block uppercase text-3xl font-bold text-red-500">Account Settings</h2>
+            <h2 class="block uppercase text-3xl font-bold text-red-500">Profile</h2>
             <hr class="mt-6 border-t border-gray-400 pt-4 w-full">
             <div class="pt-2">
                 <div class="container mx-auto">
