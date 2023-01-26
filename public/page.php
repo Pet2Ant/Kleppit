@@ -143,7 +143,7 @@ Post content text: text-gray-500
                 <!-- Container -->
                 <div class="w-11/12 ml-5 bg-[#272729] border border-[#343536] bg-[#272729] rounded">
                     <!-- Post -->
-                    <div id="" class="py-2 mb-4">
+                    <div class="py-2 mb-4">
                         <div class="flex rounded">
                             <div class="w-5 mx-4 flex flex-col text-center pt-2">
                                 <!-- Upvote -->
@@ -164,52 +164,48 @@ Post content text: text-gray-500
                                 </button>
                             </div>
                             <!-- Post Information -->
-                            <div class="w-11/12 pt-2">
+                            <div class="w-11/12 pt-2 ">
                                 <div class="flex items-center text-xs mb-2">
                                     <span class="text-gray-500">Posted by</span>
                                     <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">u/<?php
-                                                echo $_SESSION['username'];
-                                                ?></a>
+                                                                                                            echo $_SESSION['username'];
+                                                                                                            ?></a>
                                     <span class="text-gray-500">2 hours ago</span>
                                 </div>
                                 <!-- Post Title -->
                                 <div>
-                                    <h2 class="text-lg font-bold mb-1 text-gray-400">
+                                    <h2 class="text-lg font-bold mb-1 text-gray-300">
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                         Suspendisse tempor placerat turpis eu semper.
                                     </h2>
                                 </div>
                                 <!-- Post Description -->
-                                <p class="text-gray-500">
+                                <p class="text-gray-400">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Praesent euismod congue nibh, in placerat risus pretium at.
 
                                 </p>
-                                <!-- Comments -->
-                                <div class="inline-flex items-center my-1">
+
+                                <!-- Post Actions -->
+                                <div class="inline-flex items-center my-1 ">
                                     <div class="flex p-1 rounded-lg">
                                         <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                             <path d="M10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"></path>
                                         </svg>
                                         <span class="ml-2 text-xs font-semibold text-gray-500">3k Comments</span>
                                     </div>
-                                    <!-- Share -->
-                                    <div class="flex transition duration-500 hover:bg-gray-700 p-1 ml-2 rounded-lg">
-                                        <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                            <path d="M5.08 12.16A2.99 2.99 0 0 1 0 10a3 3 0 0 1 5.08-2.16l8.94-4.47a3 3 0 1 1 .9 1.79L5.98 9.63a3.03 3.03 0 0 1 0 .74l8.94 4.47A2.99 2.99 0 0 1 20 17a3 3 0 1 1-5.98-.37l-8.94-4.47z"></path>
-                                        </svg>
-                                        <button class="ml-2 text-xs font-semibold text-gray-500">Share</button>
-                                    </div>
                                 </div>
+                                <hr class="border-b-1 border-zinc-700 mx-auto">
                             </div>
 
                         </div>
-                        <div class="relative w-11/12 mx-auto py-10 min-w-[200px]">
+                        
+                        <div class="relative w-11/12 mx-auto py-10 min-w-[200px] border-b-1 border-zinc-700 border-dashed ">
                             <div class="pb-1">
-                                <label for="textArea" class="text-xs text-gray-500 ">
+                                <label for="textArea" class="text-sm text-gray-500 ">
                                     Comment as <a class="no-underline hover:underline" href="./Profile.php">u/<?php
-                                                echo $_SESSION['username'];
-                                                ?></label></a>
+                                                                                                                echo $_SESSION['username'];
+                                                                                                                ?></label></a>
                             </div>
 
                             <textarea id="textArea" name="content" placeholder="Share your thoughts" type="text" class="resize-y text-sm block  px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-[#ff4957] focus:outline-none"></textarea>
@@ -219,8 +215,66 @@ Post content text: text-gray-500
                                 </button>
                             </div>
                         </div>
+                        <!-- Sort by dropdown -->
+                        <div class="flex items-center mx-auto p-4">
+                            <label class="text-xs text-red-500 mr-2">Sort by</label>
+                            <div class="relative w-32 ">
+                                <select class="text-red-500 block appearance-none w-full bg-zinc-800 border-2 border-zinc-700 text-gray-500 py-2 px-3 pr-8 rounded-lg shadow leading-tight focus:outline-none focus:bg-zinc-900 focus:border-zinc-600" id="grid-state">
+                                    <option>New</option>
+                                    <option>Old</option>
+                                    <option>Top</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M7 7l3-3 3 3v8H7V7z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="border-t-1 border-zinc-700">
                     </div>
 
+                    <div class="flex justify-center mb-5 mx-5">
+                        <div class="flex border border-[#343536] bg-[#272729] rounded p-3">
+                            <!-- Comment Body -->
+                            <div class="w-11/12 pt-2">
+                                <!-- Comment Information -->
+                                <div class="flex items-center text-sm mb-2">
+                                    <img class="w-8 h-8 rounded-full mr-2" src="https://placeimg.com/192/192/people" alt="Avatar of User">
+                                    <span class="text-gray-500">Commented by</span>
+                                    <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">u/<?php echo $_SESSION['username'] ?> •</a>
+                                    <span class="text-gray-500">2 hours ago</span>
+                                </div>
+                                <!-- Comment Text -->
+                                <p class="text-gray-400 text-md">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Praesent euismod congue nibh, in placerat risus pretium at.
+                                </p>
+                                <!-- Comment Actions -->
+                                <div class="w-5 mx-4 flex flex-row text-center pt-2 space-x-4">
+                                    <!-- Upvote -->
+                                    <button class="text-gray-500 transition duration-500 hover:text-red-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
+                                        <input type="text" hidden disabled>
+                                        <svg class="w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
+                                        </svg>
+                                        <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 ">Upvote</span>
+                                    </button>
+                                    <!-- Vote count -->
+                                    <span class="text-xs font-semibold my-1 m-2 text-gray-400">0</span>
+                                    <!-- Downvote -->
+                                    <button class="text-gray-500 transition duration-500 hover:text-blue-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
+                                        <input type="text" hidden disabled>
+                                        <svg class="w-5 fill-current " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
+                                        </svg>
+                                        <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 ">Downvote</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!--  Sidebars -->
