@@ -967,17 +967,6 @@ Post content text: text-gray-500
       </div>
     </div>
   </div>
-  <!-- Scroll to the top button -->
-  <div class="fixed bottom-0 right-0 mb-10 mr-10">
-    <div class="flex flex-col gap-2">
-      <button onclick="topFunction()" class="w-full w-12 h-12 bg-[#ff4057] rounded-full hover:bg-red-600 transition ease-in duration-300 flex justify-center ">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 place-self-center">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
-        </svg>
-
-      </button>
-    </div>
-  </div>
 </body>
 <script src="./main.js"></script>
 

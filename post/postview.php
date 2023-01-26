@@ -14,38 +14,41 @@ class PostInfoView extends PostInfo
     }
     public function createPostFe($id)
     {
-       
-        $count =0;
+
+        $count = 0;
         $post_id = $this->getPostId($id);
         $postInfo = $this->getUserInfo($id);
         $userInfo = $this->getUser($id);
-        while($count<$post_id-1){
+        while ($count < $post_id - 1) {
 
             echo '<div id="" class="py-2 mb-4">
         <div class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer">
             <div class="w-5 mx-4 flex flex-col text-center pt-2">
-                <!-- Upvote -->
-                <form action="" method="post">
-                <button type="submit" name="post_upvote" class="text-xs">
+            <!-- Upvote -->
+            <form action="" method="post">
+            <button type="submit" name="post_upvote" class="text-xs">
+                <input type="text" hidden disabled>
                     <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-[#ff4057]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                         <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
                     </svg>
-                </button>
-                <!-- Vote count -->
+            </button>
+            <!-- Vote count -->
                 <span class="text-xs font-semibold my-1 text-gray-500">20k</span>
-                <!-- Downvote -->
-                <button type="submit" name="post_downvote" class="text-xs">
+            <!-- Downvote -->
+            <button type="submit" name="post_upvote" class="text-xs">
+                <input type="text" hidden disabled>
                     <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                         <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
                     </svg>
-                </button>
+            </button>
+               
                 </form>
             </div>
             <!-- Post Information -->
             <div class="w-11/12 pt-2">
                 <div class="flex items-center text-xs mb-2">
                     <span class="text-gray-500">Posted by</span>
-                    <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">ku/'.$userInfo[0]["username"].'</a>
+                    <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">ku/' . $userInfo[0]["username"] . '</a>
                     <span class="text-gray-500">2 hours ago</span>
                 </div>
                 <!-- Post Title -->
@@ -79,17 +82,6 @@ class PostInfoView extends PostInfo
         </div>
     </div>';
             $count = $count + 1;
-
-           
         }
-
     }
-    
-
-        }
-        
-
-
-    
-
-?>
+}
