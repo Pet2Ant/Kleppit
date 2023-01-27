@@ -330,54 +330,69 @@ Post content text: text-gray-500
         <!-- Posts -->
         <div class="w-11/12 ml-5">
          <!-- Sort by top, new, old bar -->
+         
         <div class="flex justify-between">
+              <?php
+                
+                
+                $sortquery = $_SERVER["QUERY_STRING"];
+                parse_str($sortquery, $sortquery);
+                $sortTo ="Default";
+                if(!$sortquery){                 
+                }
+                elseif($sortquery["sort"] == "karma"){
+                  $sortTo ="by Karma";                  
+                }
+                elseif($sortquery["sort"] == "newest"){
+                  $sortTo ="Newest";
+                }
+                elseif($sortquery["sort"] == "oldest"){
+                  $sortTo ="Oldest";             
+                }
+                
+              
+              ?>
             <div class="mt-3">
               <span class="text-xl font-semibold text-gray-500 p-2">All posts</span>
               <span class="ml-2 text-md text-gray-500 tracking-tight">Sorted by:</span>
-              <span class="ml-0.5 text-lg text-red-500 ">Newest</span>   
+              <span class="ml-0.5 text-lg text-red-500 "><?php echo $sortTo ;?></span>   
             </div>
-            <form action="index.php" method="post">
+            
             <div class="mt-3">
               <span class="text-md text-gray-500">Sort by:</span>
-              <button type="submit" name="sortKarmaDesc" class="px-4 py-2 font-medium text-[#ff4057] border border-[#ff4057] rounded-l-md hover:bg-[#ff4057] hover:text-black transition duration-500 ease-in-out">
+              <button  onclick="javascript:window.location.href='index.php?sort=karma'" class="px-4 py-2 font-medium text-[#ff4057] border border-[#ff4057] rounded-l-md hover:bg-[#ff4057] hover:text-black transition duration-500 ease-in-out">
                 Top
               </button>
-              <button type="submit" name="sortNewest" class="px-4 py-2 font-medium text-[#ff4057] border border-[#ff4057] hover:bg-[#ff4057] hover:text-black transition duration-500 ease-in-out">
+              <button onclick="javascript:window.location.href='index.php?sort=newest'"  class="px-4 py-2 font-medium text-[#ff4057] border border-[#ff4057] hover:bg-[#ff4057] hover:text-black transition duration-500 ease-in-out">
                 New
               </button>
-              <button type="submit" name="sortOldest" class="px-4 py-2 font-medium text-[#ff4057] border border-[#ff4057] rounded-r-md hover:bg-[#ff4057] hover:text-black transition duration-500 ease-in-out">
+              <button onclick="javascript:window.location.href='index.php?sort=oldest'" class="px-4 py-2 font-medium text-[#ff4057] border border-[#ff4057] rounded-r-md hover:bg-[#ff4057] hover:text-black transition duration-500 ease-in-out">
                 Old
               </button>
             </div>
           </div>       
-          </form>
-        <?php
-        if (!$_SERVER["REQUEST_METHOD"] == "POST") {
-    
-          $postInfo-> getAllPosts();
-      
-          
-      
-      }else
-      {
-          if (isset($_POST["sortKarmaDesc"])) {
-             
-              $postInfo->getAllPostsOrderedByKarmaDesc();
-              
-             
-          } elseif (isset($_POST["sortNewest"])) {
-          
-              $postInfo->getAllPostsSortNew();
-            
-          } elseif (isset($_POST["sortOldest"])) {
-             
-              $postInfo->getAllPostsSortOldest();
-             
-          }
-          
+           <?php
         
-      }
-        ?>
+        
+        if($sortTo == "Default"){
+          $postInfo-> getAllPosts($sortTo);
+        }
+        elseif($sortTo == "by Karma"){
+          
+          $postInfo->getAllPosts($sortTo);
+        }
+        elseif($sortTo == "Newest"){
+         
+          $postInfo->getAllPosts($sortTo);
+        }
+        elseif($sortTo == "Oldest"){
+         
+          $postInfo->getAllPosts($sortTo);
+        }
+        
+      
+        ?> 
+        
         </div>
         <!--  Sidebars -->
         <div class="w-1/3 pl-9 hidden lg:block">

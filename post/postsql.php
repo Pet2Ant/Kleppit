@@ -3,7 +3,7 @@
 class PostInfo extends DbCon
 {
 
-    protected function getPostInfo($id)
+    protected function getUserPosts($id)
     {
         $stmt = $this -> connect()->prepare('SELECT * FROM post where users_id= ?;');
         if(!$stmt->execute(array($id)))
@@ -23,6 +23,7 @@ class PostInfo extends DbCon
         return $profileData;
 
     }
+    
     protected function getUser($id)
     {
         $stmt = $this -> connect()->prepare('SELECT * FROM users where id= ?;');
@@ -43,6 +44,21 @@ class PostInfo extends DbCon
         return $profileData;
 
         
+    }
+    protected function getPost($postid)
+    {
+        $stmt = $this->connect()->prepare('SELECT * FROM post p INNER JOIN users u ON u.id = p.users_id WHERE post_id=?');
+        if(!$stmt->execute(array($postid)))
+        {
+            $stmt =null;
+        }
+        
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $result[0];
+        //debug
+        // print_r($result);
+        // exit();
+        return $result;
     }
     //search function
     protected function searchQuery($search)
@@ -142,7 +158,7 @@ class PostInfo extends DbCon
         return $post_id;
     }
 
-    protected function getPostId($id)
+    protected function getPostCount($id)
     {
         $stmt = $this -> connect()->prepare('SELECT post_id FROM post where users_id= ?;');
         if(!$stmt->execute(array($id)))

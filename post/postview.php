@@ -4,20 +4,20 @@ class PostInfoView extends PostInfo
 {
     public function fetchTitle($id)
     {
-        $postInfo = $this->getPostInfo($id);
+        $postInfo = $this->getUserPosts($id);
         echo $postInfo[0]["post_title"];
     }
     public function fetchContent($id)
     {
-        $postInfo = $this->getPostInfo($id);
+        $postInfo = $this->getUserPosts($id);
         echo $postInfo[0]["post_content"];
     }
     public function createPostFe($id)
     {
        
         $count = 0;
-        $post_id = $this->getPostId($id);
-        $postInfo = $this->getPostInfo($id);
+        $post_id = $this->getPostCount($id);
+        $postInfo = $this->getUserPosts($id);
         $userInfo = $this->getUser($id);
         while($count<$post_id-1){
            
@@ -50,7 +50,7 @@ class PostInfoView extends PostInfo
             <div class="w-11/12 pt-2">
                 <div class="flex items-center text-xs mb-2">
                     <span class="text-gray-500">Posted by</span>
-                    <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">ku/'.$userInfo[0]["username"].'</a>
+                    <a href="../public/Profile.php" class="text-gray-500 mx-1 no-underline hover:underline">ku/'.$userInfo[0]["username"].'</a>
                     <span class="text-gray-500">2 hours ago</span>
                 </div>
                 <!-- Post Title -->
