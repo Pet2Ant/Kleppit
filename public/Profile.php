@@ -153,11 +153,11 @@ Post content text: text-gray-500
                 <div class="flex w-960 mx-auto">
                     <!-- Posts -->
                     <div class="w-11/12 ml-5">
-                    <?php
-                    $postInfo->createPostFe($_SESSION['id']);
-                                                       
-                             ?>
-                             </div>
+                        <?php
+                        $postInfo->createPostFe($_SESSION['id']);
+
+                        ?>
+                    </div>
                     <!--  Sidebars -->
                     <div class="w-1/3 pl-9 hidden lg:block">
                         <div class="py-2">
@@ -259,5 +259,6 @@ Post content text: text-gray-500
             </div>
 </body>
 <script src="./main.js"></script>
+
 
 </html>
