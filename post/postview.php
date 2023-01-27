@@ -20,7 +20,7 @@ class PostInfoView extends PostInfo
         $postInfo = $this->getPostInfo($id);
         $userInfo = $this->getUser($id);
         while($count<$post_id-1){
-
+           
             echo '<div id="" class="py-2 mb-4">
         <div class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer">
             <div class="w-5 mx-4 flex flex-col text-center pt-2">
@@ -91,59 +91,93 @@ class PostInfoView extends PostInfo
 
     }
 
+    public function createVoteCap($postC,$id)
+    {
+
+    }
     
-    // public function upvoteKarma($postC,$id)
-    // {   
-    //     $post_id = $this->getSpecPostId($id);
-        
-    //     $this->upvote($post_id[$postC]["post_id"], $id);
-    // }
-    // public function downvoteKarma($postC,$id)
-    // {
-    //     $post_id = $this->getSpecPostId($id);
-        
-    //     $this->downvote($post_id[$postC]["post_id"], $id);
-    // }
     public function upvoteCount($postC,$id)
     {
    
-        $post_id = $this->getSpecPostId($id);
-        $votecap = $this->getVotecap($post_id[$postC]["post_id"], $id);
-        if ($votecap[0]["votecap"] = 1 || $votecap[0]["votecap"] = -1) {
-            $upvotes = $this->upvotes($post_id[$postC]["post_id"], $id);
-
+        
+        $post_id = $postC + 1;
+        
+        $votecap = $this->getVotecap($post_id, $id);
+        echo $votecap[0]["votecap"];
+        if($votecap[0]["votecap"] == -1 )
+        {
+            $downvotes = $this->downvotes($post_id);
+            
+           
+            $downvotesNew = $downvotes[0]["post_downvote"] - 1;
+            $this->downvote($downvotesNew, $post_id, $id);
+            $upvotes = $this->upvotes($post_id);
+            
             $upvotesNew = $upvotes[0]["post_upvote"] + 1;
-
-            $this->upvote($upvotesNew, $post_id[$postC]["post_id"], $id);
+            $this->updateVotecapPos($post_id, $id);
+           
+            $this->upvote($upvotesNew, $post_id, $id);
+         
         }
+        
+        if ($votecap[0]["votecap"] != 1 && $votecap[0]["votecap"] != -1) {
+            
+            $upvotes = $this->upvotes($post_id);
+            
+            $upvotesNew = $upvotes[0]["post_upvote"] + 1;
+            $this->updateVotecapPos($post_id, $id);
+           
+            $this->upvote($upvotesNew, $post_id, $id);
+           
+        }
+        
 
     }
     public function downvoteCount($postC,$id)
     {
-        $post_id = $this->getSpecPostId($id);
-        $votecap = $this->getVotecap($post_id[$postC]["post_id"], $id);
-        if ($votecap[0]["votecap"] = 1 || $votecap[0]["votecap"] = -1) {
-            $downvotes = $this->downvotes($post_id[$postC]["post_id"], $id);
-
-            $downvotesNew = $downvotes[0]["post_upvote"] + 1;
-            $this->downvote($downvotesNew, $post_id[$postC]["post_id"], $id);
+        $post_id = $postC + 1;
+        
+        $votecap = $this->getVotecap($post_id, $id);
+        echo $post_id."<br>". $id;
+        echo $votecap[0]["votecap"];
+        if($votecap[0]["votecap"] == 1)
+        {
+            $upvotes = $this->upvotes($post_id);
+            $upvotesNew = $upvotes[0]["post_upvote"] - 1;
+            $this->upvote($upvotesNew, $post_id, $id);
+            $downvotes = $this->downvotes($post_id);
+            $this->updateVotecapNeg($post_id, $id);
+            $downvotesNew = $downvotes[0]["post_downvote"] + 1;
+            $this->downvote($downvotesNew, $post_id, $id);
+        }
+        if ($votecap[0]["votecap"] != 1 && $votecap[0]["votecap"] != -1) {
+            $downvotes = $this->downvotes($post_id);
+            $this->updateVotecapNeg($post_id, $id);
+            $downvotesNew = $downvotes[0]["post_downvote"] + 1;
+            $this->downvote($downvotesNew, $post_id, $id);
         }
     }
-    public function updateKarma($postC,$id)
-    {
-        $post_id = $this->getSpecPostId($id);
+    public function updateKarma($postC)
+    {   
+
+        $post_id = $postC + 1;
         
-        $upvotes = $this->upvotes($post_id[$postC]["post_id"], $id);
+        $upvotes = $this->upvotes($post_id);
         
-        $downvotes = $this->downvotes($post_id[$postC]["post_id"], $id);
+        $downvotes = $this->downvotes($post_id);
         
         $karma = $upvotes[0]["post_upvote"] - $downvotes[0]["post_downvote"];
        
-        $this->Karma($karma,$post_id[$postC]["post_id"], $id);
+        $this->Karma($karma,$post_id);
 
+        
     }
+    //votecap DB needs to give the ability to every user to upvote/downvote depending 
+    // on the post 
+    // so thelei set up swsto 
+    // tipou kathe fora pou ginete post create gia olous tous user sto DB to votecap
 
-        }
+ }
         
 
 

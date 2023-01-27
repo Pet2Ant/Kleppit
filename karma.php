@@ -7,13 +7,18 @@ include "databasecon/dbcon.php";
 include "post/postsql.php";
 include "post/postcont.php";
 include "post/postview.php";
+include "post/indexpost.php";
+
 $id = $_SESSION["id"];
 $postkarma = new PostInfoView();
+$postd = new PostInfo();
+
 
 
     if(isset($_POST["upvote"]))
     {
         $post_id = htmlspecialchars($_POST["post_upvote"], ENT_QUOTES, 'UTF-8');
+        echo $post_id."<br>". $id;
         $postkarma->upvoteCount($post_id,$id);
         $postkarma->updateKarma($post_id,$id);
 
@@ -28,7 +33,7 @@ $postkarma = new PostInfoView();
     }
 
    
-    header('location:public/profile.php');
+    header('location:public/index.php');
 }
 
 
