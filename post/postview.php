@@ -103,31 +103,31 @@ class PostInfoView extends PostInfo
         $post_id = $postC + 1;
         
         $votecap = $this->getVotecap($post_id, $id);
-        echo $votecap[0]["votecap"];
-        if($votecap[0]["votecap"] == -1 )
+        echo $votecap["votecap"];
+        if($votecap["votecap"] == -1 )
         {
             $downvotes = $this->downvotes($post_id);
             
            
-            $downvotesNew = $downvotes[0]["post_downvote"] - 1;
-            $this->downvote($downvotesNew, $post_id, $id);
+            $downvotesNew = $downvotes["post_downvote"] - 1;
+            $this->downvote($downvotesNew, $post_id);
             $upvotes = $this->upvotes($post_id);
             
-            $upvotesNew = $upvotes[0]["post_upvote"] + 1;
+            $upvotesNew = $upvotes["post_upvote"] + 1;
             $this->updateVotecapPos($post_id, $id);
            
-            $this->upvote($upvotesNew, $post_id, $id);
+            $this->upvote($upvotesNew, $post_id);
          
         }
         
-        if ($votecap[0]["votecap"] != 1 && $votecap[0]["votecap"] != -1) {
+        if ($votecap["votecap"] != 1 && $votecap["votecap"] != -1) {
             
             $upvotes = $this->upvotes($post_id);
             
             $upvotesNew = $upvotes[0]["post_upvote"] + 1;
             $this->updateVotecapPos($post_id, $id);
            
-            $this->upvote($upvotesNew, $post_id, $id);
+            $this->upvote($upvotesNew, $post_id);
            
         }
         
@@ -138,23 +138,21 @@ class PostInfoView extends PostInfo
         $post_id = $postC + 1;
         
         $votecap = $this->getVotecap($post_id, $id);
-        echo $post_id."<br>". $id;
-        echo $votecap[0]["votecap"];
-        if($votecap[0]["votecap"] == 1)
+        if($votecap["votecap"] == 1)
         {
             $upvotes = $this->upvotes($post_id);
-            $upvotesNew = $upvotes[0]["post_upvote"] - 1;
-            $this->upvote($upvotesNew, $post_id, $id);
+            $upvotesNew = $upvotes["post_upvote"] - 1;
+            $this->upvote($upvotesNew, $post_id);
             $downvotes = $this->downvotes($post_id);
             $this->updateVotecapNeg($post_id, $id);
-            $downvotesNew = $downvotes[0]["post_downvote"] + 1;
-            $this->downvote($downvotesNew, $post_id, $id);
+            $downvotesNew = $downvotes["post_downvote"] + 1;
+            $this->downvote($downvotesNew, $post_id);
         }
-        if ($votecap[0]["votecap"] != 1 && $votecap[0]["votecap"] != -1) {
+        if ($votecap["votecap"] != 1 && $votecap["votecap"] != -1) {
             $downvotes = $this->downvotes($post_id);
             $this->updateVotecapNeg($post_id, $id);
-            $downvotesNew = $downvotes[0]["post_downvote"] + 1;
-            $this->downvote($downvotesNew, $post_id, $id);
+            $downvotesNew = $downvotes["post_downvote"] + 1;
+            $this->downvote($downvotesNew, $post_id);
         }
     }
     public function updateKarma($postC)

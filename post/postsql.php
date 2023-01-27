@@ -303,7 +303,7 @@ class PostInfo extends DbCon
             exit();
         }
         $votecap = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $votecap;
+        return $votecap[0];
     }
     // protected function createVotecap($post_id,$id)
     // {   

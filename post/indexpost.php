@@ -2,8 +2,38 @@
 
 class IndexPostInfo extends PostInfo
 {
+    private function upvoteCreator($isClicked)
+    {
+        if ($isClicked == true) {
+            return '<button type="submit" name="upvote" class="text-xs">
+                    <svg class="w-5 fill-current  text-[#ff4057] "xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
+                    </svg>
+                </button>';
+        }
+        return '<button type="submit" name="upvote" class="text-xs">
+        <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-[#ff4057]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
+        </svg>
+        </button>';
+    }
+    private function downvoteCreator($isClicked)
+    {
+        if ($isClicked == true) {
+            return '<button type="submit" name="downvote" class="text-xs">
+            <svg class="w-5 fill-current text-blue-500 "xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
+            </svg>
+            </button>';
+        }
+        return '<button type="submit" name="downvote" class="text-xs">
+        <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
+        </svg>
+        </button>';
+    }
 
-    public function getAllPosts($sortTo)
+    public function getAllPosts($sortTo,$userId)
     {
         
         $count = 0;
@@ -25,31 +55,36 @@ class IndexPostInfo extends PostInfo
           }
         
         while ($count < $maxcount ) {
+        $votecap = $this->getVotecap($count+1,$userId);
+        if($votecap["votecap"] == 1)
+        {
+                $upvote = $this->upvoteCreator(true);
+                $downvote = $this->downvoteCreator(false);
+        }elseif($votecap["votecap"] == -1)
+        {
+                $downvote = $this->downvoteCreator(true);
+                $upvote = $this->upvoteCreator(false);
+            } else {
+                $downvote = $this->downvoteCreator(false);
+                $upvote = $this->upvoteCreator(false);
+            }
         
-          
-        echo '<div id="" class="py-2 mb-4">
+            
+         echo '<div id="" class="py-2 mb-4">
         <div class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer">
             <div class="w-5 mx-4 flex flex-col text-center pt-2">
                 <!-- Upvote -->
                 <form action="../karma.php" method="post">
                 
-                <input type="text" name="post_upvote" value='. $count .'  hidden>
-                <button type="submit" name="upvote" class="text-xs">
-                    <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-[#ff4057]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
-                    </svg>
-                </button>
+                <input type="text" name="post_upvote" value='. $count .'  hidden>'.$upvote.'
+               
                 
                 <!-- Vote count -->
                 <span class="text-xs font-semibold my-1 text-gray-500"> '. $row[$count]["post_karma"] .'</span>
                 <!-- Downvote -->
                 
-                <input type="text" name="post_downvote" value=' .$count .'  hidden >
-                <button type="submit" name="downvote" class="text-xs">
-                    <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
-                    </svg>
-                </button>
+                <input type="text" name="post_downvote" value=' .$count .'  hidden >'.$downvote.'
+                
                 </form>
             </div>
             <!-- Post Information -->

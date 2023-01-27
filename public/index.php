@@ -375,19 +375,19 @@ Post content text: text-gray-500
         
         
         if($sortTo == "Default"){
-          $postInfo-> getAllPosts($sortTo);
+          $postInfo-> getAllPosts($sortTo,$_SESSION["id"]);
         }
         elseif($sortTo == "by Karma"){
           
-          $postInfo->getAllPosts($sortTo);
+          $postInfo->getAllPosts($sortTo,$_SESSION["id"]);
         }
         elseif($sortTo == "Newest"){
          
-          $postInfo->getAllPosts($sortTo);
+          $postInfo->getAllPosts($sortTo,$_SESSION["id"]);
         }
         elseif($sortTo == "Oldest"){
          
-          $postInfo->getAllPosts($sortTo);
+          $postInfo->getAllPosts($sortTo,$_SESSION["id"]);
         }
         
       
