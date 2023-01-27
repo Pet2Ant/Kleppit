@@ -42,8 +42,28 @@ class PostInfo extends DbCon
         $profileData = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $profileData;
 
+        
     }
-    
+    //search function
+    protected function searchQuery($search)
+    {
+        $stmt = $this->connect()->prepare("SELECT post_id FROM post WHERE post_title LIKE '%$search%' OR post_content LIKE '%$search%';");
+        if(!$stmt->execute(array($search)))
+        {
+            $stmt = null;
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+        if($stmt->rowCount() == 0)
+        {
+            $stmt = null;
+            // nothing found during the search
+            header('location: profile.php?error=profilenotfound');
+            exit();
+        }
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
     protected function postRows()
     {
         $stmt = $this->connect()->prepare('SELECT * FROM users u inner join post p on p.users_id  = u.id  ;' );
