@@ -46,7 +46,7 @@ class PostInfo extends DbCon
     
     protected function postRows()
     {
-        $stmt = $this->connect()->prepare('SELECT * FROM users u inner join post p on p.users_id  = u.id ;' );
+        $stmt = $this->connect()->prepare('SELECT * FROM users u inner join post p on p.users_id  = u.id  ;' );
         $stmt->execute();
         if ($stmt->rowCount() == 0) 
         {
@@ -55,8 +55,30 @@ class PostInfo extends DbCon
        
         $result = $stmt->fetchAll();
         return $result;
-        
-        
+    }
+    protected function postRowsKarmaAsc()
+    {
+        $stmt = $this->connect()->prepare('SELECT * FROM users u inner join post p on p.users_id = u.id ORDER BY p.post_karma ASC;' );
+        $stmt->execute();
+        if ($stmt->rowCount() == 0) 
+        {
+            $stmt = null;
+        }
+       
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+    protected function postRowsKarmaDesc()
+    {
+        $stmt = $this->connect()->prepare('SELECT * FROM users u inner join post p on p.users_id = u.id ORDER BY post_karma DESC' );
+        $stmt->execute();
+        if ($stmt->rowCount() == 0) 
+        {
+            $stmt = null;
+        }
+       
+        $result = $stmt->fetchAll();
+        return $result;
     }
     protected function getSpecPostId($id)
     {

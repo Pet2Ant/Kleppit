@@ -334,7 +334,7 @@ Post content text: text-gray-500
         
         
         $postInfo = new IndexPostInfo();
-        $postInfo->getAllPosts();
+        $postInfo-> getAllPosts();
                                                        
                              ?>
         </div>
