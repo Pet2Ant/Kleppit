@@ -32,7 +32,7 @@ class IndexPostInfo extends PostInfo
         </svg>
         </button>';
     }
-
+    
     public function getAllPosts($sortTo,$userId)
     {
         
@@ -53,42 +53,48 @@ class IndexPostInfo extends PostInfo
            
             $row=$this->postRowsSortOldest();
           }
-        
-        while ($count < $maxcount ) {
-        $votecap = $this->getVotecap($count+1,$userId);
-        if($votecap["votecap"] == 1)
-        {
-                $upvote = $this->upvoteCreator(true);
-                $downvote = $this->downvoteCreator(false);
-        }elseif($votecap["votecap"] == -1)
-        {
-                $downvote = $this->downvoteCreator(true);
-                $upvote = $this->upvoteCreator(false);
-            } else {
+
+        while ($count < $maxcount) {
+            $votecap = $this->getVotecap($count + 1, $userId);
+           
+            if ($votecap == false) 
+            {
                 $downvote = $this->downvoteCreator(false);
                 $upvote = $this->upvoteCreator(false);
             }
-        
-            
-         echo '<div id="" class="py-2 mb-4">
+            else{
+                if ($votecap["votecap"] == 1) {
+                    $upvote = $this->upvoteCreator(true);
+                    $downvote = $this->downvoteCreator(false);
+                } elseif ($votecap["votecap"] == -1) {
+                    $downvote = $this->downvoteCreator(true);
+                    $upvote = $this->upvoteCreator(false);
+                } else {
+                    $downvote = $this->downvoteCreator(false);
+                    $upvote = $this->upvoteCreator(false);
+                }
+            }
+
+
+                echo '<div id="" class="py-2 mb-4">
         <div class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer">
             <div class="w-5 mx-4 flex flex-col text-center pt-2">
                 <!-- Upvote -->
                 <form action="../karma.php" method="post">
                 
-                <input type="text" name="post_upvote" value='. $count .'  hidden>'.$upvote.'
+                <input type="text" name="post_upvote" value=' . $count . '  hidden>' . $upvote . '
                
                 
                 <!-- Vote count -->
-                <span class="text-xs font-semibold my-1 text-gray-500"> '. $row[$count]["post_karma"] .'</span>
+                <span class="text-xs font-semibold my-1 text-gray-500"> ' . $row[$count]["post_karma"] . '</span>
                 <!-- Downvote -->
                 
-                <input type="text" name="post_downvote" value=' .$count .'  hidden >'.$downvote.'
+                <input type="text" name="post_downvote" value=' . $count . '  hidden >' . $downvote . '
                 
                 </form>
             </div>
             <!-- Post Information -->
-            <div class="w-11/12 pt-2 jkjkjl" onclick="javascript:window.location.href=\'../public/page.php?p='.$count .'\'">
+            <div class="w-11/12 pt-2 jkjkjl" onclick="javascript:window.location.href=\'../public/page.php?p=' . $count . '\'">
             
                 <div class="flex items-center text-xs mb-2">
                     <span class="text-gray-500">Posted by</span>
@@ -98,12 +104,12 @@ class IndexPostInfo extends PostInfo
                 <!-- Post Title -->
                 <div>
                     <h2 class="text-lg font-bold mb-1 text-gray-400">
-                     '. $row[$count]["post_title"] .'
+                     ' . $row[$count]["post_title"] . '
                     </h2>
                 </div>
                 <!-- Post Description -->
                 <p class="text-gray-500">
-                     '. $row[$count]["post_content"] . '
+                     ' . $row[$count]["post_content"] . '
 
                 </p>
                 <!-- Comments -->
@@ -125,10 +131,11 @@ class IndexPostInfo extends PostInfo
             </div>
         </div>
     </div>';
-            $count = $count + 1;
+                $count = $count + 1;
+            }
         }
     }
 
-}
+
     
 ?>

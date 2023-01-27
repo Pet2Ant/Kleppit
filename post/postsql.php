@@ -303,27 +303,46 @@ class PostInfo extends DbCon
             exit();
         }
         $votecap = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if(!$votecap)
+        {
+            return false;
+        }
+       
         return $votecap[0];
     }
-    // protected function createVotecap($post_id,$id)
-    // {   
-    //     $stmt1 = $this -> connect()->prepare('SELECT id from users');
-    //     if(!$stmt1->execute())
-    //     {
-    //         $stmt = null;
-    //         header('location: post.php?error=nousersindb');
-    //         exit();
-    //     }
+
+    protected function createVotecap($id,$post_id,$votecap)
+    {
+        try {
+            $stmt = $this->connect()->prepare('INSERT INTO pkarma (post_id,users_id,votecap,pkarma_id) VALUES(?,?,?,?);');
+            if(!$stmt->execute(array($post_id, $id, $votecap,"".$post_id."".$id.""))) {
+                $stmt = null;
+                header('location: post.php?error=stmtfailed');
+                exit();
+            }
+
+        }catch(PDOException $e){
+            error_log($e);
+            $stmt = null;
+        }
         
-    //     $count = 0;
-    //     while($count < $stmt1->rowCount() )
-    //     {
-    //         $count = $count++;
-    //     }
-    //     $users = $stmt1->fetchAll(PDO::FETCH_ASSOC);
-        
-    //     $stmt = $this -> connect()->prepare('INSERT INTO pkarma (users_id,post_id,votecap) values (');
-    // }
+
+    }
+    protected function deleteVotecap($id,$post_id)
+    {
+        $stmt = $this -> connect()->prepare('DELETE  FROM pkarma WHERE users_id=? AND post_id=? ');
+        if(!$stmt->execute(array($id,$post_id)))
+        {
+            $stmt = null;
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+        return;
+    }
+    protected function setupVotes()
+    {
+
+    }
     protected function upvotes($post_id)
     {   $stmt1 = $this -> connect()->prepare('SELECT post_upvote FROM post where post_id= ? ;');
         if(!$stmt1->execute(array($post_id)))

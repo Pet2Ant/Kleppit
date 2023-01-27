@@ -372,22 +372,26 @@ Post content text: text-gray-500
             </div>
           </div>       
            <?php
-        
-        
+
+           $userId = -1;
+        if($_SESSION) 
+        {
+             $userId = $_SESSION["id"];
+        }
         if($sortTo == "Default"){
-          $postInfo-> getAllPosts($sortTo,$_SESSION["id"]);
+          $postInfo-> getAllPosts($sortTo,$userId);
         }
         elseif($sortTo == "by Karma"){
           
-          $postInfo->getAllPosts($sortTo,$_SESSION["id"]);
+          $postInfo->getAllPosts($sortTo,$userId);
         }
         elseif($sortTo == "Newest"){
          
-          $postInfo->getAllPosts($sortTo,$_SESSION["id"]);
+          $postInfo->getAllPosts($sortTo,$userId);
         }
         elseif($sortTo == "Oldest"){
          
-          $postInfo->getAllPosts($sortTo,$_SESSION["id"]);
+          $postInfo->getAllPosts($sortTo,$userId);
         }
         
       
