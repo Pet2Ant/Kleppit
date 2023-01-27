@@ -42,9 +42,12 @@ Post content text: text-gray-500
         </button>
         <!-- Search bar -->
         <div class="mx-4 flex flex-1 items-center space-x-3 rounded border border-[#343536] bg-[#272729] px-4 py-1.5">
+          <button>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="h-5 w-5 text-[#878A8C]">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
+          </button>
+          
           <input class="flex-1 bg-transparent text-sm focus:outline-none text-gray-400" type="text" placeholder="Search Kleppit" />
         </div>
       </div>
@@ -315,9 +318,31 @@ Post content text: text-gray-500
     </div>
     <div id="container" class=" container mx-auto">
       <div class="flex w-960 mx-auto">
+        
         <!-- Posts -->
         <div class="w-11/12 ml-5">
-          <!-- Post 1 -->
+        <!-- Sort by top, new, old bar -->
+        <div class="flex justify-between">
+            <div class="mt-3">
+              <span class="text-xl font-semibold text-gray-500 p-2">All posts</span>
+              <span class="ml-2 text-md text-gray-500 tracking-tight">Sorted by:</span>
+              <span class="ml-0.5 text-lg text-red-500 ">Newest</span>   
+            </div>
+            <div class="mt-3">
+              <span class="text-md text-gray-500">Sort by:</span>
+              <button class="px-4 py-2 font-medium text-[#ff4057] border border-[#ff4057] rounded-l-md hover:bg-[#ff4057] hover:text-black transition duration-500 ease-in-out">
+                Top
+              </button>
+              <button class="px-4 py-2 font-medium text-[#ff4057] border border-[#ff4057] hover:bg-[#ff4057] hover:text-black transition duration-500 ease-in-out">
+                New
+              </button>
+              <button class="px-4 py-2 font-medium text-[#ff4057] border border-[#ff4057] rounded-r-md hover:bg-[#ff4057] hover:text-black transition duration-500 ease-in-out">
+                Old
+              </button>
+            </div>
+          </div>
+
+          <!-- Post 1 -->          
           <div id="" class="py-2 mb-4">
             <div class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer">
               <div class="w-5 mx-4 flex flex-col text-center pt-2">
