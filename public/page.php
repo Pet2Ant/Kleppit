@@ -16,9 +16,10 @@ include "../databasecon/dbcon.php";
 include "../post/postsql.php";
 include "../post/postcont.php";
 include "../post/pageview.php";
-
+include "../post/postview.php";
 $post= new PageInfo();
 $postInfo =  $post->getPostInfo($postId);
+
 if(empty($postInfo))
 {
     echo "Post not found or deleted";
@@ -227,13 +228,15 @@ Post content text: text-gray-500
 
                                     ?></label></a>
                             </div>
-
-                            <textarea id="textArea" name="content" placeholder="Share your thoughts" type="text" class="resize-y text-sm block  px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-[#ff4957] focus:outline-none"></textarea>
+                            <form action="../comment.php" method="post">
+                            <input type="text" name="post_id" value="<?php echo $postId ?>" hidden>
+                            <textarea id="textArea" name="comment" placeholder="Share your thoughts" type="text" class="resize-y text-sm block  px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-[#ff4957] focus:outline-none"></textarea>
                             <div class="flex justify-end">
                                 <button type="submit" name="submit" class="mt-3 w-32 bg-[#ff4957] text-white active:bg-[#ff4957] text-sm font-semibold uppercase px-2 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition duration-150 ease-in-out hover:bg-red-700">
                                     Comment
                                 </button>
                             </div>
+                            </form>
                         </div>
                         <!-- Sort by dropdown -->
                         <div class="flex items-center mx-auto p-4">
@@ -254,54 +257,23 @@ Post content text: text-gray-500
 
                         <hr class="border-t-1 border-zinc-700">
                     </div>
-
-                    <div class="flex justify-center mb-5 mx-5">
-                        <div class="flex border border-[#343536] bg-[#272729] rounded p-3">
+                    
+                    
+                <div class="flex justify-center mb-5 mx-5">
+                    <div class="flex flex-col space-y-3">
+                        
+                            
                             <!-- Comment Body -->
-                            <div class="w-11/12 pt-2">
-                                <!-- Comment Information -->
-                                <div class="flex items-center text-sm mb-2">
-                                    <img class="w-8 h-8 rounded-full mr-2" src="https://placeimg.com/192/192/people" alt="Avatar of User">
-                                    <span class="text-gray-500">Commented by</span>
-                                    <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">ku/<?php $postInfo["username"] ?> •</a>
-                                    <span class="text-gray-500"><?php echo $postInfo["date"] ?></span>
-                                </div>
-                                <!-- Comment Text -->
-                                <p class="text-gray-400 text-md">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Praesent euismod congue nibh, in placerat risus pretium at.
-                                </p>
-                                <!-- Comment Actions -->
-                                <div class="w-5 mx-4 flex flex-row text-center pt-2 space-x-4">
-                                    <!-- Upvote -->
-                                    <button class="text-gray-500 transition duration-500 hover:text-red-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
-                                        <input type="text" hidden disabled>
-                                        <svg class="w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                            <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
-                                        </svg>
-                                        <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 "></span>
-                                    </button>
-                                    <!-- Vote count -->
-                                    <span class="text-xs font-semibold my-1 m-2 text-gray-400"></span>
-                                        <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 ">Upvote</span>
-                                    </button>
-                                    <!-- Vote count -->
-                                    <span class="text-xs font-semibold my-1 m-2 text-gray-400">0</span>
-                                    <!-- Downvote -->
-                                    <button class="text-gray-500 transition duration-500 hover:text-blue-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
-                                        <input type="text" hidden disabled>
-                                        <svg class="w-5 fill-current " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                            <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
-                                        </svg>
-                                        <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 "></span>
-                                        <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 ">Downvote</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                            
+                            <?php 
+                            $comments= new PostInfoView();
+                            $comments->fetchComment($postId);
+                               
+                            ?>
+                        
                     </div>
                 </div>
-
+            </div>                    
                 <!--  Sidebars -->
                 <div class="w-1/3 pl-9 hidden lg:block">
                     <!-- Create a Post Sidebar -->

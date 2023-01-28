@@ -222,6 +222,107 @@ class PostInfoView extends PostInfo
 
         $this->Karma($karma,$post_id);
     }
+    public function createComment($users_id,$post_id,$text)
+    {
+        $this->createCommmentDb($users_id, $post_id, $text);
+    }   
+    public function fetchComment($post_id)
+    
+    {
+        $postComments=$this->fetchCommentDb($post_id);
+        $commentCount = count($postComments);
+        for ($i = 0; $i < $commentCount; $i++) {
+            echo '
+            <div class="flex border border-[#343536] bg-[#272729] rounded p-3">
+            <div class="w-11/12 pt-2">
+            <!-- Comment Information -->
+            <div class="flex items-center text-sm mb-2">
+                <img class="w-8 h-8 rounded-full mr-2" src="https://placeimg.com/192/192/people" alt="Avatar of User">
+                <span class="text-gray-500">Commented by</span>
+                <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">ku/'. $postComments[$i]["username"] .'•</a>
+                <span class="text-gray-500">'. $postComments[$i]["date"] .'</span>
+            </div>
+            <!-- Comment Text -->
+            <p class="text-gray-400 text-md">
+            '. $postComments[$i]["text"] .'
+            </p>
+            <!-- Comment Actions -->
+            <div class="w-5 mx-4 flex flex-row text-center pt-2 space-x-4">
+                <!-- Upvote -->
+                <button class="text-gray-500 transition duration-500 hover:text-red-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
+                    <input type="text" hidden disabled>
+                    <svg class="w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
+                    </svg>
+                    <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 "></span>
+                    <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 ">Upvote</span>
+                </button>
+                <!-- Vote count -->
+                <span class="text-xs font-semibold my-1 m-2 text-gray-400">0</span>
+                <!-- Downvote -->
+                <button class="text-gray-500 transition duration-500 hover:text-blue-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
+                    <input type="text" hidden disabled>
+                    <svg class="w-5 fill-current " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
+                    </svg>
+                    <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 "></span>
+                    <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 ">Downvote</span>
+                </button>
+            </div>
+        </div>
+        </div>
+            ';
+        }
+    }
+    public function fetchUserComment($id)
+    {
+        $userComments = $this->fetchUserCommentDb($id);
+        $commentCount = count($userComments);
+        for ($i = 0; $i < $commentCount; $i++) {
+            echo '  
+                        <div class="flex border border-[#343536] bg-[#272729] rounded p-3 ">
+                            <!-- Comment Body -->
+                            <div class="w-11/12 pt-2">
+                                <!-- Comment Information -->
+                                <div class="flex items-center text-sm mb-2">
+                                    <img class="w-8 h-8 rounded-full mr-2" src="https://placeimg.com/192/192/people" alt="Avatar of User">
+                                    <span class="text-gray-500">Commented by</span>
+                                    <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">ku/'.$userComments[$i]["username"].' •</a>
+                                    <span class="text-gray-500">'.$userComments[$i]["date"].'</span>
+                                </div>
+                                <!-- Comment Text -->
+                                <p class="text-gray-400 text-md">
+                                '.$userComments[$i]["text"].'
+                                </p>
+                                <!-- Comment Actions -->
+                                <div class="w-5 mx-4 flex flex-row text-center pt-2 space-x-4">
+                                    <!-- Upvote -->
+                                    <button class="text-gray-500 transition duration-500 hover:text-red-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
+                                        <input type="text" hidden disabled>
+                                        <svg class="w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
+                                        </svg>
+                                        <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 "></span>
+                                        <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 ">Upvote</span>
+                                    </button>
+                                    <!-- Vote count -->
+                                    <span class="text-xs font-semibold my-1 m-2 text-gray-400">0</span>
+                                    <!-- Downvote -->
+                                    <button class="text-gray-500 transition duration-500 hover:text-blue-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
+                                        <input type="text" hidden disabled>
+                                        <svg class="w-5 fill-current " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
+                                        </svg>
+                                        <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 "></span>
+                                        <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 ">Downvote</span>
+                                    </button>
+                                </div>
+                            
+                        </div>
+                    </div> ';
+             
+        }
+    }
 }
           
 

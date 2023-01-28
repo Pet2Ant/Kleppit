@@ -106,7 +106,7 @@ Post content text: text-gray-500
                                 <?php
                                 if (isset($_SESSION["id"])) {
                                 ?>
-                                    <p class="hidden lg:block"><?php echo $_SESSION["username"] ?></p>
+                                    <p class="hidden lg:block"><?php echo $user_username; ?></p>
                                     <svg class="w-4 h-4 mx-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                     </svg>
@@ -118,9 +118,9 @@ Post content text: text-gray-500
                             <div class="absolute right-0 w-56 mt-2 origin-top-right bg-[#1a1a1b] border border-[#343536] divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                 <div class="px-4 py-3">
                                     <p class="text-sm leading-5 text-[#ff4057]">Signed in as</p>
-                                    <p class="text-md font-semibold leading-5 text-[#ff4957] truncate"><?php echo $_SESSION["email"] ?></p>
+                                    <p class="text-md font-semibold leading-5 text-[#ff4957] truncate"><?php echo $user_email; ?></p>
                                     <p class="text-sm leading-5 text-[#ff4957] truncate py-1">
-                                        {{ profile.updates }} Upvotes
+                                        1234 Upvotes
                                     </p>
                                 </div>
                                 <div class="py-1">
@@ -162,13 +162,13 @@ Post content text: text-gray-500
                 <div class="flex justify-start flex-row mb-3 ml-5">
                     <!-- Posts button to display all posts -->
                     <span class="inline-flex rounded-md shadow-sm">
-                        <button type="button" id="textButton" onclick="javascript:window.location.href='./Profile.php?u=<?php echo $user_username?>'" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-[#ff4057] hover:bg-[#ff4957] focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-[#ff4957] transition duration-300 ease-in-out">
+                        <button type="button" id="textButton" onclick="javascript:window.location.href='./Profile.php?u=<?php echo $user_username?>'"class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-[#ff4057] bg-zinc-800 hover:text-[#ff4957] focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-[#ff4957] transition duration-300 ease-in-out hover:bg-[#ff4957] hover:text-white" >
                             Posts
                         </button>
                     </span>
                     <!-- Comments button to display all comments -->
                     <span class="ml-3 inline-flex rounded-md shadow-sm">
-                        <button type="button" id="imageButton" onclick="javascript:window.location.href='./ProfileComments.php?u=<?php echo $user_username?>'"  class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-[#ff4057] bg-zinc-800 hover:text-[#ff4957] focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-[#ff4957] transition duration-300 ease-in-out hover:bg-[#ff4957] hover:text-white">
+                        <button type="button" id="imageButton" onclick="javascript:window.location.href='./ProfileComments.php?u=<?php echo $user_username?>'" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-[#ff4057] hover:bg-[#ff4957] focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-[#ff4957] transition duration-300 ease-in-out" >
                             Comments
                         </button>
                     </span>
@@ -176,12 +176,13 @@ Post content text: text-gray-500
 
 
                 <div class="flex w-960 mx-auto">
-                    <!-- Posts -->
+                    <!-- Comments -->
                     <div class="w-11/12 ml-5">
+                    <div class="flex flex-col space-y-3">
                         <?php
-                            //Display user posts
-                            $postInfo->createPostFe($user_id);
+                        $postInfo->fetchUserComment($user_id);
                         ?>
+                    </div>
                     </div>
                     <!--  Sidebars -->
                     <div class="w-1/3 pl-9 hidden lg:block">
