@@ -88,7 +88,7 @@ setTimeout(function() {
       document.getElementById("container").classList.add("backdrop-blur-md");
       document.querySelector("body").classList.remove("overflow-hidden");
   }
-}, 3000);
+}, 5 * 60 * 1000);
 }
 
 //remove the logo from the header when screen width is less than 500px
