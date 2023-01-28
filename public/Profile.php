@@ -11,6 +11,31 @@ $profileInfo = new ProfileInfoView();
 $postInfo = new PostInfoView();
 
 
+//Check if url query has the username
+if(isset($_GET["u"]))
+{   
+    //TODO fetch user info from database
+    $userInfo = $postInfo->getUserByName($_GET["u"]);
+
+    //Check if user exists
+    if($userInfo == null)
+    {
+        //TODO redirect to 404 page
+        echo "User does not exist";
+        exit();
+    }
+
+    $user_id = $userInfo[0]["id"];
+    $user_username = $userInfo[0]["username"];
+    $user_email = $userInfo[0]["email"];
+}
+else
+{
+    $user_id = $_SESSION["id"];
+    $user_username = $_SESSION["username"];
+    $user_email = $_SESSION["email"];
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -81,7 +106,7 @@ Post content text: text-gray-500
                                 <?php
                                 if (isset($_SESSION["id"])) {
                                 ?>
-                                    <p class="hidden lg:block"><?php echo $_SESSION["username"]; ?></p>
+                                    <p class="hidden lg:block"><?php echo $user_username; ?></p>
                                     <svg class="w-4 h-4 mx-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                     </svg>
@@ -93,7 +118,7 @@ Post content text: text-gray-500
                             <div class="absolute right-0 w-56 mt-2 origin-top-right bg-[#1a1a1b] border border-[#343536] divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                 <div class="px-4 py-3">
                                     <p class="text-sm leading-5 text-[#ff4057]">Signed in as</p>
-                                    <p class="text-md font-semibold leading-5 text-[#ff4957] truncate"><?php echo $_SESSION["email"]; ?></p>
+                                    <p class="text-md font-semibold leading-5 text-[#ff4957] truncate"><?php echo $user_email; ?></p>
                                     <p class="text-sm leading-5 text-[#ff4957] truncate py-1">
                                         1234 Upvotes
                                     </p>
@@ -155,7 +180,7 @@ Post content text: text-gray-500
                     <div class="w-11/12 ml-5">
                         <?php
                             //Display user posts
-                            $postInfo->createPostFe($_SESSION['id']);
+                            $postInfo->createPostFe($user_id);
                         ?>
                     </div>
                     <!--  Sidebars -->
@@ -174,15 +199,15 @@ Post content text: text-gray-500
                                     <div class="flex justify-center items-center">
                                         <h1 class="text-2xl font-bold text-gray-300">
                                             <?php
-                                            echo $_SESSION['username'];
+                                                echo $user_username;
                                             ?>
                                         </h1>
                                     </div>
                                     <div class="flex justify-center items-center py-1">
-                                        <p class="text-sm text-gray-400"><?php $profileInfo->fetchTitle($_SESSION["id"]); ?></p>
+                                        <p class="text-sm text-gray-400"><?php $profileInfo->fetchTitle($user_id); ?></p>
                                     </div>
                                     <div class="flex justify-center items-center py-1">
-                                        <p class="text-xs text-gray-400">Joined 01/01/2021</p>
+                                        <p class="text-xs text-gray-400">Joined <?php $profileInfo->fetchDate($user_id); ?></p>
                                     </div>
                                     <!-- Profile Button -->
                                     <div class="flex justify-center items-center py-1">
@@ -199,7 +224,7 @@ Post content text: text-gray-500
                                         <div class="mt-5 overflow-visible ">
                                             <div class="flex justify-center items-center ">
                                                 <p class="overflow-visible text-sm text-gray-400 break-all">
-                                                    <?php $profileInfo->fetchAbout($_SESSION["id"]); ?>
+                                                    <?php $profileInfo->fetchAbout($user_id); ?>
                                                 </p>
                                             </div>
                                             <div class="mt-5">
