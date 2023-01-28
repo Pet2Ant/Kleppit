@@ -82,14 +82,14 @@ class IndexPostInfo extends PostInfo
                 <!-- Upvote -->
                 <form action="../karma.php" method="post">
                 
-                <input type="text" name="post_upvote" value=' . $count . '  hidden>' . $upvote . '
+                <input type="text" name="post_upvote" value=' . $row[$count]["post_id"] . '  hidden>' . $upvote . '
                
                 
                 <!-- Vote count -->
                 <span class="text-xs font-semibold my-1 text-gray-500"> ' . $row[$count]["post_karma"] . '</span>
                 <!-- Downvote -->
                 
-                <input type="text" name="post_downvote" value=' . $count . '  hidden >' . $downvote . '
+                <input type="text" name="post_downvote" value=' . $row[$count]["post_id"] . '  hidden >' . $downvote . '
                 
                 </form>
             </div>
