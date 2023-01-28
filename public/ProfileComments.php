@@ -52,7 +52,7 @@ else
 </head>
 <!-- COLORS: 
 Background: bg-zinc-900
-Red text: text-[#ff4057] hover:text-[#ff4957]
+Red text: text-red-500 hover:text-red-600
 Post content title: text-gray-400
 Post content text: text-gray-500
 -->
@@ -60,7 +60,7 @@ Post content text: text-gray-500
 <body id="page" class="scroll-smooth bg-zinc-900 md:scrollbar-default ">
     <!-- Loader -->
     <div id="loader" class="loader fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
-        <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-[#ff4057]"></div>
+        <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-500"></div>
     </div>
     <!-- Header Bar -->
     <header id="header" class="fixed inset-0 z-50 flex h-14 bg-[#1a1a1b] select-none">
@@ -90,7 +90,7 @@ Post content text: text-gray-500
                 <div class="flex items-center justify-center">
                     <div class="relative inline-block text-left dropdown">
                         <span class="rounded-md shadow-sm">
-                            <button class="flex items-center w-full text-sm font-medium leading-5 text-[#ff4057] transition duration-150 ease-in-out hover:text-red-600" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
+                            <button class="flex items-center w-full text-sm font-medium leading-5 text-red-500 transition duration-150 ease-in-out hover:text-red-600" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
                                 <!-- if user is not logged in do not display the user photo -->
                                 <?php
                                 if (isset($_SESSION["id"])) {
@@ -117,9 +117,9 @@ Post content text: text-gray-500
                         <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
                             <div class="absolute right-0 w-56 mt-2 origin-top-right bg-[#1a1a1b] border border-[#343536] divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                 <div class="px-4 py-3">
-                                    <p class="text-sm leading-5 text-[#ff4057]">Signed in as</p>
-                                    <p class="text-md font-semibold leading-5 text-[#ff4957] truncate"><?php echo $user_email; ?></p>
-                                    <p class="text-sm leading-5 text-[#ff4957] truncate py-1">
+                                    <p class="text-sm leading-5 text-red-500">Signed in as</p>
+                                    <p class="text-md font-semibold leading-5 text-red-600 truncate"><?php echo $user_email; ?></p>
+                                    <p class="text-sm leading-5 text-red-600 truncate py-1">
                                         1234 Upvotes
                                     </p>
                                 </div>
@@ -128,10 +128,10 @@ Post content text: text-gray-500
                                     <a href="./ContactUs.php" tabindex="1" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Contact Us</a>
                                 </div>
                                 <div class="py-1">
-                                    <a href="./userAgreement.html" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">User Agreement</a>
+                                    <a href="./userAgreement.php" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">User Agreement</a>
 
 
-                                    <a href="./privacyPolicy.html" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Privacy Policy</a>
+                                    <a href="./privacyPolicy.php" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Privacy Policy</a>
                                 </div>
                                 <div class="py-1">
                                     <a href="..\login\logout.php" tabindex="4" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Sign out</a>
@@ -162,13 +162,13 @@ Post content text: text-gray-500
                 <div class="flex justify-start flex-row mb-3 ml-5">
                     <!-- Posts button to display all posts -->
                     <span class="inline-flex rounded-md shadow-sm">
-                        <button type="button" id="textButton" onclick="javascript:window.location.href='./Profile.php?u=<?php echo $user_username?>'"class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-[#ff4057] bg-zinc-800 hover:text-[#ff4957] focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-[#ff4957] transition duration-300 ease-in-out hover:bg-[#ff4957] hover:text-white" >
+                        <button type="button" id="textButton" onclick="javascript:window.location.href='./Profile.php?u=<?php echo $user_username?>'"class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-red-500 bg-zinc-800 hover:text-red-600 focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-red-600 transition duration-300 ease-in-out hover:bg-red-600 hover:text-white" >
                             Posts
                         </button>
                     </span>
                     <!-- Comments button to display all comments -->
                     <span class="ml-3 inline-flex rounded-md shadow-sm">
-                        <button type="button" id="imageButton" onclick="javascript:window.location.href='./ProfileComments.php?u=<?php echo $user_username?>'" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-[#ff4057] hover:bg-[#ff4957] focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-[#ff4957] transition duration-300 ease-in-out" >
+                        <button type="button" id="imageButton" onclick="javascript:window.location.href='./ProfileComments.php?u=<?php echo $user_username?>'" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-red-600 transition duration-300 ease-in-out" >
                             Comments
                         </button>
                     </span>
@@ -258,11 +258,11 @@ Post content text: text-gray-500
                                     </div>
                                     <div class="text-center mt-6">
                                         <p class="text-xs leading-tight text-gray-400 font-medium">
-                                            <a href="./userAgreement.html" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">User Agreement</a>
+                                            <a href="./userAgreement.php" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">User Agreement</a>
                                             |
-                                            <a href="./PrivacyPolicy.html" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Privacy Policy</a>
+                                            <a href="./privacyPolicy.php" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Privacy Policy</a>
                                         </p>
-                                        <p class="text-xs leading-tight font-medium text-[#ff4057] my-1">
+                                        <p class="text-xs leading-tight font-medium text-red-500 my-1">
                                             © 2023 Kleppit, Inc. All rights reserved
                                         </p>
                                     </div>
@@ -275,7 +275,7 @@ Post content text: text-gray-500
             <!-- Scroll to the top button -->
             <div class="fixed bottom-0 right-0 mb-10 mr-10">
                 <div class="flex flex-col gap-2">
-                    <button onclick="topFunction()" class="w-full w-12 h-12 bg-[#ff4057] rounded-full hover:bg-red-600 transition ease-in duration-300 flex justify-center ">
+                    <button onclick="topFunction()" class="w-full w-12 h-12 bg-red-500 rounded-full hover:bg-red-600 transition ease-in duration-300 flex justify-center ">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 place-self-center">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
                         </svg>
