@@ -97,7 +97,7 @@ class PostInfoView extends PostInfo
                         </form>
                     </div>
                     <!-- Post Information -->
-                    <div class="w-11/12 pt-2 jkjkjl" onclick="javascript:window.location.href=\'../public/page.php?p=' . $row[$count]["post_id"] . '\'">
+                    <div class="w-11/12 pt-2" onclick="javascript:window.location.href=\'../public/page.php?p=' . $row[$count]["post_id"] . '\'">
                     
                         <div class="flex items-center text-xs mb-2">
                             <span class="text-gray-500">Posted by</span>
@@ -106,12 +106,12 @@ class PostInfoView extends PostInfo
                         </div>
                         <!-- Post Title -->
                         <div>
-                            <h2 class="text-lg font-bold mb-1 text-gray-400">
+                            <h2 class="text-lg font-bold mb-1 text-gray-400 break-all">
                             ' . $row[$count]["post_title"] . '
                             </h2>
                         </div>
                         <!-- Post Description -->
-                        <p class="text-gray-500">
+                        <p class="text-gray-500 break-all">
                             ' . $row[$count]["post_content"] . '
 
                         </p>

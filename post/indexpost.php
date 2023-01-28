@@ -103,12 +103,12 @@ class IndexPostInfo extends PostInfo
                 </div>
                 <!-- Post Title -->
                 <div>
-                    <h2 class="text-lg font-bold mb-1 text-gray-400">
+                    <h2 class="text-lg font-bold mb-1 text-gray-400 break-all">
                      ' . $row[$count]["post_title"] . '
                     </h2>
                 </div>
                 <!-- Post Description -->
-                <p class="text-gray-500">
+                <p class="text-gray-500 break-all">
                      ' . $row[$count]["post_content"] . '
 
                 </p>
