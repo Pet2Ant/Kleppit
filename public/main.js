@@ -127,7 +127,7 @@ function performSearch(query) {
   if (query == "") return;
 
   //Redirect to search page
-  window.location.href = "/search?query=" + query + "&page=1";
+  window.location.href = "./search.php?query=" + query + "&page=1";
 
 }
 
