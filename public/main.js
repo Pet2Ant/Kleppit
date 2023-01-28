@@ -1,7 +1,7 @@
 // if user is not logged in, redirect him to sign up page
 // if (window.location.pathname === '/public/index.html' || window.location.pathname === '/public/About.html' || window.location.pathname === '/public/ContactUs.html' || window.location.pathname === '/public/createPost.html' 
 //         || window.location.pathname === '/public/forgotPassword.html' || window.location.pathname === '/public/informationDataPolicy.html' || window.location.pathname === '/public/informationTermsOfUse.html' 
-//         || window.location.pathname === '/public/ModPolicy.html' || window.location.pathname === '/public/nonprofit.html' || window.location.pathname === '/public/PrivacyPolicy.html' && !localStorage.getItem('token')) {
+//         || window.location.pathname === '/public/ModPolicy.html' || window.location.pathname === '/public/nonprofit.html' || window.location.pathname === '/public/privacyPolicy.php' && !localStorage.getItem('token')) {
 //     window.location.href = '/signup';
 // }
 
@@ -36,29 +36,29 @@ function changeButton() {
     document.getElementById("imageUpload").classList.add("hidden");
     document.getElementById("textArea").classList.remove("hidden");
     // Change the background color and text color of the textButton to the colors of the imageButton using classList
-    document.getElementById("textButton").classList.add("bg-[#ff4057]");
+    document.getElementById("textButton").classList.add("bg-red-500");
     document.getElementById("textButton").classList.remove("bg-zinc-800");
     document.getElementById("textButton").classList.add("text-white");
-    document.getElementById("textButton").classList.remove("text-[#ff4057]");
-    document.getElementById("textButton").classList.remove("hover:text-[#ff4957]");
+    document.getElementById("textButton").classList.remove("text-red-500");
+    document.getElementById("textButton").classList.remove("hover:text-red-600");
     document.getElementById("imageButton").classList.add("bg-zinc-800");
-    document.getElementById("imageButton").classList.remove("bg-[#ff4057]");
-    document.getElementById("imageButton").classList.add("text-[#ff4057]");
+    document.getElementById("imageButton").classList.remove("bg-red-500");
+    document.getElementById("imageButton").classList.add("text-red-500");
     document.getElementById("imageButton").classList.remove("text-white");
     document.getElementById("imageButton").classList.add("hover:text-white");
-    document.getElementById("imageButton").classList.add("hover:bg-[#ff4957]");
+    document.getElementById("imageButton").classList.add("hover:bg-red-600");
   } else {
     document.getElementById("textArea").classList.add("hidden");
     document.getElementById("imageUpload").classList.remove("hidden");
     // Change the background color and text color of the imageButton to the colors of the TextButton using classList
-    document.getElementById("imageButton").classList.add("bg-[#ff4057]"); 
+    document.getElementById("imageButton").classList.add("bg-red-500"); 
     document.getElementById("imageButton").classList.remove("bg-zinc-800");
     document.getElementById("imageButton").classList.add("text-white");
-    document.getElementById("imageButton").classList.remove("text-[#ff4057]");
-    document.getElementById("imageButton").classList.remove("hover:text-[#ff4957]");
+    document.getElementById("imageButton").classList.remove("text-red-500");
+    document.getElementById("imageButton").classList.remove("hover:text-red-600");
     document.getElementById("textButton").classList.add("bg-zinc-800");
-    document.getElementById("textButton").classList.remove("bg-[#ff4057]");
-    document.getElementById("textButton").classList.add("text-[#ff4057]");
+    document.getElementById("textButton").classList.remove("bg-red-500");
+    document.getElementById("textButton").classList.add("text-red-500");
     document.getElementById("textButton").classList.remove("text-white");
     document.getElementById("textButton").classList.add("hover:text-white");
   }
@@ -80,8 +80,6 @@ setTimeout(function() {
   document.getElementById("survey-popup").classList.remove("hidden");
   document.getElementById("survey-popup").classList.add("flex");
   document.getElementById("survey-popup").classList.add("justify-center");
-// add to body the class of "overflow-hidden" to prevent scrolling when the pop-up window is open
-  document.querySelector("body").classList.add("overflow-hidden");
   document.querySelector("header").classList.add("hidden");
   // automatically bring user to top of page when pop-up window opens
   window.scrollTo(0, 0);
@@ -112,4 +110,13 @@ function closeSurvey() {
 // remove from body the class of "overflow-hidden" to allow scrolling when the pop-up window is closed
   document.querySelector("body").classList.remove("overflow-hidden");
   document.querySelector("header").classList.remove("hidden");
+}
+
+function enableButtonOnCheck() {
+  if (document.getElementById("terms").checked) {
+    document.getElementById("submit").disabled = false;
+  }
+  else {
+    document.getElementById("submit").disabled = true;
+  }
 }

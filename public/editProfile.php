@@ -23,7 +23,7 @@ $profileInfo = new ProfileInfoView();
 <body id="page" class="scroll-smooth bg-zinc-900 md:scrollbar-default ">
     <!-- Loader -->
     <div id="loader" class="loader fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
-        <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-[#ff4057]"></div>
+        <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-500"></div>
     </div>
     <!-- Header Bar -->
     <header id="header" class="fixed inset-0 z-50 flex h-14 bg-[#1a1a1b] select-none">
@@ -53,7 +53,7 @@ $profileInfo = new ProfileInfoView();
                 <div class="flex items-center justify-center">
                     <div class="relative inline-block text-left dropdown">
                         <span class="rounded-md shadow-sm">
-                            <button class="flex items-center w-full text-sm font-medium leading-5 text-[#ff4057] transition duration-150 ease-in-out hover:text-red-600" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
+                            <button class="flex items-center w-full text-sm font-medium leading-5 text-red-500 transition duration-150 ease-in-out hover:text-red-600" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
                                 <!-- if user is not logged in do not display the user photo -->
                                 <?php
                                 if (isset($_SESSION["id"])) {
@@ -80,9 +80,9 @@ $profileInfo = new ProfileInfoView();
                         <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
                             <div class="absolute right-0 w-56 mt-2 origin-top-right bg-[#1a1a1b] border border-[#343536] divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                 <div class="px-4 py-3">
-                                    <p class="text-sm leading-5 text-[#ff4057]">Signed in as</p>
-                                    <p class="text-md font-semibold leading-5 text-[#ff4957] truncate"><?php echo $_SESSION["email"]; ?></p>
-                                    <p class="text-sm leading-5 text-[#ff4957] truncate py-1">
+                                    <p class="text-sm leading-5 text-red-500">Signed in as</p>
+                                    <p class="text-md font-semibold leading-5 text-red-600 truncate"><?php echo $_SESSION["email"]; ?></p>
+                                    <p class="text-sm leading-5 text-red-600 truncate py-1">
                                         1234 Upvotes
                                     </p>
                                 </div>
@@ -91,10 +91,10 @@ $profileInfo = new ProfileInfoView();
                                     <a href="./ContactUs.php" tabindex="1" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Contact Us</a>
                                 </div>
                                 <div class="py-1">
-                                    <a href="./userAgreement.html" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">User Agreement</a>
+                                    <a href="./userAgreement.php" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">User Agreement</a>
 
 
-                                    <a href="./privacyPolicy.html" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Privacy Policy</a>
+                                    <a href="./privacyPolicy.php" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Privacy Policy</a>
                                 </div>
                                 <div class="py-1">
                                     <a href="..\login\logout.php" tabindex="4" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Sign out</a>
@@ -132,17 +132,17 @@ $profileInfo = new ProfileInfoView();
                             <div class='flex flex-wrap -mx-3 mb-6'>
                                 <div class='w-full md:w-full px-3 mb-6'>
                                     <label class='block uppercase tracking-wide text-red-500 text-xs font-bold mb-2'>email address</label>
-                                    <input placeholder="Update Email..." name="email" type="email" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-[#ff4957] focus:outline-none" />
+                                    <input placeholder="Update Email..." name="email" type="email" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-red-600 focus:outline-none" />
                                 </div>
                                 <div class="w-full flex flex-row mx-auto">
                                     <div class=' md:w-1/2 px-3 mb-6'>
                                         <label class="block uppercase tracking-wide text-red-500 text-xs font-bold mb-2">Current Password</label>
-                                        <input placeholder="Current Password..." type="password" name="password" class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-[#ff4957] focus:outline-none" />
+                                        <input placeholder="Current Password..." type="password" name="password" class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-red-600 focus:outline-none" />
 
                                     </div>
                                     <div class='w-full md:w-1/2 px-3 mb-6'>
                                         <label class="block uppercase tracking-wide text-red-500 text-xs font-bold mb-2">New Password</label>
-                                        <input placeholder="New Password..." type="password" name="newPassword" class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-[#ff4957] focus:outline-none" />
+                                        <input placeholder="New Password..." type="password" name="newPassword" class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-red-600 focus:outline-none" />
                                     </div>
                                 </div>
 
@@ -163,11 +163,11 @@ $profileInfo = new ProfileInfoView();
 
                                     <div class='w-full md:w-full px-3 mb-6'>
                                         <label class="block uppercase tracking-wide text-red-500 text-xs font-bold mb-2">Username</label>
-                                        <textarea placeholder="Display name" type="text" name="name" class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-[#ff4957] focus:outline-none "><?php $profileInfo->fetchAbout($_SESSION['id']);?></textarea>
+                                        <textarea placeholder="Display name" type="text" name="name" class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-red-600 focus:outline-none "><?php $profileInfo->fetchAbout($_SESSION['id']);?></textarea>
                                     </div>
                                     <div class='w-full md:w-full px-3 mb-6'>
                                         <label class='block uppercase tracking-wide text-red-500 text-xs font-bold mb-2'>Description</label>
-                                        <textarea id="textArea" placeholder="Write something about yourself!" type="text" name="description" class="resize-y text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-[#ff4957] focus:outline-none"><?php echo $profileInfo->fetchAbout($_SESSION['id']);?></textarea>
+                                        <textarea id="textArea" placeholder="Write something about yourself!" type="text" name="description" class="resize-y text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-600 focus:outline-none"><?php echo $profileInfo->fetchAbout($_SESSION['id']);?></textarea>
                                     </div>
                                     <div class="flex justify-end">
                                         <button type="submit" name="submit" class="w-full text-md font-bold bg-red-500 transition duration-500 ease-in-out hover:bg-red-600 rounded-md p-1">

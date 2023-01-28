@@ -6,13 +6,13 @@ class IndexPostInfo extends PostInfo
     {
         if ($isClicked == true) {
             return '<button type="submit" name="upvote" class="text-xs">
-                    <svg class="w-5 fill-current  text-[#ff4057] "xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <svg class="w-5 fill-current  text-red-500 "xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                         <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
                     </svg>
                 </button>';
         }
         return '<button type="submit" name="upvote" class="text-xs">
-        <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-[#ff4057]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+        <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
             <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
         </svg>
         </button>';
@@ -119,15 +119,8 @@ class IndexPostInfo extends PostInfo
                         <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                             <path d="M10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"></path>
                         </svg>
-                        <span class="ml-2 text-xs font-semibold text-gray-500">'.count($this->getCommentsCountFromPost($row[$count]["post_id"])).' Comments</span>
-                    </div>
-                    <!-- Share -->
-                    <div class="flex transition duration-500 hover:bg-gray-700 p-1 ml-2 rounded-lg">
-                        <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M5.08 12.16A2.99 2.99 0 0 1 0 10a3 3 0 0 1 5.08-2.16l8.94-4.47a3 3 0 1 1 .9 1.79L5.98 9.63a3.03 3.03 0 0 1 0 .74l8.94 4.47A2.99 2.99 0 0 1 20 17a3 3 0 1 1-5.98-.37l-8.94-4.47z"></path>
-                        </svg>
-                        <span class="ml-2 text-xs font-semibold text-gray-500">Share</span>
-                    </div>
+                        <span class="ml-2 text-xs font-semibold text-gray-500">Comments</span>
+                    </div>                    
                 </div>
             </div>
         </div>
