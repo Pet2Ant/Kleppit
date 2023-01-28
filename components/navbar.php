@@ -74,7 +74,7 @@ class Navbar {
                     <!-- Icon + Post button + Search bar -->
                     <div class="flex flex-1 items-center space-x-4">
                         <!-- Large logo -->
-                        <a id="largeLogo" href="./index.php"><img src="..//assets/kleppit-high-resolution-logo-color-on-transparent-background.png" class="hidden lg:inline-block h-10 transition duration-500 ease-in-out hover:opacity-75" alt="logo" />
+                        PSOFA<a id="largeLogo" href="./index.php"><img src="..//assets/kleppit-high-resolution-logo-color-on-transparent-background.png" class="hidden lg:inline-block h-10 transition duration-500 ease-in-out hover:opacity-75" alt="logo" />
                         </a>
                         <!-- Small Logo -->
                         <a id="smallLogo" href="./index.php"><img src="..//assets/kleppit-website-favicon-color.png" class="lg:hidden h-12 w-14 transition duration-500 ease-in-out hover:opacity-75 mr-10" alt="small logo" />
