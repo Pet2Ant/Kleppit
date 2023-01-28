@@ -258,12 +258,12 @@ Post content text: text-gray-500
 
                             <?php
                             $comments = new PostInfoView();
-                            if($_SESSION){
-                            $comments->fetchComment($postId,$_SESSION['id']);
-                            }else{
-                                $comments->fetchComment($postId,-1);
-                            }
 
+                            if($_SESSION){
+                              $comments->fetchComment($postId,$_SESSION['id']);
+                            }else{
+                              $comments->fetchComment($postId,-1);
+                            }
                             ?>
 
                         </div>
