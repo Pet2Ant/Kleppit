@@ -101,8 +101,8 @@ class PostInfoView extends PostInfo
                     
                         <div class="flex items-center text-xs mb-2">
                             <span class="text-gray-500">Posted by</span>
-                            <a href="../public/Profile.php" class="text-gray-500 mx-1 no-underline hover:underline">ku/' . $row[$count]["username"] . '</a>
-                            <span class="text-gray-500">2 hours ago</span>
+                            <a href="../public/Profile.php' . $row[$count]["username"] . '" class="text-gray-500 mx-1 no-underline hover:underline">ku/' . $row[$count]["username"] . '</a>
+                            <span class="text-gray-500">' .$row[$count]["date"]. '</span>
                         </div>
                         <!-- Post Title -->
                         <div>
