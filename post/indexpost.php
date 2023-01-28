@@ -52,6 +52,9 @@ class IndexPostInfo extends PostInfo
           elseif($sortTo == "Oldest"){
            
             $row=$this->postRowsSortOldest();
+          }else
+          {
+            $row=$this->postRowsKarmaAsc();
           }
 
         while ($count < $maxcount) {

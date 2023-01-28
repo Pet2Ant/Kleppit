@@ -361,6 +361,9 @@ Post content text: text-gray-500
               $sortTo = "Newest";
             } elseif ($sortquery["sort"] == "oldest") {
               $sortTo = "Oldest";
+            }else
+            {
+              $sortTo = "Controversial";
             }
 
 
@@ -368,12 +371,15 @@ Post content text: text-gray-500
             <div class="mt-3">
               <span class="text-xl lg:inline-block hidden font-semibold text-gray-500 p-2">All posts</span>
               <span class="text-md md:inline-block hidden text-gray-500 tracking-tight">Sorted by:</span>
-              <span class="ml-0.5 text-lg text-red-500 ">Newest</span>
+              <span class="ml-0.5 text-lg text-red-500 "><?php echo $sortTo?></span>
             </div>
             <div class="mt-3">
               <span class="text-md text-gray-500">Sort by:</span>
               <button  onclick="javascript:window.location.href='index.php?sort=karma'" class="px-4 py-2 font-medium text-red-500 border border-red-500 rounded-l-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 Top
+              </button>
+              <button onclick="javascript:window.location.href='index.php?sort=controversial'"  class="px-4 py-2 font-medium text-red-500 border border-red-500 hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
+                Sus
               </button>
               <button onclick="javascript:window.location.href='index.php?sort=newest'"  class="px-4 py-2 font-medium text-red-500 border border-red-500 hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 New
@@ -381,6 +387,8 @@ Post content text: text-gray-500
               <button onclick="javascript:window.location.href='index.php?sort=oldest'" class="px-4 py-2 font-medium text-red-500 border border-red-500 rounded-r-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 Old
               </button>
+
+              
             </div>
           </div>
           <?php
@@ -400,7 +408,11 @@ Post content text: text-gray-500
           } elseif ($sortTo == "Oldest") {
 
             $postInfo->getAllPosts($sortTo, $userId);
+          }else
+          {
+            $postInfo->getAllPosts($sortTo, $userId);
           }
+          
 
 
           ?>
