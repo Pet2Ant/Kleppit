@@ -90,6 +90,7 @@ class PostInfo extends DbCon
         // exit();
         return $result;
     }
+    
 
     //search function
     protected function searchQuery($search)
@@ -428,7 +429,45 @@ class PostInfo extends DbCon
             exit();
         }
     }
-   
+    protected function createCommmentDb($users_id,$post_id,$text)
+    {
+        $sql =('INSERT INTO post_comments 
+        (users_id,post_id,text,c_upvote,c_downvote,c_karma)
+        VALUES(?,?,?,0,0,0);');
+        $stmt = $this->connect()->prepare($sql);
+        if(!$stmt->execute(array($users_id,$post_id,$text)))
+        {
+            $stmt= null;
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+    }
+    protected function fetchCommentDb($post_id)
+    {
+        $SQL = ('SELECT * FROM post_comments p INNER JOIN  users u on u.id = p.users_id where post_id = ?');
+        $stmt = $this->connect()->prepare($SQL);
+        if(!$stmt->execute(array($post_id)))    
+        {
+            $stmt= null;
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+    protected function fetchUserCommentDb($users_id)
+    {
+        $SQL = ('SELECT * FROM post_comments p INNER JOIN  users u on u.id = p.users_id where  users_id=?');
+        $stmt = $this->connect()->prepare($SQL);
+        if(!$stmt->execute(array($users_id)))
+        {
+            $stmt= null;
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+        $result = $stmt->fetchAll();
+        return $result;
+    }
        
         
         

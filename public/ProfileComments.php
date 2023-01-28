@@ -162,13 +162,13 @@ Post content text: text-gray-500
                 <div class="flex justify-start flex-row mb-3 ml-5">
                     <!-- Posts button to display all posts -->
                     <span class="inline-flex rounded-md shadow-sm">
-                        <button type="button" id="textButton" onclick="javascript:window.location.href='./Profile.php?u=<?php echo $user_username?>'" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-[#ff4057] hover:bg-[#ff4957] focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-[#ff4957] transition duration-300 ease-in-out">
+                        <button type="button" id="textButton" onclick="javascript:window.location.href='./Profile.php?u=<?php echo $user_username?>'"class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-[#ff4057] bg-zinc-800 hover:text-[#ff4957] focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-[#ff4957] transition duration-300 ease-in-out hover:bg-[#ff4957] hover:text-white" >
                             Posts
                         </button>
                     </span>
                     <!-- Comments button to display all comments -->
                     <span class="ml-3 inline-flex rounded-md shadow-sm">
-                        <button type="button" id="imageButton" onclick="javascript:window.location.href='./ProfileComments.php?u=<?php echo $user_username?>'"  class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-[#ff4057] bg-zinc-800 hover:text-[#ff4957] focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-[#ff4957] transition duration-300 ease-in-out hover:bg-[#ff4957] hover:text-white">
+                        <button type="button" id="imageButton" onclick="javascript:window.location.href='./ProfileComments.php?u=<?php echo $user_username?>'" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-[#ff4057] hover:bg-[#ff4957] focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-[#ff4957] transition duration-300 ease-in-out" >
                             Comments
                         </button>
                     </span>
@@ -176,12 +176,13 @@ Post content text: text-gray-500
 
 
                 <div class="flex w-960 mx-auto">
-                    <!-- Posts -->
+                    <!-- Comments -->
                     <div class="w-11/12 ml-5">
+                    <div class="flex flex-col space-y-3">
                         <?php
-                            //Display user posts
-                            $postInfo->createPostFe($user_id);
+                        $postInfo->fetchUserComment($user_id);
                         ?>
+                    </div>
                     </div>
                     <!--  Sidebars -->
                     <div class="w-1/3 pl-9 hidden lg:block">

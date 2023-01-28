@@ -22,6 +22,7 @@ class ProfileInfoView extends ProfileInfo
         $profileInfo = $this->getProfileInfo($id);
         echo $profileInfo[0]["profiles_introduction"];
     }
+    
 
 }
 ?>
