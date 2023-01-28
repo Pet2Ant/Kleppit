@@ -1,6 +1,5 @@
 <?php
 session_start();
-<<<<<<< HEAD
 
 $fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $postId = $_SERVER["QUERY_STRING"];
@@ -25,8 +24,6 @@ if(empty($postInfo))
     echo "asdADF??";
     exit();
 }
-=======
->>>>>>> 8b8247c057f8beaa94c0b222ed6a178108813197
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,30 +99,18 @@ Post content text: text-gray-500
                                 <!-- if user is not logged in do not display the user photo -->
                                 <?php
                                 if (isset($_SESSION["id"])) {
-<<<<<<< HEAD
                                     ?>
                                     <img class="w-8 h-8 mr-2 rounded-full" src="../assets/tacejm6avjx41.jpg" alt="user photo" />
                                 <?php
                                 } else {
                                     ?>
-=======
-                                ?>
-                                    <img class="w-8 h-8 mr-2 rounded-full" src="../assets/tacejm6avjx41.jpg" alt="user photo" />
-                                <?php
-                                } else {
-                                ?>
->>>>>>> 8b8247c057f8beaa94c0b222ed6a178108813197
                                     <div class="hidden"></div>
                                 <?php
                                 }
                                 ?>
                                 <?php
                                 if (isset($_SESSION["id"])) {
-<<<<<<< HEAD
                                     ?>
-=======
-                                ?>
->>>>>>> 8b8247c057f8beaa94c0b222ed6a178108813197
                                     <p class="hidden lg:block"><?php echo $_SESSION["username"]; ?></p>
                                     <svg class="w-4 h-4 mx-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -159,11 +144,7 @@ Post content text: text-gray-500
                                 <div>
                                 <?php
                                 } else {
-<<<<<<< HEAD
                                     ?>
-=======
-                                ?>
->>>>>>> 8b8247c057f8beaa94c0b222ed6a178108813197
                                     <a href="./signupform.php" tabindex="4" class="text-red-500 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-red-600" role="menuitem">Signup</a>
 
                                     <a href="./loginform.php" tabindex="4" class="text-red-500 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-red-600" role="menuitem">Log in</a>
@@ -197,11 +178,7 @@ Post content text: text-gray-500
                                     </svg>
                                 </button>
                                 <!-- Vote count -->
-<<<<<<< HEAD
                                 <span class="text-xs font-semibold my-1 text-gray-500"><?php echo $postInfo["post_karma"];?></span>
-=======
-                                <span class="text-xs font-semibold my-1 text-gray-500">20k</span>
->>>>>>> 8b8247c057f8beaa94c0b222ed6a178108813197
                                 <!-- Downvote -->
                                 <button class="text-xs">
                                     <input type="text" hidden disabled>
@@ -213,38 +190,21 @@ Post content text: text-gray-500
                             <!-- Post Information -->
                             <div class="w-11/12 pt-2 ">
                                 <div class="flex items-center text-xs mb-2">
-<<<<<<< HEAD
                                     <span class="text-gray-500">Posted by <?php echo $postInfo["username"];?></span>
                                     <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">u/<?php
 
                                     ?></a>
-=======
-                                    <span class="text-gray-500">Posted by</span>
-                                    <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">u/<?php
-                                                                                                            echo $_SESSION['username'];
-                                                                                                            ?></a>
->>>>>>> 8b8247c057f8beaa94c0b222ed6a178108813197
                                     <span class="text-gray-500">2 hours ago</span>
                                 </div>
                                 <!-- Post Title -->
                                 <div>
                                     <h2 class="text-lg font-bold mb-1 text-gray-300">
-<<<<<<< HEAD
                                        <?php echo $postInfo["post_title"]; ?>
-=======
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Suspendisse tempor placerat turpis eu semper.
->>>>>>> 8b8247c057f8beaa94c0b222ed6a178108813197
                                     </h2>
                                 </div>
                                 <!-- Post Description -->
                                 <p class="text-gray-400">
-<<<<<<< HEAD
                                 <?php echo $postInfo["post_content"]; ?>
-=======
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Praesent euismod congue nibh, in placerat risus pretium at.
->>>>>>> 8b8247c057f8beaa94c0b222ed6a178108813197
 
                                 </p>
 
@@ -266,13 +226,8 @@ Post content text: text-gray-500
                             <div class="pb-1">
                                 <label for="textArea" class="text-sm text-gray-500 ">
                                     Comment as <a class="no-underline hover:underline" href="./Profile.php">u/<?php
-<<<<<<< HEAD
 
                                     ?></label></a>
-=======
-                                                                                                                echo $_SESSION['username'];
-                                                                                                                ?></label></a>
->>>>>>> 8b8247c057f8beaa94c0b222ed6a178108813197
                             </div>
 
                             <textarea id="textArea" name="content" placeholder="Share your thoughts" type="text" class="resize-y text-sm block  px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-[#ff4957] focus:outline-none"></textarea>
@@ -310,11 +265,7 @@ Post content text: text-gray-500
                                 <div class="flex items-center text-sm mb-2">
                                     <img class="w-8 h-8 rounded-full mr-2" src="https://placeimg.com/192/192/people" alt="Avatar of User">
                                     <span class="text-gray-500">Commented by</span>
-<<<<<<< HEAD
                                     <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">u/<?php ?> •</a>
-=======
-                                    <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">u/<?php echo $_SESSION['username'] ?> •</a>
->>>>>>> 8b8247c057f8beaa94c0b222ed6a178108813197
                                     <span class="text-gray-500">2 hours ago</span>
                                 </div>
                                 <!-- Comment Text -->
@@ -330,28 +281,22 @@ Post content text: text-gray-500
                                         <svg class="w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                             <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
                                         </svg>
-<<<<<<< HEAD
                                         <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 "></span>
                                     </button>
                                     <!-- Vote count -->
                                     <span class="text-xs font-semibold my-1 m-2 text-gray-400"></span>
-=======
                                         <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 ">Upvote</span>
                                     </button>
                                     <!-- Vote count -->
                                     <span class="text-xs font-semibold my-1 m-2 text-gray-400">0</span>
->>>>>>> 8b8247c057f8beaa94c0b222ed6a178108813197
                                     <!-- Downvote -->
                                     <button class="text-gray-500 transition duration-500 hover:text-blue-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
                                         <input type="text" hidden disabled>
                                         <svg class="w-5 fill-current " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                             <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
                                         </svg>
-<<<<<<< HEAD
                                         <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 "></span>
-=======
                                         <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 ">Downvote</span>
->>>>>>> 8b8247c057f8beaa94c0b222ed6a178108813197
                                     </button>
                                 </div>
                             </div>
@@ -453,10 +398,7 @@ Post content text: text-gray-500
         </div>
     </div>
 </body>
-<<<<<<< HEAD
 
-=======
->>>>>>> 8b8247c057f8beaa94c0b222ed6a178108813197
 <script src="./main.js"></script>
 
 </html>

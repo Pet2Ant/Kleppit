@@ -56,7 +56,8 @@ class IndexPostInfo extends PostInfo
 
         while ($count < $maxcount) {
             $votecap = $this->getVotecap($count + 1, $userId);
-           
+            echo $votecap["votecap"];
+            
             if ($votecap == false) 
             {
                 $downvote = $this->downvoteCreator(false);

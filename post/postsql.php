@@ -307,7 +307,7 @@ class PostInfo extends DbCon
         {
             return false;
         }
-       
+        
         return $votecap[0];
     }
 
