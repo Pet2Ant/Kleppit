@@ -9,15 +9,15 @@ class Login extends DbCon
         if(!$input->execute(array($username,$username)))
         {
             $input = null;
-            // header("location:../index.php?error=checkdberror");
-            // exit();
+            header("location:public/loginform.php?error=checkdberror");
+            exit();
            
         }
         if ($input->rowCount() == 0)
         {
             $input = null;
-            // header("location:../index.php?error=usernotfound");
-            // exit();
+            header("location:public/loginform.php?error=usernotfound");
+            exit();
         }
         $passwordhashed = $input->fetchAll(PDO::FETCH_ASSOC);
         $checkpassword = password_verify($pwd, $passwordhashed[0]["users_pwd"]);
@@ -26,8 +26,8 @@ class Login extends DbCon
         if($checkpassword == false )
         {
            $input = null;
-        //    header("location:../index.php?error=wrongpassword");
-        //    exit();
+           header("location:public/loginform.php?error=wrongpassword");
+           exit();
            
         }
         elseif($checkpassword  == true) {
@@ -35,9 +35,8 @@ class Login extends DbCon
             $input = $this->connect()->prepare('SELECT * FROM users WHERE username = ? OR email =? AND users_pwd=?;');
             if (!$input->execute(array($username, $username, $passwordhashed[0]["users_pwd"]))) {
                 $input = null;
-                
-                // header("location:../index.php?error=smthingfailed");
-                // exit();
+                header("location:public/loginform.php?error=checkdberror");
+                exit();
             }
         if (!$input->rowCount() == 0) {
             $user = $input->fetchAll(PDO::FETCH_ASSOC);

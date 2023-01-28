@@ -2,14 +2,14 @@
 <?php
 
 //checking connection
-if (isset($_POST["submit"])) {
+if($_SERVER["REQUEST_METHOD"] == "POST") {
     
     //getting the user data
-    $username = $_POST["emailorusername"];
-    $pwd = $_POST["pwd"];
+    $username = htmlspecialchars($_POST["emailorusername"], ENT_QUOTES, 'UTF-8');
+    $pwd = htmlspecialchars($_POST["pwd"], ENT_QUOTES, 'UTF-8');
     include "databasecon\dbcon.php";
-    include "login\loginquery.php";
-    include "login\loginerror.php";
+    include "login\loginsql.php";
+    include "login\loginerrors.php";
     
 
 

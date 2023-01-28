@@ -1,5 +1,15 @@
 <?php
 session_start();
+include "../databasecon/dbcon.php";
+include "../profile/profileinfo.php";
+include "../profile/profilecontr.php";
+include "../profile/profileview.php";
+include "../post/postsql.php";
+include "../post/postcont.php";
+include "../post/postview.php";
+include "../post/indexpost.php";
+
+$postInfo = new IndexPostInfo();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,21 +41,19 @@ Post content text: text-gray-500
       <!-- Icon + Post button + Search bar -->
       <div class="flex flex-1 items-center space-x-4">
         <!-- Large logo -->
-        <a id="largeLogo" href="./index.php"><img src="..//assets/kleppit-high-resolution-logo-color-on-transparent-background.png" class="hidden lg:block h-10 transition duration-500 ease-in-out hover:opacity-75" alt="logo" />
+        <a id="largeLogo" href="./index.php"><img src="..//assets/kleppit-high-resolution-logo-color-on-transparent-background.png" class="hidden lg:inline-block h-10 transition duration-500 ease-in-out hover:opacity-75" alt="logo" />
         </a>
         <!-- Small Logo -->
         <a id="smallLogo" href="./index.php"><img src="..//assets/kleppit-website-favicon-color.png" class="lg:hidden h-12 w-14 transition duration-500 ease-in-out hover:opacity-75 mr-10" alt="small logo" />
         </a>
-        <!-- Post button -->
-        <button onclick="location.href = './createPost.php';" class="w-14 text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1 lg:hidden">
-          Post
-        </button>
+
         <!-- Search bar -->
         <div class="mx-4 flex flex-1 items-center space-x-3 rounded border border-[#343536] bg-[#272729] px-4 py-1.5">
+
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="h-5 w-5 text-[#878A8C]">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
-          <input class="flex-1 bg-transparent text-sm focus:outline-none text-gray-400" type="text" placeholder="Search Kleppit" />
+          <input class="flex-1 bg-transparent text-sm focus:outline-none text-gray-400" type="text"  placeholder="Search Kleppit" />
         </div>
       </div>
       <!-- User button -->
@@ -68,6 +76,7 @@ Post content text: text-gray-500
                 ?>
                 <?php
                 if (isset($_SESSION["id"])) {
+                  $id = $_SESSION["id"];
                 ?>
                   <p class="hidden lg:block"><?php echo $_SESSION["username"]; ?></p>
                   <svg class="w-4 h-4 mx-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -87,7 +96,7 @@ Post content text: text-gray-500
                   </p>
                 </div>
                 <div class="py-1">
-                  <a href="./AccountSettings.php" tabindex="0" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Account settings</a>
+                  <a href="./Profile.php" tabindex="0" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Profile</a>
                   <a href="./ContactUs.php" tabindex="1" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Contact Us</a>
                 </div>
                 <div class="py-1">
@@ -317,574 +326,76 @@ Post content text: text-gray-500
       <div class="flex w-960 mx-auto">
         <!-- Posts -->
         <div class="w-11/12 ml-5">
-          <!-- Post 1 -->
-          <div id="" class="py-2 mb-4">
-            <div class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer">
-              <div class="w-5 mx-4 flex flex-col text-center pt-2">
-                <!-- Upvote -->
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-[#ff4057]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
-                  </svg>
-                </button>
-                <!-- Vote count -->
-                <span class="text-xs font-semibold my-1 text-gray-500">20k</span>
-                <!-- Downvote -->
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
-                  </svg>
-                </button>
-              </div>
-              <!-- Post Information -->
-              <div class="w-11/12 pt-2">
-                <div class="flex items-center text-xs mb-2">
-                  <span class="text-gray-500">Posted by</span>
-                  <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">u/TestUser</a>
-                  <span class="text-gray-500">2 hours ago</span>
-                </div>
-                <!-- Post Title -->
-                <div>
-                  <h2 class="text-lg font-bold mb-1 text-gray-400">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse tempor placerat turpis eu semper.
-                  </h2>
-                </div>
-                <!-- Post Description -->
-                <p class="text-gray-500">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Praesent euismod congue nibh, in placerat risus pretium at.
+         <!-- Sort by top, new, old bar -->
+         
+        <div class="flex justify-between">
+              <?php
+                
+                
+                $sortquery = $_SERVER["QUERY_STRING"];
+                parse_str($sortquery, $sortquery);
+                $sortTo ="Default";
+                if(!$sortquery){                 
+                }
+                elseif($sortquery["sort"] == "karma"){
+                  $sortTo ="by Karma";                  
+                }
+                elseif($sortquery["sort"] == "newest"){
+                  $sortTo ="Newest";
+                }
+                elseif($sortquery["sort"] == "oldest"){
+                  $sortTo ="Oldest";             
+                }
+                
+              
+              ?>
+            <div class="mt-3">
+              <span class="text-xl font-semibold text-gray-500 p-2">All posts</span>
+              <span class="ml-2 text-md text-gray-500 tracking-tight">Sorted by:</span>
+              <span class="ml-0.5 text-lg text-red-500 "><?php echo $sortTo ;?></span>   
+            </div>
+            
+            <div class="mt-3">
+              <span class="text-md text-gray-500">Sort by:</span>
+              <button  onclick="javascript:window.location.href='index.php?sort=karma'" class="px-4 py-2 font-medium text-[#ff4057] border border-[#ff4057] rounded-l-md hover:bg-[#ff4057] hover:text-black transition duration-500 ease-in-out">
+                Top
+              </button>
+              <button onclick="javascript:window.location.href='index.php?sort=newest'"  class="px-4 py-2 font-medium text-[#ff4057] border border-[#ff4057] hover:bg-[#ff4057] hover:text-black transition duration-500 ease-in-out">
+                New
+              </button>
+              <button onclick="javascript:window.location.href='index.php?sort=oldest'" class="px-4 py-2 font-medium text-[#ff4057] border border-[#ff4057] rounded-r-md hover:bg-[#ff4057] hover:text-black transition duration-500 ease-in-out">
+                Old
+              </button>
+            </div>
+          </div>       
+           <?php
 
-                </p>
-                <!-- Comments -->
-                <div class="inline-flex items-center my-1">
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">3k Comments</span>
-                  </div>
-                  <!-- Share -->
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 ml-2 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M5.08 12.16A2.99 2.99 0 0 1 0 10a3 3 0 0 1 5.08-2.16l8.94-4.47a3 3 0 1 1 .9 1.79L5.98 9.63a3.03 3.03 0 0 1 0 .74l8.94 4.47A2.99 2.99 0 0 1 20 17a3 3 0 1 1-5.98-.37l-8.94-4.47z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">Share</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Post 2 -->
-          <div class="py-2 mb-4">
-            <div class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer">
-              <div class="w-5 mx-4 flex flex-col text-center pt-2">
-                <!-- Upvote -->
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-[#ff4057]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
-                  </svg>
-                </button>
-                <!-- Vote count -->
-                <span class="text-xs font-semibold my-1 text-gray-500">20k</span>
-                <!-- Downvote -->
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
-                  </svg>
-                </button>
-              </div>
-              <!-- Post Information -->
-              <div class="w-11/12 pt-2">
-                <div class="flex items-center text-xs mb-2">
-                  <span class="text-gray-500">Posted by</span>
-                  <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">u/TestUser</a>
-                  <span class="text-gray-500">2 hours ago</span>
-                </div>
-                <!-- Post Title -->
-                <div>
-                  <h2 class="text-lg font-bold mb-1 text-gray-400">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse tempor placerat turpis eu semper.
-                  </h2>
-                </div>
-                <!-- Post Description -->
-                <p class="text-gray-500">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Praesent euismod congue nibh, in placerat risus pretium at.
-
-                </p>
-                <!-- Comments -->
-                <div class="inline-flex items-center my-1">
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">3k Comments</span>
-                  </div>
-                  <!-- Share -->
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 ml-2 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M5.08 12.16A2.99 2.99 0 0 1 0 10a3 3 0 0 1 5.08-2.16l8.94-4.47a3 3 0 1 1 .9 1.79L5.98 9.63a3.03 3.03 0 0 1 0 .74l8.94 4.47A2.99 2.99 0 0 1 20 17a3 3 0 1 1-5.98-.37l-8.94-4.47z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">Share</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Post 3 -->
-          <div class="py-2 mb-4">
-            <div class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer">
-              <div class="w-5 mx-4 flex flex-col text-center pt-2">
-                <!-- Upvote -->
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-[#ff4057]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
-                  </svg>
-                </button>
-                <!-- Vote count -->
-                <span class="text-xs font-semibold my-1 text-gray-500">20k</span>
-                <!-- Downvote -->
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
-                  </svg>
-                </button>
-              </div>
-              <!-- Post Information -->
-              <div class="w-11/12 pt-2">
-                <div class="flex items-center text-xs mb-2">
-                  <span class="text-gray-500">Posted by</span>
-                  <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">u/TestUser</a>
-                  <span class="text-gray-500">2 hours ago</span>
-                </div>
-                <!-- Post Title -->
-                <div>
-                  <h2 class="text-lg font-bold mb-1 text-gray-400">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse tempor placerat turpis eu semper.
-                  </h2>
-                </div>
-                <!-- Post Description -->
-                <p class="text-gray-500">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Praesent euismod congue nibh, in placerat risus pretium at.
-
-                </p>
-                <!-- Comments -->
-                <div class="inline-flex items-center my-1">
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">3k Comments</span>
-                  </div>
-                  <!-- Share -->
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 ml-2 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M5.08 12.16A2.99 2.99 0 0 1 0 10a3 3 0 0 1 5.08-2.16l8.94-4.47a3 3 0 1 1 .9 1.79L5.98 9.63a3.03 3.03 0 0 1 0 .74l8.94 4.47A2.99 2.99 0 0 1 20 17a3 3 0 1 1-5.98-.37l-8.94-4.47z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">Share</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Post 4/ Large Image Post -->
-          <div class="py-2 mb-4">
-            <div class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer">
-              <div class="w-5 mx-4 flex flex-col text-center pt-2">
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-[#ff4057]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
-                  </svg>
-                </button>
-                <span class="text-xs font-semibold my-1 text-gray-500">20k</span>
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
-                  </svg>
-                </button>
-              </div>
-              <div class="w-11/12 pt-2">
-                <div class="flex items-center text-xs mb-2">
-                  <span class="text-gray-500">Posted by</span>
-                  <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">u/TestUser</a>
-                  <span class="text-gray-500">2 hours ago</span>
-                </div>
-                <div>
-                  <h2 class="text-lg font-bold mb-1 text-gray-400">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse tempor placerat turpis eu semper.
-                  </h2>
-                </div>
-                <div class="flex flex-col text-center py-2">
-                  <img src="../assets/licensed-image.jpg" alt="Post Image" class="rounded-lg mr-4" />
-                  <h3 class="text-gray-500 text-md py-2">
-                    Look at this image! WOW! SO COOL!
-                  </h3>
-                </div>
-                <div class="inline-flex items-center my-1">
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">3k Comments</span>
-                  </div>
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 ml-2 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M5.08 12.16A2.99 2.99 0 0 1 0 10a3 3 0 0 1 5.08-2.16l8.94-4.47a3 3 0 1 1 .9 1.79L5.98 9.63a3.03 3.03 0 0 1 0 .74l8.94 4.47A2.99 2.99 0 0 1 20 17a3 3 0 1 1-5.98-.37l-8.94-4.47z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">Share</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Post 5 -->
-          <div class="py-2 mb-4">
-            <div class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer">
-              <div class="w-5 mx-4 flex flex-col text-center pt-2">
-                <!-- Upvote -->
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-[#ff4057]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
-                  </svg>
-                </button>
-                <!-- Vote count -->
-                <span class="text-xs font-semibold my-1 text-gray-500">20k</span>
-                <!-- Downvote -->
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
-                  </svg>
-                </button>
-              </div>
-              <!-- Post Information -->
-              <div class="w-11/12 pt-2">
-                <div class="flex items-center text-xs mb-2">
-                  <span class="text-gray-500">Posted by</span>
-                  <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">u/TestUser</a>
-                  <span class="text-gray-500">2 hours ago</span>
-                </div>
-                <!-- Post Title -->
-                <div>
-                  <h2 class="text-lg font-bold mb-1 text-gray-400">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse tempor placerat turpis eu semper.
-                  </h2>
-                </div>
-                <!-- Post Description -->
-                <p class="text-gray-500">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Praesent euismod congue nibh, in placerat risus pretium at.
-
-                </p>
-                <!-- Comments -->
-                <div class="inline-flex items-center my-1">
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">3k Comments</span>
-                  </div>
-                  <!-- Share -->
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 ml-2 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M5.08 12.16A2.99 2.99 0 0 1 0 10a3 3 0 0 1 5.08-2.16l8.94-4.47a3 3 0 1 1 .9 1.79L5.98 9.63a3.03 3.03 0 0 1 0 .74l8.94 4.47A2.99 2.99 0 0 1 20 17a3 3 0 1 1-5.98-.37l-8.94-4.47z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">Share</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Post 6 -->
-          <div class="py-2 mb-4">
-            <div class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer">
-              <div class="w-5 mx-4 flex flex-col text-center pt-2">
-                <!-- Upvote -->
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-[#ff4057]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
-                  </svg>
-                </button>
-                <!-- Vote count -->
-                <span class="text-xs font-semibold my-1 text-gray-500">20k</span>
-                <!-- Downvote -->
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
-                  </svg>
-                </button>
-              </div>
-              <!-- Post Information -->
-              <div class="w-11/12 pt-2">
-                <div class="flex items-center text-xs mb-2">
-                  <span class="text-gray-500">Posted by</span>
-                  <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">u/TestUser</a>
-                  <span class="text-gray-500">2 hours ago</span>
-                </div>
-                <!-- Post Title -->
-                <div>
-                  <h2 class="text-lg font-bold mb-1 text-gray-400">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse tempor placerat turpis eu semper.
-                  </h2>
-                </div>
-                <!-- Post Description -->
-                <p class="text-gray-500">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Praesent euismod congue nibh, in placerat risus pretium at.
-
-                </p>
-                <!-- Comments -->
-                <div class="inline-flex items-center my-1">
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">3k Comments</span>
-                  </div>
-                  <!-- Share -->
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 ml-2 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M5.08 12.16A2.99 2.99 0 0 1 0 10a3 3 0 0 1 5.08-2.16l8.94-4.47a3 3 0 1 1 .9 1.79L5.98 9.63a3.03 3.03 0 0 1 0 .74l8.94 4.47A2.99 2.99 0 0 1 20 17a3 3 0 1 1-5.98-.37l-8.94-4.47z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">Share</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Post 7 -->
-          <div class="py-2 mb-4">
-            <div class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer">
-              <div class="w-5 mx-4 flex flex-col text-center pt-2">
-                <!-- Upvote -->
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-[#ff4057]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
-                  </svg>
-                </button>
-                <!-- Vote count -->
-                <span class="text-xs font-semibold my-1 text-gray-500">20k</span>
-                <!-- Downvote -->
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
-                  </svg>
-                </button>
-              </div>
-              <!-- Post Information -->
-              <div class="w-11/12 pt-2">
-                <div class="flex items-center text-xs mb-2">
-                  <span class="text-gray-500">Posted by</span>
-                  <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">u/TestUser</a>
-                  <span class="text-gray-500">2 hours ago</span>
-                </div>
-                <!-- Post Title -->
-                <div>
-                  <h2 class="text-lg font-bold mb-1 text-gray-400">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse tempor placerat turpis eu semper.
-                  </h2>
-                </div>
-                <!-- Post Description -->
-                <p class="text-gray-500">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Praesent euismod congue nibh, in placerat risus pretium at.
-
-                </p>
-                <!-- Comments -->
-                <div class="inline-flex items-center my-1">
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">3k Comments</span>
-                  </div>
-                  <!-- Share -->
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 ml-2 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M5.08 12.16A2.99 2.99 0 0 1 0 10a3 3 0 0 1 5.08-2.16l8.94-4.47a3 3 0 1 1 .9 1.79L5.98 9.63a3.03 3.03 0 0 1 0 .74l8.94 4.47A2.99 2.99 0 0 1 20 17a3 3 0 1 1-5.98-.37l-8.94-4.47z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">Share</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Post 8/ Smaller Image Post -->
-          <div class="py-2 mb-4">
-            <div class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer">
-              <div class="w-5 mx-4 flex flex-col text-center pt-2">
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-[#ff4057]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
-                  </svg>
-                </button>
-                <span class="text-xs font-semibold my-1 text-gray-500">20k</span>
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
-                  </svg>
-                </button>
-              </div>
-              <div class="w-11/12 pt-2">
-                <div class="flex items-center text-xs mb-2">
-                  <span class="text-gray-500">Posted by</span>
-                  <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">u/TestUser</a>
-                  <span class="text-gray-500">2 hours ago</span>
-                </div>
-                <div>
-                  <h2 class="text-lg font-bold mb-1 text-gray-400">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse tempor placerat turpis eu semper.
-                  </h2>
-                </div>
-                <div class="flex flex-col text-center py-2">
-                  <img src="../assets/Screenshot_20221022_111506.png" alt="Post Image" class="rounded-lg mr-4" />
-                  <h3 class="text-gray-500 text-md py-2">
-                    Look at this image! WOW! SO COOL!
-                  </h3>
-                </div>
-                <div class="inline-flex items-center my-1">
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">3k Comments</span>
-                  </div>
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 ml-2 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M5.08 12.16A2.99 2.99 0 0 1 0 10a3 3 0 0 1 5.08-2.16l8.94-4.47a3 3 0 1 1 .9 1.79L5.98 9.63a3.03 3.03 0 0 1 0 .74l8.94 4.47A2.99 2.99 0 0 1 20 17a3 3 0 1 1-5.98-.37l-8.94-4.47z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">Share</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Post 9 -->
-          <div class="py-2 mb-4">
-            <div class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer">
-              <div class="w-5 mx-4 flex flex-col text-center pt-2">
-                <!-- Upvote -->
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-[#ff4057]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
-                  </svg>
-                </button>
-                <!-- Vote count -->
-                <span class="text-xs font-semibold my-1 text-gray-500">20k</span>
-                <!-- Downvote -->
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
-                  </svg>
-                </button>
-              </div>
-              <!-- Post Information -->
-              <div class="w-11/12 pt-2">
-                <div class="flex items-center text-xs mb-2">
-                  <span class="text-gray-500">Posted by</span>
-                  <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">u/TestUser</a>
-                  <span class="text-gray-500">2 hours ago</span>
-                </div>
-                <!-- Post Title -->
-                <div>
-                  <h2 class="text-lg font-bold mb-1 text-gray-400">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse tempor placerat turpis eu semper.
-                  </h2>
-                </div>
-                <!-- Post Description -->
-                <p class="text-gray-500">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Praesent euismod congue nibh, in placerat risus pretium at.
-
-                </p>
-                <!-- Comments -->
-                <div class="inline-flex items-center my-1">
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">3k Comments</span>
-                  </div>
-                  <!-- Share -->
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 ml-2 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M5.08 12.16A2.99 2.99 0 0 1 0 10a3 3 0 0 1 5.08-2.16l8.94-4.47a3 3 0 1 1 .9 1.79L5.98 9.63a3.03 3.03 0 0 1 0 .74l8.94 4.47A2.99 2.99 0 0 1 20 17a3 3 0 1 1-5.98-.37l-8.94-4.47z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">Share</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Post 10 -->
-          <div class="py-2 mb-4">
-            <div class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer">
-              <div class="w-5 mx-4 flex flex-col text-center pt-2">
-                <!-- Upvote -->
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-[#ff4057]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
-                  </svg>
-                </button>
-                <!-- Vote count -->
-                <span class="text-xs font-semibold my-1 text-gray-500">20k</span>
-                <!-- Downvote -->
-                <button class="text-xs">
-                  <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
-                  </svg>
-                </button>
-              </div>
-              <!-- Post Information -->
-              <div class="w-11/12 pt-2">
-                <div class="flex items-center text-xs mb-2">
-                  <span class="text-gray-500">Posted by</span>
-                  <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">u/TestUser</a>
-                  <span class="text-gray-500">2 hours ago</span>
-                </div>
-                <!-- Post Title -->
-                <div>
-                  <h2 class="text-lg font-bold mb-1 text-gray-400">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse tempor placerat turpis eu semper.
-                  </h2>
-                </div>
-                <!-- Post Description -->
-                <p class="text-gray-500">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Praesent euismod congue nibh, in placerat risus pretium at.
-
-                </p>
-                <!-- Comments -->
-                <div class="inline-flex items-center my-1">
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">3k Comments</span>
-                  </div>
-                  <!-- Share -->
-                  <div class="flex transition duration-500 hover:bg-gray-700 p-1 ml-2 rounded-lg">
-                    <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M5.08 12.16A2.99 2.99 0 0 1 0 10a3 3 0 0 1 5.08-2.16l8.94-4.47a3 3 0 1 1 .9 1.79L5.98 9.63a3.03 3.03 0 0 1 0 .74l8.94 4.47A2.99 2.99 0 0 1 20 17a3 3 0 1 1-5.98-.37l-8.94-4.47z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500">Share</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+           $userId = -1;
+        if($_SESSION) 
+        {
+             $userId = $_SESSION["id"];
+        }
+        if($sortTo == "Default"){
+          $postInfo-> getAllPosts($sortTo,$userId);
+          
+        }
+        elseif($sortTo == "by Karma"){
+          
+          $postInfo->getAllPosts($sortTo,$userId);
+        }
+        elseif($sortTo == "Newest"){
+         
+          $postInfo->getAllPosts($sortTo,$userId);
+        }
+        elseif($sortTo == "Oldest"){
+         
+          $postInfo->getAllPosts($sortTo,$userId);
+        }
+        
+      
+        ?> 
+        
         </div>
-
         <!--  Sidebars -->
         <div class="w-1/3 pl-9 hidden lg:block">
           <!-- Create a Post Sidebar -->
@@ -965,17 +476,6 @@ Post content text: text-gray-500
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <!-- Scroll to the top button -->
-  <div class="fixed bottom-0 right-0 mb-10 mr-10">
-    <div class="flex flex-col gap-2">
-      <button onclick="topFunction()" class="w-full w-12 h-12 bg-[#ff4057] rounded-full hover:bg-red-600 transition ease-in duration-300 flex justify-center ">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 place-self-center">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
-        </svg>
-
-      </button>
     </div>
   </div>
 </body>

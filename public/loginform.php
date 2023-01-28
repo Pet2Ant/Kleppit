@@ -82,7 +82,7 @@ session_start();
                   </p>
                 </div>
                 <div class="py-1">
-                  <a href="./AccountSettings.php" tabindex="0" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Account settings</a>
+                  <a href="./Profile.php" tabindex="0" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Profile</a>
                   <a href="./ContactUs.php" tabindex="1" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Contact Us</a>
                 </div>
                 <div class="py-1">
@@ -143,6 +143,7 @@ session_start();
                   class="italic text-sm font-semibold text-red-700 transition duration-300 ease-in-out hover:text-red-700 px-1 py-2">
                   Forgot Password?
                 </a>
+                
               </div>
               <ul>
                 <li class="flex items-center py-1">
@@ -159,6 +160,31 @@ session_start();
                 </form>
               </div>              
             </div>
+            <div>
+                  
+                  <?php
+                      $fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+  
+                      if(strpos($fullUrl,"error=checkdberror") == true)
+                        {
+                          echo "<p style='color:red'>Could not connect to the database.
+                          Check your connection</p>";
+                        }
+                        if(strpos($fullUrl,"error=wrongpassword") == true)
+                        {
+                          echo "<p style='color:red'>Wrong password.</p>";
+                        }
+                        if(strpos($fullUrl,"error=usernotfound") == true)
+                        {
+                          echo "<p style='color:red'>Username not found.</p>";
+                        }
+                        if(strpos($fullUrl,"error=emptyinput") == true)
+                        {
+                          echo "<p style='color:red'>You need to fill all of the fields.</p>";
+                        }
+                        
+                  ?>
+                  </div>
           </div>
         </div>
       </div>
