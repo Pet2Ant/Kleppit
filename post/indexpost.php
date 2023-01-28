@@ -37,7 +37,7 @@ class IndexPostInfo extends PostInfo
     {
         
         $count = 0;
-        $maxcount = $this->fetchAllPosts() - 1;
+        $maxcount = $this->fetchAllPosts(-1) - 1;
         if($sortTo == "Default"){
             $row=$this->postRows();
           }
