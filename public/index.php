@@ -8,7 +8,7 @@ include "../post/postsql.php";
 include "../post/postcont.php";
 include "../post/postview.php";
 include "../post/indexpost.php";
-include '../search/sharebar.php';
+include '../components/sharebar.php';
 
 $postInfo = new IndexPostInfo();
 ?>

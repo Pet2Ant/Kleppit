@@ -3,7 +3,7 @@ include "../databasecon/dbcon.php";
 include "../profile/profileinfo.php";
 include "../profile/profilecontr.php";
 include "../profile/profileview.php";
-include '../search/sharebar.php';
+include '../components/sharebar.php';
 $profileInfo = new ProfileInfoView();
 
 ?>

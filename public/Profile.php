@@ -7,7 +7,7 @@ include "../profile/profileview.php";
 include "../post/postsql.php";
 include "../post/postcont.php";
 include "../post/postview.php";
-include '../search/sharebar.php';
+include '../components/sharebar.php';
 $profileInfo = new ProfileInfoView();
 $postInfo = new PostInfoView();
 

@@ -1,5 +1,5 @@
 <?php
-include '../search/sharebar.php';
+include '../components/sharebar.php';
 session_start();
 ?>
 <!DOCTYPE html>

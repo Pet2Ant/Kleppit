@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../search/sharebar.php';
+include '../components/sharebar.php';
 
 $fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $postId = $_SERVER["QUERY_STRING"];

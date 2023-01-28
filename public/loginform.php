@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../search/sharebar.php';
+include '../components/sharebar.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
