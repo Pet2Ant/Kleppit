@@ -8,7 +8,7 @@ if (!$postId) {
     echo "page doesnt exist";
     exit();
 }
-$postId = $postId["p"] +1;
+$postId = $postId["p"];
 
 
 
@@ -21,7 +21,7 @@ $post= new PageInfo();
 $postInfo =  $post->getPostInfo($postId);
 if(empty($postInfo))
 {
-    echo "asdADF??";
+    echo "Post not found or deleted";
     exit();
 }
 ?>
