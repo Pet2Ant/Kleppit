@@ -275,7 +275,7 @@ class PostInfo extends DbCon
         if($stmt->rowCount() == 0)
         {
             $stmt = null;
-            echo "<br><br><h2 class='text-[#ff4057]'>No posts found</h2>";
+            echo "<br><br><h2 class='text-red-500'>No posts found</h2>";
             return 0;
         }
         $count = 0;

@@ -17,11 +17,10 @@ include "../post/postsql.php";
 include "../post/postcont.php";
 include "../post/pageview.php";
 include "../post/postview.php";
-$post= new PageInfo();
+$post = new PageInfo();
 $postInfo =  $post->getPostInfo($postId);
 
-if(empty($postInfo))
-{
+if (empty($postInfo)) {
     echo "Post not found or deleted";
     exit();
 }
@@ -40,7 +39,7 @@ if(empty($postInfo))
 </head>
 <!-- COLORS: 
 Background: bg-zinc-900
-Red text: text-[#ff4057] hover:text-[#ff4957]
+Red text: text-red-500 hover:text-red-600
 Post content title: text-gray-400
 Post content text: text-gray-500
 -->
@@ -58,7 +57,7 @@ Post content text: text-gray-500
 </head>
 <!-- COLORS: 
 Background: bg-zinc-900
-Red text: text-[#ff4057] hover:text-[#ff4957]
+Red text: text-red-500 hover:text-red-600
 Post content title: text-gray-400
 Post content text: text-gray-500
 -->
@@ -96,22 +95,22 @@ Post content text: text-gray-500
                 <div class="flex items-center justify-center">
                     <div class="relative inline-block text-left dropdown">
                         <span class="rounded-md shadow-sm">
-                            <button class="flex items-center w-full text-sm font-medium leading-5 text-[#ff4057] transition duration-150 ease-in-out hover:text-red-600" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
+                            <button class="flex items-center w-full text-sm font-medium leading-5 text-red-500 transition duration-150 ease-in-out hover:text-red-600" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
                                 <!-- if user is not logged in do not display the user photo -->
                                 <?php
                                 if (isset($_SESSION["id"])) {
-                                    ?>
+                                ?>
                                     <img class="w-8 h-8 mr-2 rounded-full" src="../assets/tacejm6avjx41.jpg" alt="user photo" />
                                 <?php
                                 } else {
-                                    ?>
+                                ?>
                                     <div class="hidden"></div>
                                 <?php
                                 }
                                 ?>
                                 <?php
                                 if (isset($_SESSION["id"])) {
-                                    ?>
+                                ?>
                                     <p class="hidden lg:block"><?php echo $_SESSION["username"]; ?></p>
                                     <svg class="w-4 h-4 mx-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -123,9 +122,9 @@ Post content text: text-gray-500
                         <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
                             <div class="absolute right-0 w-56 mt-2 origin-top-right bg-[#1a1a1b] border border-[#343536] divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                 <div class="px-4 py-3">
-                                    <p class="text-sm leading-5 text-[#ff4057]">Signed in as</p>
-                                    <p class="text-md font-semibold leading-5 text-[#ff4957] truncate"><?php echo $_SESSION["email"]; ?></p>
-                                    <p class="text-sm leading-5 text-[#ff4957] truncate py-1">
+                                    <p class="text-sm leading-5 text-red-500">Signed in as</p>
+                                    <p class="text-md font-semibold leading-5 text-red-600 truncate"><?php echo $_SESSION["email"]; ?></p>
+                                    <p class="text-sm leading-5 text-red-600 truncate py-1">
                                         1234 Upvotes
                                     </p>
                                 </div>
@@ -134,10 +133,10 @@ Post content text: text-gray-500
                                     <a href="./ContactUs.php" tabindex="1" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Contact Us</a>
                                 </div>
                                 <div class="py-1">
-                                    <a href="./userAgreement.html" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">User Agreement</a>
+                                    <a href="./userAgreement.php" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">User Agreement</a>
 
 
-                                    <a href="./privacyPolicy.html" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Privacy Policy</a>
+                                    <a href="./privacyPolicy.php" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Privacy Policy</a>
                                 </div>
                                 <div class="py-1">
                                     <a href="..\login\logout.php" tabindex="4" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Sign out</a>
@@ -145,7 +144,7 @@ Post content text: text-gray-500
                                 <div>
                                 <?php
                                 } else {
-                                    ?>
+                                ?>
                                     <a href="./signupform.php" tabindex="4" class="text-red-500 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-red-600" role="menuitem">Signup</a>
 
                                     <a href="./loginform.php" tabindex="4" class="text-red-500 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-red-600" role="menuitem">Log in</a>
@@ -174,12 +173,12 @@ Post content text: text-gray-500
                                 <!-- Upvote -->
                                 <button class="text-xs">
                                     <input type="text" hidden disabled>
-                                    <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-[#ff4057]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                         <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
                                     </svg>
                                 </button>
                                 <!-- Vote count -->
-                                <span class="text-xs font-semibold my-1 text-gray-500"><?php echo $postInfo["post_karma"];?></span>
+                                <span class="text-xs font-semibold my-1 text-gray-500"><?php echo $postInfo["post_karma"]; ?></span>
                                 <!-- Downvote -->
                                 <button class="text-xs">
                                     <input type="text" hidden disabled>
@@ -197,13 +196,13 @@ Post content text: text-gray-500
                                 </div>
                                 <!-- Post Title -->
                                 <div>
-                                    <h2 class="text-lg font-bold mb-1 text-gray-300">
-                                       <?php echo $postInfo["post_title"]; ?>
+                                    <h2 class="text-lg font-bold mb-1 text-gray-300 break-all">
+                                        <?php echo $postInfo["post_title"]; ?>
                                     </h2>
                                 </div>
                                 <!-- Post Description -->
-                                <p class="text-gray-400">
-                                <?php echo $postInfo["post_content"]; ?>
+                                <p class="text-gray-400 break-all">
+                                    <?php echo $postInfo["post_content"]; ?>
 
                                 </p>
 
@@ -213,29 +212,31 @@ Post content text: text-gray-500
                                         <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                             <path d="M10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"></path>
                                         </svg>
-                                        <span class="ml-2 text-xs font-semibold text-gray-500">3k Comments</span>
+                                        <span class="ml-2 text-xs font-semibold text-gray-500">Comments</span>
                                     </div>
                                 </div>
                                 <hr class="border-b-1 border-zinc-700 mx-auto">
                             </div>
 
                         </div>
-                        
+
                         <div class="relative w-11/12 mx-auto py-10 min-w-[200px] border-b-1 border-zinc-700 border-dashed ">
                             <div class="pb-1">
                                 <label for="textArea" class="text-sm text-gray-500 ">
-                                    Comment as <a class="no-underline hover:underline" href="./Profile.php">u/<?php
+                                    Comment as <a class="no-underline hover:underline" href="./Profile.php">ku/<?php
 
-                                    ?></label></a>
+                                                                                                                echo $_SESSION["username"];
+
+                                                                                                                ?></label></a>
                             </div>
                             <form action="../comment.php" method="post">
-                            <input type="text" name="post_id" value="<?php echo $postId ?>" hidden>
-                            <textarea id="textArea" name="comment" placeholder="Share your thoughts" type="text" class="resize-y text-sm block  px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-[#ff4957] focus:outline-none"></textarea>
-                            <div class="flex justify-end">
-                                <button type="submit" name="submit" class="mt-3 w-32 bg-[#ff4957] text-white active:bg-[#ff4957] text-sm font-semibold uppercase px-2 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition duration-150 ease-in-out hover:bg-red-700">
-                                    Comment
-                                </button>
-                            </div>
+                                <input type="text" name="post_id" value="<?php echo $postId ?>" hidden>
+                                <textarea id="textArea" name="comment" placeholder="Share your thoughts" type="text" class="resize-y text-sm block  px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-600 focus:outline-none"></textarea>
+                                <div class="flex justify-end">
+                                    <button type="submit" name="submit" class="mt-3 w-32 bg-red-600 text-white active:bg-red-600 text-sm font-semibold uppercase px-2 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition duration-150 ease-in-out hover:bg-red-700">
+                                        Comment
+                                    </button>
+                                </div>
                             </form>
                         </div>
                         <!-- Sort by dropdown -->
@@ -257,23 +258,23 @@ Post content text: text-gray-500
 
                         <hr class="border-t-1 border-zinc-700">
                     </div>
-                    
-                    
-                <div class="flex justify-center mb-5 mx-5">
-                    <div class="flex flex-col space-y-3">
-                        
-                            
+
+
+                    <div class="flex justify-center mb-5 mx-5 ">
+                        <div class="flex flex-col space-y-3 min-w-full">
+
+
                             <!-- Comment Body -->
-                            
-                            <?php 
-                            $comments= new PostInfoView();
+
+                            <?php
+                            $comments = new PostInfoView();
                             $comments->fetchComment($postId);
-                               
+
                             ?>
-                        
+
+                        </div>
                     </div>
                 </div>
-            </div>                    
                 <!--  Sidebars -->
                 <div class="w-1/3 pl-9 hidden lg:block">
                     <!-- Create a Post Sidebar -->
@@ -342,11 +343,11 @@ Post content text: text-gray-500
                             </div>
                             <div class="text-center mt-6">
                                 <p class="text-xs leading-tight text-gray-400 font-medium">
-                                    <a href="./userAgreement.html" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">User Agreement</a>
+                                    <a href="./userAgreement.php" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">User Agreement</a>
                                     |
-                                    <a href="./PrivacyPolicy.html" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Privacy Policy</a>
+                                    <a href="./privacyPolicy.php" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Privacy Policy</a>
                                 </p>
-                                <p class="text-xs leading-tight font-medium text-[#ff4057] my-1">
+                                <p class="text-xs leading-tight font-medium text-red-500 my-1">
                                     © 2023 Kleppit, Inc. All rights reserved
                                 </p>
                             </div>
@@ -359,7 +360,7 @@ Post content text: text-gray-500
     <!-- Scroll to the top button -->
     <div class="fixed bottom-0 right-0 mb-10 mr-10">
         <div class="flex flex-col gap-2">
-            <button onclick="topFunction()" class="w-full w-12 h-12 bg-[#ff4057] rounded-full hover:bg-red-600 transition ease-in duration-300 flex justify-center ">
+            <button onclick="topFunction()" class="w-full w-12 h-12 bg-red-500 rounded-full hover:bg-red-600 transition ease-in duration-300 flex justify-center ">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 place-self-center">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
                 </svg>
