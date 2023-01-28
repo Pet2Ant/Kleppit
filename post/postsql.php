@@ -290,9 +290,6 @@ class PostInfo extends DbCon
     }
   
     
-    
-   
-    
     protected function upvote($upvote,$post_id)
     {
         $stmt = $this -> connect()->prepare('UPDATE  post SET  
@@ -442,6 +439,21 @@ class PostInfo extends DbCon
             exit();
         }
     }
+    protected function getsPostIdFromCommentId($id)
+    {
+        $SQL =('SELECT post_id FROM post_comments  where id = ?');
+        $stmt = $this->connect()->prepare($SQL);
+        if(!$stmt->execute(array($id)))    
+        {
+            $stmt= null;
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+        
+        $result = $stmt->fetchAll();
+       
+        return $result;
+    }
     protected function fetchCommentDb($post_id)
     {
         $SQL = ('SELECT * FROM post_comments p INNER JOIN  users u on u.id = p.users_id where post_id = ?');
@@ -468,9 +480,146 @@ class PostInfo extends DbCon
         $result = $stmt->fetchAll();
         return $result;
     }
-       
+    protected function cupvote($upvote,$id)
+    {
+        $stmt = $this -> connect()->prepare('UPDATE post_comments SET  
+        c_upvote = ? WHERE id=?  ;');
+        if(!$stmt->execute(array($upvote,$id)))
+        {
+            $stmt = null;
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+        $stmt = null;
+    }
+    
+    protected function cdownvote($downvote,$id)
+    {
+        $stmt = $this -> connect()->prepare('UPDATE post_comments  SET c_downvote = ?
+        WHERE id=? ');
+        if(!$stmt->execute(array($downvote,$id)))
+        {
+            $stmt = null;
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+        $stmt = null;
+    }
+    protected function cupdateVotecapPos($c_id,$users_id)
+    {
+        $stmt = $this -> connect()->prepare('UPDATE  ckarma SET votecap = 1 
+        WHERE c_id=? AND users_id=?');
+        if(!$stmt->execute(array($c_id,$users_id)))
+        {
+            $stmt = null;
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+        $stmt = null;
+    }
+    protected function cupdateVotecapNeg($c_id,$users_id)
+    {
+        $stmt = $this -> connect()->prepare('UPDATE  ckarma SET votecap =-1 
+        WHERE c_id=? AND users_id=?');
+        if(!$stmt->execute(array($c_id,$users_id)))
+        {
+            $stmt = null;
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+        $stmt = null;
+    }
+    
+    protected function getVotecapC($c_id,$id)
+    {
+        $stmt = $this -> connect()->prepare('SELECT votecap FROM ckarma where c_id= ? AND users_id=? ;');
+        if(!$stmt->execute(array($c_id,$id)))
+        {
+            $stmt = null;
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+        $votecap = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if(!$votecap)
+        {
+            return false;
+        }
         
+        return $votecap[0];
+    }
+
+    protected function createVotecapC($id,$c_id,$votecap)
+    {
+        try {
+            $stmt = $this->connect()->prepare('INSERT INTO ckarma (users_id,c_id,ckarma_id,votecap) VALUES(?,?,?,?);');
+            if(!$stmt->execute(array($id,$c_id, "".$c_id."".$id."",$votecap))) {
+                $stmt = null;
+                header('location: post.php?error=stmtfailed');
+                exit();
+            }
+
+        }catch(PDOException $e){
+            error_log($e);
+            $stmt = null;
+        }
         
+
+    }
+    protected function deleteVotecapC($id,$c_id)
+    {
+        $stmt = $this -> connect()->prepare('DELETE  FROM ckarma WHERE users_id=? AND c_id=? ');
+        if(!$stmt->execute(array($id,$c_id)))
+        {
+            $stmt = null;
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+        return;
+    }
+    
+    protected function upvotesC($c_id)
+    {   $stmt1 = $this -> connect()->prepare('SELECT c_upvote FROM post_comments where id= ? ;');
+        if(!$stmt1->execute(array($c_id)))
+        {
+            $stmt1 = null;
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+        $upvotes = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $upvotes;
+    }
+    protected function downvotesC($c_id)
+    {
+        $stmt2 = $this -> connect()->prepare('SELECT c_downvote FROM post_comments where id= ? ;');
+        if(!$stmt2->execute(array($c_id)))
+        {
+            $stmt2 = null;
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+         $downvotes = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+         return $downvotes;
+    }
+        
+    protected function KarmaC($karma,$c_id)
+    {
+        $stmt3 = $this -> connect()->prepare('UPDATE  post_comments SET c_karma=?
+                WHERE id=? ;');
+    
+        if(!$stmt3->execute(array($karma,$c_id)))
+        {
+            $stmt3= null;
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+    }
+    public function getCommentsCountFromPost($post_id)
+    {
+        return $this->fetchCommentDb($post_id);
+        
+    }
+ 
     
     
     // protected function deletePost($id)

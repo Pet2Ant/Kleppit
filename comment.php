@@ -17,7 +17,8 @@ $postkarma = new PostInfoView();
 $post_id = $_POST["post_id"];
 $text = $_POST["comment"];
 $postkarma->createComment($id,$post_id,$text);
-    exit();
+
+header("location:public/page.php?p=".$post_id);
 
 
 

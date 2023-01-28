@@ -121,7 +121,7 @@ class PostInfoView extends PostInfo
                                 <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path d="M10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"></path>
                                 </svg>
-                                <span class="ml-2 text-xs font-semibold text-gray-500">3k Comments</span>
+                                <span class="ml-2 text-xs font-semibold text-gray-500">'.count($this->getCommentsCountFromPost($row[$count]["post_id"])).' Comments</span>
                             </div>
                             <!-- Share -->
                             <div class="flex transition duration-500 hover:bg-gray-700 p-1 ml-2 rounded-lg">
@@ -225,60 +225,99 @@ class PostInfoView extends PostInfo
     public function createComment($users_id,$post_id,$text)
     {
         $this->createCommmentDb($users_id, $post_id, $text);
-    }   
-    public function fetchComment($post_id)
+    }
+    public function fetchComment($post_id,$id)
+    {        
+        
+        
+    $postComments = $this->fetchCommentDb($post_id);
+    $commentCount = count($postComments);
+            for ($i = 0; $i < $commentCount; $i++) {
+                // if ($postComments[$i]["users_id"] != $id) {
+                //     $i++;
+                //     continue;
+                // }
     
-    {
-        $postComments=$this->fetchCommentDb($post_id);
-        $commentCount = count($postComments);
-        for ($i = 0; $i < $commentCount; $i++) {
-            echo '
+                $votecap = $this->getVotecapC($postComments[$i][0], $id);
+           
+                if ($votecap == false) {
+                    $downvote = $this->downvoteCreator(false);
+                    $upvote = $this->upvoteCreator(false);
+                } else {
+                    if ($votecap["votecap"] == 1) {
+                        $upvote = $this->upvoteCreator(true);
+                        $downvote = $this->downvoteCreator(false);
+                    } elseif ($votecap["votecap"] == -1) {
+                        $downvote = $this->downvoteCreator(true);
+                        $upvote = $this->upvoteCreator(false);
+                    } else {
+                        $downvote = $this->downvoteCreator(false);
+                        $upvote = $this->upvoteCreator(false);
+                    }
+                }
+            
+                echo '
             <div class="flex border border-[#343536] bg-[#272729] rounded p-3">
             <div class="w-11/12 pt-2">
             <!-- Comment Information -->
             <div class="flex items-center text-sm mb-2">
                 <img class="w-8 h-8 rounded-full mr-2" src="https://placeimg.com/192/192/people" alt="Avatar of User">
                 <span class="text-gray-500">Commented by</span>
-                <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">ku/'. $postComments[$i]["username"] .'•</a>
-                <span class="text-gray-500">'. $postComments[$i]["date"] .'</span>
+                <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">ku/' . $postComments[$i]["username"] . '•</a>
+                <span class="text-gray-500">' . $postComments[$i]["date"] . '</span>
             </div>
             <!-- Comment Text -->
             <p class="text-gray-400 text-md">
-            '. $postComments[$i]["text"] .'
+            ' . $postComments[$i]["text"] . '
             </p>
             <!-- Comment Actions -->
             <div class="w-5 mx-4 flex flex-row text-center pt-2 space-x-4">
                 <!-- Upvote -->
-                <button class="text-gray-500 transition duration-500 hover:text-red-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
-                    <input type="text" hidden disabled>
-                    <svg class="w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 "></span>
-                    <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 ">Upvote</span>
-                </button>
+                <form action="../commentkarma.php" method="post">
+                <input type="text" name="c_upvote" value=' . $postComments[$i][0] . '  hidden>' . $upvote . '
+                    
+                        
                 <!-- Vote count -->
-                <span class="text-xs font-semibold my-1 m-2 text-gray-400">0</span>
+                <span class="text-xs font-semibold my-1 text-gray-500"> ' . $postComments[$i]["c_karma"] . '</span>
                 <!-- Downvote -->
-                <button class="text-gray-500 transition duration-500 hover:text-blue-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
-                    <input type="text" hidden disabled>
-                    <svg class="w-5 fill-current " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 "></span>
-                    <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 ">Downvote</span>
-                </button>
+                
+                <input type="text" name="c_downvote" value=' . $postComments[$i][0] . '  hidden >' . $downvote . '
+                </form>
             </div>
         </div>
         </div>
             ';
+            }
         }
-    }
+    
     public function fetchUserComment($id)
     {
-        $userComments = $this->fetchUserCommentDb($id);
+       
+        
+        $userComments = $this->fetchUserCommentDb($id);                    
         $commentCount = count($userComments);
+        
         for ($i = 0; $i < $commentCount; $i++) {
+            if ($userComments[$i]["users_id"] != $id) {
+                $i++;
+                continue;
+            }
+            $votecap = $this->getVotecapC($userComments[$i]["users_id"], $id);
+            if ($votecap == false) {
+                $downvote = $this->downvoteCreator(false);
+                $upvote = $this->upvoteCreator(false);
+            } else {
+                if ($votecap["votecap"] == 1) {
+                    $upvote = $this->upvoteCreator(true);
+                    $downvote = $this->downvoteCreator(false);
+                } elseif ($votecap["votecap"] == -1) {
+                    $downvote = $this->downvoteCreator(true);
+                    $upvote = $this->upvoteCreator(false);
+                } else {
+                    $downvote = $this->downvoteCreator(false);
+                    $upvote = $this->upvoteCreator(false);
+                }
+            }
             echo '  
                         <div class="flex border border-[#343536] bg-[#272729] rounded p-3 ">
                             <!-- Comment Body -->
@@ -295,34 +334,116 @@ class PostInfoView extends PostInfo
                                 '.$userComments[$i]["text"].'
                                 </p>
                                 <!-- Comment Actions -->
+                               
                                 <div class="w-5 mx-4 flex flex-row text-center pt-2 space-x-4">
                                     <!-- Upvote -->
-                                    <button class="text-gray-500 transition duration-500 hover:text-red-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
-                                        <input type="text" hidden disabled>
-                                        <svg class="w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                            <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
-                                        </svg>
-                                        <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 "></span>
-                                        <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 ">Upvote</span>
-                                    </button>
+                                    <form action="../commentkarma.php" method="post">
+                                    <input type="text" name="c_upvote" value=' . $userComments[$i][0] . '  hidden>' . $upvote . '
+                                        
+                                            
                                     <!-- Vote count -->
-                                    <span class="text-xs font-semibold my-1 m-2 text-gray-400">0</span>
+                                    <span class="text-xs font-semibold my-1 text-gray-500"> ' . $userComments[$i]["c_karma"] . '</span>
                                     <!-- Downvote -->
-                                    <button class="text-gray-500 transition duration-500 hover:text-blue-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
-                                        <input type="text" hidden disabled>
-                                        <svg class="w-5 fill-current " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                            <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
-                                        </svg>
-                                        <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 "></span>
-                                        <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 ">Downvote</span>
-                                    </button>
+                                    
+                                    <input type="text" name="c_downvote" value=' . $userComments[$i][0] . '  hidden >' . $downvote . '
                                 </div>
-                            
+                                </form>
                         </div>
                     </div> ';
              
         }
     }
+    public function upvotesCount($c_id, $id)
+    {
+        
+
+        $votecap = $this->getVotecapC($c_id, $id);
+        if ($votecap == false) {
+            $upvotes = $this->upvotesC($c_id);
+            $upvotesNew = $upvotes[0]["c_upvote"] + 1;
+            $this->cupvote($upvotesNew, $c_id);
+            $this->createVotecapC($id, $c_id, 1);
+            return;
+        }
+        if ($votecap["votecap"] == 1) {
+            $this->deleteVotecapC($id, $c_id);
+            $upvotes = $this->upvotesC($c_id);
+            $upvotesNew = $upvotes[0]["c_upvote"] - 1;
+            $this->cupvote($upvotesNew, $c_id);
+            return;
+        }
+
+
+        if ($votecap["votecap"] == -1) {
+            $downvotes = $this->downvotesC($c_id);
+            $downvotesNew = $downvotes[0]["c_downvote"] - 1;
+            $this->downvotesC($downvotesNew);
+
+            $upvotes = $this->upvotesC($c_id);
+            $upvotesNew = $upvotes[0]["c_upvote"] + 1;
+            $this->cupvote($upvotesNew,$c_id);
+
+            $this->cupdateVotecapPos($c_id, $id);
+
+        }
+    }
+    public function downvotesCount($c_id, $id)
+    {
+        
+
+        $votecap = $this->getVotecapC($c_id, $id);
+        
+        
+        if ($votecap == false) {
+            $downvotes = $this->downvotesC($c_id);
+            $downvotesNew = $downvotes[0]["c_downvote"] + 1;
+            $this->cdownvote($downvotesNew, $c_id);
+            $this->createVotecapC($id, $c_id, -1);
+            return;
+        }
+        if ($votecap["votecap"] == -1) {
+            $this->deleteVotecapC($id, $c_id);
+            $downvotes = $this->downvotesC($c_id);
+            $downvotesNew = $downvotes[0]["c_downvote"] - 1;
+            $this->cdownvote($downvotesNew, $c_id);
+            return;
+        }
+        if ($votecap["votecap"] == 1) {
+            $upvotes = $this->upvotesC($c_id);
+            $upvotesNew = $upvotes[0]["c_upvote"] - 1;
+
+            $this->cupvote($upvotesNew, $c_id);
+
+            $downvotes = $this->downvotesC($c_id);
+            $downvotesNew = $downvotes[0]["c_downvote"] + 1;
+            $this->cdownvote($downvotesNew, $c_id);
+
+            $this->cupdateVotecapNeg($c_id, $id);
+        }
+    }
+    public function updatesKarma($c_id)
+    {
+        $upvotes = $this->upvotesC($c_id);
+
+        $downvotes = $this->downvotesC($c_id);
+        if ($downvotes[0]["c_downvote"] >= 0) {
+            $karma = $upvotes[0]["c_upvote"] - $downvotes[0]["c_downvote"];
+        }
+        else
+        {
+            $karma = $upvotes[0]["c_upvote"] + $downvotes[0]["c_downvote"];
+        }
+
+
+
+        $this->KarmaC($karma,$c_id);
+    }
+    public function getPostIdFromCommentId($c_id)
+    {
+        return $this->getsPostIdFromCommentId($c_id);
+        
+    }
+    
 }
           
 
