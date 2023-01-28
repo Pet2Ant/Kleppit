@@ -56,7 +56,6 @@ class IndexPostInfo extends PostInfo
 
         while ($count < $maxcount) {
             $votecap = $this->getVotecap($count + 1, $userId);
-            echo $votecap["votecap"];
             
             if ($votecap == false) 
             {
@@ -95,7 +94,7 @@ class IndexPostInfo extends PostInfo
                 </form>
             </div>
             <!-- Post Information -->
-            <div class="w-11/12 pt-2 jkjkjl" onclick="javascript:window.location.href=\'../public/page.php?p=' . $count . '\'">
+            <div class="w-11/12 pt-2 jkjkjl" onclick="javascript:window.location.href=\'../public/page.php?p=' . $row[$count]["post_id"] . '\'">
             
                 <div class="flex items-center text-xs mb-2">
                     <span class="text-gray-500">Posted by</span>
