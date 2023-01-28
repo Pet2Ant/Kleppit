@@ -1,6 +1,6 @@
 <?php
 
-include 'sharebar.php';
+include 'searchbar.php';
 
 class Navbar {
 
