@@ -95,6 +95,7 @@ class PostInfo extends DbCon
         if ($stmt->rowCount() == 0) 
         {
             $stmt = null;
+            return -1;
         }
        
         $result = $stmt->fetchAll();
@@ -221,10 +222,18 @@ class PostInfo extends DbCon
         
         
     }
-    protected function fetchAllPosts()
+    protected function fetchAllPosts($user)
     {
-        $stmt = $this -> connect()->prepare('SELECT post_id FROM post ');
-        if(!$stmt->execute(array()))
+
+        $SQLstatement = "SELECT post_id FROM post";
+        $SQLarry = array();
+        if ($user && $user != -1) {
+            $SQLstatement .= " WHERE users_id = ?";
+            $SQLarry = array($user);
+        }
+
+        $stmt = $this -> connect()->prepare($SQLstatement);
+        if(!$stmt->execute($SQLarry))
         {
             $stmt = null;
             header('location: post.php?error=stmtfailed');
@@ -233,8 +242,8 @@ class PostInfo extends DbCon
         if($stmt->rowCount() == 0)
         {
             $stmt = null;
-           echo "gamieme";
-            exit();
+            echo "<br><br><h2 class='text-[#ff4057]'>No posts found</h2>";
+            return 0;
         }
         $count = 0;
         while($count<=$stmt->rowCount())
