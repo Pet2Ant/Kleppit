@@ -106,7 +106,7 @@ Post content text: text-gray-500
                                 <?php
                                 if (isset($_SESSION["id"])) {
                                 ?>
-                                    <p class="hidden lg:block"><?php echo $user_username; ?></p>
+                                    <p class="hidden lg:block"><?php echo $_SESSION["username"] ?></p>
                                     <svg class="w-4 h-4 mx-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                     </svg>
@@ -118,9 +118,9 @@ Post content text: text-gray-500
                             <div class="absolute right-0 w-56 mt-2 origin-top-right bg-[#1a1a1b] border border-[#343536] divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                 <div class="px-4 py-3">
                                     <p class="text-sm leading-5 text-[#ff4057]">Signed in as</p>
-                                    <p class="text-md font-semibold leading-5 text-[#ff4957] truncate"><?php echo $user_email; ?></p>
+                                    <p class="text-md font-semibold leading-5 text-[#ff4957] truncate"><?php echo $_SESSION["email"] ?></p>
                                     <p class="text-sm leading-5 text-[#ff4957] truncate py-1">
-                                        1234 Upvotes
+                                        {{ profile.updates }} Upvotes
                                     </p>
                                 </div>
                                 <div class="py-1">
