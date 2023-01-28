@@ -102,7 +102,7 @@ class PostInfoView extends PostInfo
                         <div class="flex items-center text-xs mb-2">
                             <span class="text-gray-500">Posted by</span>
                             <a href="../public/Profile.php' . $row[$count]["username"] . '" class="text-gray-500 mx-1 no-underline hover:underline">ku/' . $row[$count]["username"] . '</a>
-                            <span class="text-gray-500">' .$row[$count]["date"]. '</span>
+                            <span class="text-gray-500">' . $row[$count]["date"] . '</span>
                         </div>
                         <!-- Post Title -->
                         <div>
@@ -129,12 +129,11 @@ class PostInfoView extends PostInfo
             </div>';
 
             $count = $count + 1;
-
         }
     }
     public function upvoteCount($post_id, $id)
     {
-        
+
 
         $votecap = $this->getVotecap($post_id, $id);
         if ($votecap == false) {
@@ -163,12 +162,11 @@ class PostInfoView extends PostInfo
             $this->upvote($upvotesNew, $post_id);
 
             $this->updateVotecapPos($post_id, $id);
-
         }
     }
     public function downvoteCount($post_id, $id)
     {
-        
+
 
         $votecap = $this->getVotecap($post_id, $id);
         if ($votecap == false) {
@@ -205,51 +203,49 @@ class PostInfoView extends PostInfo
         $downvotes = $this->downvotes($post_id);
         if ($downvotes[0]["post_downvote"] >= 0) {
             $karma = $upvotes[0]["post_upvote"] - $downvotes[0]["post_downvote"];
-        }
-        else
-        {
+        } else {
             $karma = $upvotes[0]["post_upvote"] + $downvotes[0]["post_downvote"];
         }
 
 
 
-        $this->Karma($karma,$post_id);
+        $this->Karma($karma, $post_id);
     }
-    public function createComment($users_id,$post_id,$text)
+    public function createComment($users_id, $post_id, $text)
     {
         $this->createCommmentDb($users_id, $post_id, $text);
     }
-    public function fetchComment($post_id,$id)
-    {        
-        
-        
-    $postComments = $this->fetchCommentDb($post_id);
-    $commentCount = count($postComments);
-            for ($i = 0; $i < $commentCount; $i++) {
-                // if ($postComments[$i]["users_id"] != $id) {
-                //     $i++;
-                //     continue;
-                // }
-    
-                $votecap = $this->getVotecapC($postComments[$i][0], $id);
-           
-                if ($votecap == false) {
+    public function fetchComment($post_id, $id)
+    {
+
+
+        $postComments = $this->fetchCommentDb($post_id);
+        $commentCount = count($postComments);
+        for ($i = 0; $i < $commentCount; $i++) {
+            // if ($postComments[$i]["users_id"] != $id) {
+            //     $i++;
+            //     continue;
+            // }
+
+            $votecap = $this->getVotecapC($postComments[$i][0], $id);
+
+            if ($votecap == false) {
+                $downvote = $this->downvoteCreator(false);
+                $upvote = $this->upvoteCreator(false);
+            } else {
+                if ($votecap["votecap"] == 1) {
+                    $upvote = $this->upvoteCreator(true);
                     $downvote = $this->downvoteCreator(false);
+                } elseif ($votecap["votecap"] == -1) {
+                    $downvote = $this->downvoteCreator(true);
                     $upvote = $this->upvoteCreator(false);
                 } else {
-                    if ($votecap["votecap"] == 1) {
-                        $upvote = $this->upvoteCreator(true);
-                        $downvote = $this->downvoteCreator(false);
-                    } elseif ($votecap["votecap"] == -1) {
-                        $downvote = $this->downvoteCreator(true);
-                        $upvote = $this->upvoteCreator(false);
-                    } else {
-                        $downvote = $this->downvoteCreator(false);
-                        $upvote = $this->upvoteCreator(false);
-                    }
+                    $downvote = $this->downvoteCreator(false);
+                    $upvote = $this->upvoteCreator(false);
                 }
-            
-                echo '
+            }
+
+            echo '
             <div class="flex border border-[#343536] bg-[#272729] rounded p-3">
             <div class="w-11/12 pt-2 min-w-full">
             <!-- Comment Information -->
@@ -265,31 +261,35 @@ class PostInfoView extends PostInfo
             </p>
             <!-- Comment Actions -->
             <div class="w-5 mx-4 flex flex-row text-center pt-2 space-x-4">
-                <!-- Upvote -->
                 <form action="../commentkarma.php" method="post">
-                <input type="text" name="c_upvote" value=' . $postComments[$i][0] . '  hidden>' . $upvote . '
-                    
+                <div class="flex flex-row space-x-3">
+                    <!-- Upvote -->
+                    <div class="text-gray-500 transition duration-500 hover:text-red-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row cursor-pointer">
+                        <input type="text" name="c_upvote" value=' . $postComments[$i][0] . '  hidden>' . $upvote . '
+                        <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 ">Upvote</span>
+                    </div>  
+                    <!-- Vote count -->
+                    <span class="text-xs font-semibold my-1 text-gray-500"> ' . $postComments[$i]["c_karma"] . '</span>
+                    <div class="text-gray-500 transition duration-500 hover:text-red-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row cursor-pointer">
+                        <input type="text" name="c_downvote" value=' . $postComments[$i][0] . '  hidden >' . $downvote . '
+                        <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 ">Downvote</span>
+                </div>
                         
-                <!-- Vote count -->
-                <span class="text-xs font-semibold my-1 text-gray-500"> ' . $postComments[$i]["c_karma"] . '</span>
-                <!-- Downvote -->
-                
-                <input type="text" name="c_downvote" value=' . $postComments[$i][0] . '  hidden >' . $downvote . '
+                    </div>
                 </form>
             </div>
         </div>
-        </div>
-            ';
-            }
+        </div>';
         }
-    
+    }
+
     public function fetchUserComment($id)
     {
-       
-        
-        $userComments = $this->fetchUserCommentDb($id);                    
+
+
+        $userComments = $this->fetchUserCommentDb($id);
         $commentCount = count($userComments);
-        
+
         for ($i = 0; $i < $commentCount; $i++) {
             if ($userComments[$i]["users_id"] != $id) {
                 $i++;
@@ -319,12 +319,12 @@ class PostInfoView extends PostInfo
                                 <div class="flex items-center text-sm mb-2">
                                     <img class="w-8 h-8 rounded-full mr-2" src="https://placeimg.com/192/192/people" alt="Avatar of User">
                                     <span class="text-gray-500">Commented by</span>
-                                    <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">ku/'.$userComments[$i]["username"].' •</a>
-                                    <span class="text-gray-500">'.$userComments[$i]["date"].'</span>
+                                    <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">ku/' . $userComments[$i]["username"] . ' •</a>
+                                    <span class="text-gray-500">' . $userComments[$i]["date"] . '</span>
                                 </div>
                                 <!-- Comment Text -->
                                 <p class="text-gray-400 text-md">
-                                '.$userComments[$i]["text"].'
+                                ' . $userComments[$i]["text"] . '
                                 </p>
                                 <!-- Comment Actions -->
                                
@@ -343,12 +343,11 @@ class PostInfoView extends PostInfo
                                 </form>
                         </div>
                     </div> ';
-             
         }
     }
     public function upvotesCount($c_id, $id)
     {
-        
+
 
         $votecap = $this->getVotecapC($c_id, $id);
         if ($votecap == false) {
@@ -374,19 +373,18 @@ class PostInfoView extends PostInfo
 
             $upvotes = $this->upvotesC($c_id);
             $upvotesNew = $upvotes[0]["c_upvote"] + 1;
-            $this->cupvote($upvotesNew,$c_id);
+            $this->cupvote($upvotesNew, $c_id);
 
             $this->cupdateVotecapPos($c_id, $id);
-
         }
     }
     public function downvotesCount($c_id, $id)
     {
-        
+
 
         $votecap = $this->getVotecapC($c_id, $id);
-        
-        
+
+
         if ($votecap == false) {
             $downvotes = $this->downvotesC($c_id);
             $downvotesNew = $downvotes[0]["c_downvote"] + 1;
@@ -421,23 +419,16 @@ class PostInfoView extends PostInfo
         $downvotes = $this->downvotesC($c_id);
         if ($downvotes[0]["c_downvote"] >= 0) {
             $karma = $upvotes[0]["c_upvote"] - $downvotes[0]["c_downvote"];
-        }
-        else
-        {
+        } else {
             $karma = $upvotes[0]["c_upvote"] + $downvotes[0]["c_downvote"];
         }
 
 
 
-        $this->KarmaC($karma,$c_id);
+        $this->KarmaC($karma, $c_id);
     }
     public function getPostIdFromCommentId($c_id)
     {
         return $this->getsPostIdFromCommentId($c_id);
-        
     }
-    
 }
-          
-
-?>
