@@ -15,7 +15,7 @@
 <body class="bg-zinc-900">
   <!-- Loader -->
   <div id="loader" class="loader fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
-    <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-[#ff4057]"></div>
+    <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-500"></div>
   </div>
 
   <!-- Header Bar -->
@@ -146,29 +146,19 @@
                     <div class="error-text"></div>
                   </div>
                   <div class="flex justify-start">
-                  <label class="text-gray-400 font-bold my-4 flex items-center">
-                    <input
-                      class="leading-loose text-pink-600 top-0"
-                      type="checkbox"
-                    />
-                    <span class="ml-2 text-sm py-2 text-gray-400 text-left"
-                      >I Accept
-                      <a
-                        href="./userAgreement.php"
-                        class="font-semibold text-red-500 transition duration-300 ease-in-out hover:text-red-700 border-b-2 border-[#ff4057] hover:border-red-700"
-                      >
-                        Kleppit's User Agreement </a
-                      >and
-                      <a
-                        href="./privacyPolicy.php"
-                        class="font-semibold text-red-500 transition duration-300 ease-in-out hover:text-red-700 border-b-2 border-[#ff4057] hover:border-red-700"
-                      >
-                        our Privacy Policy.</a
-                      >
-                    </span>
-                  </label>
-                </div>
-                  <button type="submit" name="submit" class="w-full text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1">
+                    <label class="text-gray-400 font-bold my-4 flex items-center">
+                      <div>
+                        <input onclick="enableButtonOnCheck()" id="terms" type="checkbox" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer" />
+                      </div>
+                      <span class="ml-2 text-sm py-2 text-gray-400 text-left">I Accept
+                        <a href="./userAgreement.php" class="font-semibold text-red-500 transition duration-300 ease-in-out hover:text-red-700 border-b-2 border-red-500 hover:border-red-700">
+                          Kleppit's User Agreement </a>and
+                        <a href="./privacyPolicy.php" class="font-semibold text-red-500 transition duration-300 ease-in-out hover:text-red-700 border-b-2 border-red-500 hover:border-red-700">
+                          our Privacy Policy.</a>
+                      </span>
+                    </label>
+                  </div>
+                  <button disabled id="submit" type="submit" name="submit" class="w-full text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1">
                     Register
                   </button>
                 </form>

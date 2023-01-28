@@ -21,7 +21,7 @@ Post content text: text-gray-500
   <body id="page" class="scroll-smooth bg-zinc-900 md:scrollbar-default">
     <!-- Loader -->
     <div id="loader" class="loader fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
-      <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-[#ff4057]"></div>
+      <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-500"></div>
    </div>
    <!-- Header Bar -->
   <header id="header" class="fixed inset-0 z-50 flex h-14 bg-[#1a1a1b] select-none">
@@ -151,7 +151,7 @@ Post content text: text-gray-500
                     <div class="form-group form-check text-center mb-6">
                       <input
                         type="checkbox"
-                        class="form-check-input appearance-none h-4 w-4 border border-[#ff4057] rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer"
+                        class="form-check-input appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer"
                         id="exampleCheck87"
                        />
                       <label

@@ -42,7 +42,7 @@ Post content text: text-gray-500
   <body id="page" class="scroll-smooth bg-zinc-900 md:scrollbar-default">
     <!-- Loader -->
     <div id="loader" class="loader fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
-      <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-[#ff4057]"></div>
+      <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-500"></div>
     </div>
     <!-- Header Bar -->
     <header id="header" class="fixed inset-0 z-50 flex h-14 bg-[#1a1a1b] select-none">

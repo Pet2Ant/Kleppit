@@ -111,3 +111,12 @@ function closeSurvey() {
   document.querySelector("body").classList.remove("overflow-hidden");
   document.querySelector("header").classList.remove("hidden");
 }
+
+function enableButtonOnCheck() {
+  if (document.getElementById("terms").checked) {
+    document.getElementById("submit").disabled = false;
+  }
+  else {
+    document.getElementById("submit").disabled = true;
+  }
+}

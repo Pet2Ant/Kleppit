@@ -33,7 +33,7 @@ Post content text: text-gray-500
 <body id="page" class="scroll-smooth bg-zinc-900 md:scrollbar-default ">
   <!-- Loader -->
   <div id="loader" class="loader fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
-    <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-[#ff4057]"></div>
+    <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-500"></div>
   </div>
   <!-- Header Bar -->
   <header id="header" class="fixed inset-0 z-50 flex h-14 bg-[#1a1a1b] select-none">
@@ -357,13 +357,13 @@ Post content text: text-gray-500
             
             <div class="mt-3">
               <span class="text-md text-gray-500">Sort by:</span>
-              <button  onclick="javascript:window.location.href='index.php?sort=karma'" class="px-4 py-2 font-medium text-red-500 border border-[#ff4057] rounded-l-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
+              <button  onclick="javascript:window.location.href='index.php?sort=karma'" class="px-4 py-2 font-medium text-red-500 border border-red-500 rounded-l-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 Top
               </button>
-              <button onclick="javascript:window.location.href='index.php?sort=newest'"  class="px-4 py-2 font-medium text-red-500 border border-[#ff4057] hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
+              <button onclick="javascript:window.location.href='index.php?sort=newest'"  class="px-4 py-2 font-medium text-red-500 border border-red-500 hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 New
               </button>
-              <button onclick="javascript:window.location.href='index.php?sort=oldest'" class="px-4 py-2 font-medium text-red-500 border border-[#ff4057] rounded-r-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
+              <button onclick="javascript:window.location.href='index.php?sort=oldest'" class="px-4 py-2 font-medium text-red-500 border border-red-500 rounded-r-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 Old
               </button>
             </div>
