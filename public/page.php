@@ -19,6 +19,7 @@ include "../post/pageview.php";
 include "../post/postview.php";
 $post = new PageInfo();
 $postInfo =  $post->getPostInfo($postId);
+$comCount = new PostInfo();
 
 if (empty($postInfo)) {
     echo "Post not found or deleted";
@@ -212,7 +213,7 @@ Post content text: text-gray-500
                                         <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                             <path d="M10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"></path>
                                         </svg>
-                                        <span class="ml-2 text-xs font-semibold text-gray-500">Comments</span>
+                                        <span class="ml-2 text-xs font-semibold text-gray-500"><?php echo count($comCount->getCommentsCountFromPost($postId))?> Comments</span>
                                     </div>
                                 </div>
                                 <hr class="border-b-1 border-zinc-700 mx-auto">
@@ -239,22 +240,7 @@ Post content text: text-gray-500
                                 </div>
                             </form>
                         </div>
-                        <!-- Sort by dropdown -->
-                        <div class="flex items-center mx-auto p-4">
-                            <label class="text-xs text-red-500 mr-2">Sort by</label>
-                            <div class="relative w-32 ">
-                                <select class="text-red-500 block appearance-none w-full bg-zinc-800 border-2 border-zinc-700 text-gray-500 py-2 px-3 pr-8 rounded-lg shadow leading-tight focus:outline-none focus:bg-zinc-900 focus:border-zinc-600" id="grid-state">
-                                    <option>New</option>
-                                    <option>Old</option>
-                                    <option>Top</option>
-                                </select>
-                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
-                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                        <path d="M7 7l3-3 3 3v8H7V7z"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
+                      
 
                         <hr class="border-t-1 border-zinc-700">
                     </div>
