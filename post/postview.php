@@ -17,6 +17,7 @@ class PostInfoView extends PostInfo
         </svg>
         </button>';
     }
+    
     private function downvoteCreator($isClicked)
     {
         if ($isClicked == true) {
@@ -32,16 +33,19 @@ class PostInfoView extends PostInfo
         </svg>
         </button>';
     }
+
     public function fetchTitle($id)
     {
         $postInfo = $this->getUserPosts($id);
         echo $postInfo[0]["post_title"];
     }
+    
     public function fetchContent($id)
     {
         $postInfo = $this->getUserPosts($id);
         echo $postInfo[0]["post_content"];
     }
+
     public function createPostFe($id)
     {
        
@@ -50,7 +54,7 @@ class PostInfoView extends PostInfo
         $row =$this->postRows();
         
         while ($count < $maxcount) {
-            $votecap = $this->getVotecap($count + 1, $id);
+            $votecap = $this->getVotecap($count, $id);
            
             if ($votecap == false) 
             {
@@ -126,7 +130,7 @@ class PostInfoView extends PostInfo
             </div>
         </div>
     </div>';
-                $count = $count + 1;
+                $count = $count;
             }
     }
     
