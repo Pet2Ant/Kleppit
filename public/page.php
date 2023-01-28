@@ -254,7 +254,7 @@ Post content text: text-gray-500
 
                             <?php
                             $comments = new PostInfoView();
-                            $comments->fetchComment($postId);
+                            $comments->fetchComment($postId, $_SESSION["id"]);
 
                             ?>
 
