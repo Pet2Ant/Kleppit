@@ -629,6 +629,13 @@ class PostInfo extends DbCon
             header('location: post.php?error=stmtfailed');
             exit();
         }
+        if($stmt->rowCount()==0)
+        {
+            
+            return true;
+        }
+       
+        return false;
        
     }
  

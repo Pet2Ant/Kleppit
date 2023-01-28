@@ -134,7 +134,8 @@ Post content text: text-gray-500
   <div id="main" class=" py-12 mt-12 relative h-screen">
   <?php if($_SESSION)
               {
-                if($survey->hasTakenSurvey($_SESSION["id"] == null))
+    
+                if($survey->hasTakenSurvey($_SESSION["id"] ))
                  {
                 ?>
     <div id="survey-popup" class="hidden overflow-auto backdrop-blur-sm rounded-lg mx-auto inset-0 z-50 absolute ">
