@@ -30,7 +30,7 @@ Post content title: text-gray-400
 Post content text: text-gray-500
 -->
 
-<body id="page" class="scroll-smooth bg-zinc-900 md:scrollbar-default ">
+<body id="page" class="scroll-smooth bg-zinc-900 md:scrollbar-default h-screen">
   <!-- Loader -->
   <div id="loader" class="loader fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
     <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-500"></div>
@@ -49,11 +49,13 @@ Post content text: text-gray-500
 
         <!-- Search bar -->
         <div class="mx-4 flex flex-1 items-center space-x-3 rounded border border-[#343536] bg-[#272729] px-4 py-1.5">
+          <button>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="h-5 w-5 text-[#878A8C]">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </button>
 
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="h-5 w-5 text-[#878A8C]">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
-          <input class="flex-1 bg-transparent text-sm focus:outline-none text-gray-400" type="text"  placeholder="Search Kleppit" />
+          <input class="flex-1 bg-transparent text-sm focus:outline-none text-gray-400" type="text" placeholder="Search Kleppit" />
         </div>
       </div>
       <!-- User button -->
@@ -76,7 +78,6 @@ Post content text: text-gray-500
                 ?>
                 <?php
                 if (isset($_SESSION["id"])) {
-                  $id = $_SESSION["id"];
                 ?>
                   <p class="hidden lg:block"><?php echo $_SESSION["username"]; ?></p>
                   <svg class="w-4 h-4 mx-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -128,8 +129,8 @@ Post content text: text-gray-500
   </header>
 
   <!-- Main content -->
-  <div id="main" class=" py-12 mt-12 relative">
-    <div id="survey-popup" class="hidden overflow-auto backdrop-blur-sm rounded-lg mx-auto inset-0 z-50 absolute">
+  <div id="main" class=" py-12 mt-12 relative h-screen">
+    <div id="survey-popup" class="hidden overflow-auto backdrop-blur-sm rounded-lg mx-auto inset-0 z-50 absolute ">
       <div class="relative p-4 w-full max-w-lg h-full">
         <div class="border border-gray-500  px-10 py-10 bg-zinc-800 shadow-md rounded-3xl sm:p-10">
           <!-- close button -->
@@ -326,35 +327,37 @@ Post content text: text-gray-500
       <div class="flex w-960 mx-auto h-screen">
         <!-- Posts -->
         <div class="w-11/12 ml-5">
-         <!-- Sort by top, new, old bar -->
-         
-        <div class="flex justify-between">
-              <?php
-                
-                
-                $sortquery = $_SERVER["QUERY_STRING"];
-                parse_str($sortquery, $sortquery);
-                $sortTo ="Default";
-                if(!$sortquery){                 
-                }
-                elseif($sortquery["sort"] == "karma"){
-                  $sortTo ="by Karma";                  
-                }
-                elseif($sortquery["sort"] == "newest"){
-                  $sortTo ="Newest";
-                }
-                elseif($sortquery["sort"] == "oldest"){
-                  $sortTo ="Oldest";             
-                }
-                
-              
-              ?>
+          <!-- Create Post button when md screen -->
+        <div class="-mt-5">
+            <button onclick="location.href = './createPost.php';" class="md:inline-block lg:hidden w-full text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1">
+              Create Post
+            </button>
+          </div>
+          <!-- Sort by top, new, old bar -->
+
+          <div class="flex justify-between">
+
+        
+            <?php
+            $sortquery = $_SERVER["QUERY_STRING"];
+            parse_str($sortquery, $sortquery);
+            $sortTo = "Default";
+            if (!$sortquery) {
+            } elseif ($sortquery["sort"] == "karma") {
+              $sortTo = "by Karma";
+            } elseif ($sortquery["sort"] == "newest") {
+              $sortTo = "Newest";
+            } elseif ($sortquery["sort"] == "oldest") {
+              $sortTo = "Oldest";
+            }
+
+
+            ?>
             <div class="mt-3">
-              <span class="text-xl font-semibold text-gray-500 p-2">All posts</span>
-              <span class="ml-2 text-md text-gray-500 tracking-tight">Sorted by:</span>
-              <span class="ml-0.5 text-lg text-red-500 "><?php echo $sortTo ;?></span>   
+              <span class="text-xl lg:inline-block hidden font-semibold text-gray-500 p-2">All posts</span>
+              <span class="text-md md:inline-block hidden text-gray-500 tracking-tight">Sorted by:</span>
+              <span class="ml-0.5 text-lg text-red-500 ">Newest</span>
             </div>
-            
             <div class="mt-3">
               <span class="text-md text-gray-500">Sort by:</span>
               <button  onclick="javascript:window.location.href='index.php?sort=karma'" class="px-4 py-2 font-medium text-red-500 border border-red-500 rounded-l-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
@@ -367,34 +370,29 @@ Post content text: text-gray-500
                 Old
               </button>
             </div>
-          </div>       
-           <?php
+          </div>
+          <?php
 
-           $userId = -1;
-        if($_SESSION) 
-        {
-             $userId = $_SESSION["id"];
-        }
-        if($sortTo == "Default"){
-          $postInfo-> getAllPosts($sortTo,$userId);
-          
-        }
-        elseif($sortTo == "by Karma"){
-          
-          $postInfo->getAllPosts($sortTo,$userId);
-        }
-        elseif($sortTo == "Newest"){
-         
-          $postInfo->getAllPosts($sortTo,$userId);
-        }
-        elseif($sortTo == "Oldest"){
-         
-          $postInfo->getAllPosts($sortTo,$userId);
-        }
-        
-      
-        ?> 
-        
+          $userId = -1;
+          if ($_SESSION) {
+            $userId = $_SESSION["id"];
+          }
+          if ($sortTo == "Default") {
+            $postInfo->getAllPosts($sortTo, $userId);
+          } elseif ($sortTo == "by Karma") {
+
+            $postInfo->getAllPosts($sortTo, $userId);
+          } elseif ($sortTo == "Newest") {
+
+            $postInfo->getAllPosts($sortTo, $userId);
+          } elseif ($sortTo == "Oldest") {
+
+            $postInfo->getAllPosts($sortTo, $userId);
+          }
+
+
+          ?>
+
         </div>
         <!--  Sidebars -->
         <div class="w-1/3 pl-9 hidden lg:block">
