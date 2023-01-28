@@ -17,7 +17,7 @@ class PostInfoView extends PostInfo
         </svg>
         </button>';
     }
-    
+
     private function downvoteCreator($isClicked)
     {
         if ($isClicked == true) {
@@ -39,7 +39,7 @@ class PostInfoView extends PostInfo
         $postInfo = $this->getUserPosts($id);
         echo $postInfo[0]["post_title"];
     }
-    
+
     public function fetchContent($id)
     {
         $postInfo = $this->getUserPosts($id);
@@ -48,22 +48,19 @@ class PostInfoView extends PostInfo
 
     public function createPostFe($id)
     {
-       
-        $count =0;
+
+        $count = 0;
         $maxcount = $this->fetchAllPosts($id) - 1;
-        $row =$this->postRows();
-        
+        $row = $this->postRows();
+
         while ($count < $maxcount) {
 
             $votecap = $this->getVotecap($count, $id);
-           
-            if ($votecap == false) 
-            {
+
+            if ($votecap == false) {
                 $downvote = $this->downvoteCreator(false);
                 $upvote = $this->upvoteCreator(false);
-            }
-            else 
-            {
+            } else {
                 if ($votecap["votecap"] == 1) {
                     $upvote = $this->upvoteCreator(true);
                     $downvote = $this->downvoteCreator(false);
@@ -136,7 +133,89 @@ class PostInfoView extends PostInfo
 
         }
     }
+    public function upvoteCount($post_id, $id)
+    {
+        
 
+        $votecap = $this->getVotecap($post_id, $id);
+        if ($votecap == false) {
+            $upvotes = $this->upvotes($post_id);
+            $upvotesNew = $upvotes[0]["post_upvote"] + 1;
+            $this->upvote($upvotesNew, $post_id);
+            $this->createVotecap($id, $post_id, 1);
+            return;
+        }
+        if ($votecap["votecap"] == 1) {
+            $this->deleteVotecap($id, $post_id);
+            $upvotes = $this->upvotes($post_id);
+            $upvotesNew = $upvotes[0]["post_upvote"] - 1;
+            $this->upvote($upvotesNew, $post_id);
+            return;
+        }
+
+
+        if ($votecap["votecap"] == -1) {
+            $downvotes = $this->downvotes($post_id);
+            $downvotesNew = $downvotes[0]["post_downvote"] - 1;
+            $this->downvote($downvotesNew, $post_id);
+
+            $upvotes = $this->upvotes($post_id);
+            $upvotesNew = $upvotes[0]["post_upvote"] + 1;
+            $this->upvote($upvotesNew, $post_id);
+
+            $this->updateVotecapPos($post_id, $id);
+
+        }
+    }
+    public function downvoteCount($post_id, $id)
+    {
+        
+
+        $votecap = $this->getVotecap($post_id, $id);
+        if ($votecap == false) {
+            $downvotes = $this->downvotes($post_id);
+            $downvotesNew = $downvotes[0]["post_downvote"] + 1;
+            $this->downvote($downvotesNew, $post_id);
+            $this->createVotecap($id, $post_id, -1);
+            return;
+        }
+        if ($votecap["votecap"] == -1) {
+            $this->deleteVotecap($id, $post_id);
+            $downvotes = $this->downvotes($post_id);
+            $downvotesNew = $downvotes[0]["post_downvote"] - 1;
+            $this->downvote($downvotesNew, $post_id);
+            return;
+        }
+        if ($votecap["votecap"] == 1) {
+            $upvotes = $this->upvotes($post_id);
+            $upvotesNew = $upvotes[0]["post_upvote"] - 1;
+
+            $this->upvote($upvotesNew, $post_id);
+
+            $downvotes = $this->downvotes($post_id);
+            $downvotesNew = $downvotes[0]["post_downvote"] + 1;
+            $this->downvote($downvotesNew, $post_id);
+
+            $this->updateVotecapNeg($post_id, $id);
+        }
+    }
+    public function updateKarma($post_id)
+    {
+        $upvotes = $this->upvotes($post_id);
+
+        $downvotes = $this->downvotes($post_id);
+        if ($downvotes[0]["post_downvote"] >= 0) {
+            $karma = $upvotes[0]["post_upvote"] - $downvotes[0]["post_downvote"];
+        }
+        else
+        {
+            $karma = $upvotes[0]["post_upvote"] + $downvotes[0]["post_downvote"];
+        }
+
+
+
+        $this->Karma($karma,$post_id);
+    }
 }
           
 
