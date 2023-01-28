@@ -54,6 +54,14 @@ class PostInfo extends DbCon
         }
         
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        //Check if array key 0 is undefined
+        if(!isset($result[0]))
+        {
+            $stmt = null;
+            return null;
+        }
+
         $result = $result[0];
         //debug
         // print_r($result);
