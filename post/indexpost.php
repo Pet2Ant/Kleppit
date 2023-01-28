@@ -94,7 +94,6 @@ class IndexPostInfo extends PostInfo
                 </form>
             </div>
             <!-- Post Information -->
-            <div class="w-11/12 pt-2" onclick="javascript:window.location.href=\'../public/page.php?p=' . $row[$count]["post_id"] . '\'">
             <div class="w-11/12 pt-2 " onclick="javascript:window.location.href=\'../public/page.php?p=' . $row[$count]["post_id"] . '\'">
             
                 <div class="flex items-center text-xs mb-2">
