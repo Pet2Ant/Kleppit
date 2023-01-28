@@ -124,7 +124,7 @@ Post content text: text-gray-500
                             <div class="absolute right-0 w-56 mt-2 origin-top-right bg-[#1a1a1b] border border-[#343536] divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                 <div class="px-4 py-3">
                                     <p class="text-sm leading-5 text-red-500">Signed in as</p>
-                                    <p class="text-md font-semibold leading-5 text-red-600 truncate"><?php echo $_SESSION["email"]; ?></p>
+                                    <p class="text-md font-semibold leading-5 text-red-600 truncate"><?php echo $_SESSION["username "]; ?></p>
                                     <p class="text-sm leading-5 text-red-600 truncate py-1">
                                         1234 Upvotes
                                     </p>
@@ -220,15 +220,15 @@ Post content text: text-gray-500
                             </div>
 
                         </div>
-
+                         <?php if ($_SESSION) { ?>
                         <div class="relative w-11/12 mx-auto py-10 min-w-[200px] border-b-1 border-zinc-700 border-dashed ">
                             <div class="pb-1">
                                 <label for="textArea" class="text-sm text-gray-500 ">
                                     Comment as <a class="no-underline hover:underline" href="./Profile.php">ku/<?php
 
-                                                                                                                echo $_SESSION["username"];
+                                    echo $_SESSION["username"];
 
-                                                                                                                ?></label></a>
+                                    ?></label></a>
                             </div>
                             <form action="../comment.php" method="post">
                                 <input type="text" name="post_id" value="<?php echo $postId ?>" hidden>
@@ -240,7 +240,11 @@ Post content text: text-gray-500
                                 </div>
                             </form>
                         </div>
-                      
+                        <?php } else {
+                             echo '<button  onclick="javascipt:window.location.href=\'./loginform.php\'"   class="button rounded-lg  font-bold text-black bg-red-500   px-4 py-2 my-2 ml-6 transition duration-500 ease-in-out  hover:bg-red-600" role="menuitem">Log in to comment</button>';
+                         } ?>
+                                
+                        
 
                         <hr class="border-t-1 border-zinc-700">
                     </div>
@@ -254,7 +258,11 @@ Post content text: text-gray-500
 
                             <?php
                             $comments = new PostInfoView();
-                            $comments->fetchComment($postId);
+                            if($_SESSION){
+                            $comments->fetchComment($postId,$_SESSION['id']);
+                            }else{
+                                $comments->fetchComment($postId,-1);
+                            }
 
                             ?>
 
