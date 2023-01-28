@@ -91,7 +91,7 @@ Post content text: text-gray-500
               <div class="absolute right-0 w-56 mt-2 origin-top-right bg-[#1a1a1b] border border-[#343536] divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                 <div class="px-4 py-3">
                   <p class="text-sm leading-5 text-red-500">Signed in as</p>
-                  <p class="text-md font-semibold leading-5 text-red-600 truncate"><?php echo $_SESSION["email"]; ?></p>
+                  <p class="text-md font-semibold leading-5 text-red-600 truncate"><?php echo $_SESSION["username"]; ?></p>
                   <p class="text-sm leading-5 text-red-600 truncate py-1">
                     1234 Upvotes
                   </p>
@@ -394,6 +394,7 @@ Post content text: text-gray-500
           ?>
 
         </div>
+      
         <!--  Sidebars -->
         <div class="w-1/3 pl-9 hidden lg:block">
           <!-- Create a Post Sidebar -->
