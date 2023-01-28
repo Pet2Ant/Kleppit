@@ -619,6 +619,18 @@ class PostInfo extends DbCon
         return $this->fetchCommentDb($post_id);
         
     }
+    public function hasTakenSurvey($user_id)
+    {
+        $SQL = ('SELECT * FROM survey WHERE user_id=?');
+        $stmt = $this->connect()->prepare($SQL);
+        if(!$stmt->execute(array($user_id)))
+        {
+            $stmt= null;
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+       
+    }
  
     
     

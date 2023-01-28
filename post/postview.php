@@ -370,7 +370,7 @@ class PostInfoView extends PostInfo
         if ($votecap["votecap"] == -1) {
             $downvotes = $this->downvotesC($c_id);
             $downvotesNew = $downvotes[0]["c_downvote"] - 1;
-            $this->downvotesC($downvotesNew);
+            $this->cdownvote($downvotesNew,$c_id);
 
             $upvotes = $this->upvotesC($c_id);
             $upvotesNew = $upvotes[0]["c_upvote"] + 1;
