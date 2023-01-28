@@ -13,9 +13,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     include "post/postview.php";
     $postInfo = new PostInfoView();
     $post = new PostContr($post_title, $post_content, $id);
-    $post->newPost();
+    if ($post_title != null && $post_content != null) {
+        $post->newPost();
+        header('location:public/profile.php');
+    }else {
+        header('location:public/profile.php');
+    }
    
-    header('location:public/profile.php');
+    
    
 }
 ?>
