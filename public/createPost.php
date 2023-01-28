@@ -17,7 +17,7 @@ session_start();
 <body class="bg-zinc-900 ">
     <!-- Loader -->
     <div id="loader" class="loader fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
-        <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-[#ff4057]"></div>
+        <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-500"></div>
      </div>
     <!-- Header Bar -->
     <header id="header" class="fixed inset-0 z-50 flex h-14 bg-[#1a1a1b] select-none">
@@ -47,7 +47,7 @@ session_start();
             <div class="flex items-center justify-center">
               <div class="relative inline-block text-left dropdown">
                 <span class="rounded-md shadow-sm">
-                  <button class="flex items-center w-full text-sm font-medium leading-5 text-[#ff4057] transition duration-150 ease-in-out hover:text-red-600" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
+                  <button class="flex items-center w-full text-sm font-medium leading-5 text-red-500 transition duration-150 ease-in-out hover:text-red-600" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
                     <!-- if user is not logged in do not display the user photo -->
                     <?php
                     if (isset($_SESSION["id"])) {
@@ -74,9 +74,9 @@ session_start();
                 <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
                   <div class="absolute right-0 w-56 mt-2 origin-top-right bg-[#1a1a1b] border border-[#343536] divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                     <div class="px-4 py-3">
-                      <p class="text-sm leading-5 text-[#ff4057]">Signed in as</p>
-                      <p class="text-md font-semibold leading-5 text-[#ff4957] truncate"><?php echo $_SESSION["email"]; ?></p>
-                      <p class="text-sm leading-5 text-[#ff4957] truncate py-1">
+                      <p class="text-sm leading-5 text-red-500">Signed in as</p>
+                      <p class="text-md font-semibold leading-5 text-red-600 truncate"><?php echo $_SESSION["email"]; ?></p>
+                      <p class="text-sm leading-5 text-red-600 truncate py-1">
                         1234 Upvotes
                       </p>
                     </div>
@@ -85,10 +85,10 @@ session_start();
                       <a href="./ContactUs.php" tabindex="1" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Contact Us</a>
                     </div>
                     <div class="py-1">
-                      <a href="./userAgreement.html" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">User Agreement</a>
+                      <a href="./userAgreement.php" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">User Agreement</a>
 
 
-                      <a href="./privacyPolicy.html" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Privacy Policy</a>
+                      <a href="./privacyPolicy.php" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Privacy Policy</a>
                     </div>
                     <div class="py-1">
                       <a href="..\login\logout.php" tabindex="4" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Sign out</a>
@@ -121,7 +121,7 @@ session_start();
                         class="py-6 w-1/2 mx-auto"/>
                         <div class="w-full">
                             <div class="mt-6">
-                                <div class="text-center font-semibold text-2xl text-[#ff4057]">
+                                <div class="text-center font-semibold text-2xl text-red-500">
                                     What's on your mind?
                                 </div>
                                 <!-- 2 buttons to choose from, text and image-->
@@ -130,13 +130,13 @@ session_start();
                                         <div class="flex">
                                             <span class="inline-flex rounded-md shadow-sm">
                                                 <button onclick="changeButton()" type="button" id="textButton"
-                                                    class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-[#ff4057] hover:bg-[#ff4957] focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-[#ff4957] transition duration-300 ease-in-out">
+                                                    class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-red-600 transition duration-300 ease-in-out">
                                                     Text
                                                 </button>
                                             </span>
                                             <span class="ml-3 inline-flex rounded-md shadow-sm">
                                                 <button onclick="changeButton()" type="button" id="imageButton"
-                                                    class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-[#ff4057] bg-zinc-800 hover:text-[#ff4957] focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-[#ff4957] transition duration-300 ease-in-out hover:bg-[#ff4957] hover:text-white">
+                                                    class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-red-500 bg-zinc-800 hover:text-red-600 focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-red-600 transition duration-300 ease-in-out hover:bg-red-600 hover:text-white">
                                                     Image
                                                 </button>
                                             </span>
@@ -152,15 +152,15 @@ session_start();
                                 <form action="../post.php" method="post" class="mt-8">
                                     <div class="mx-auto max-w-lg">
                                         <div class="py-1">
-                                            <span class="px-1 text-md text-[#ff4057]">Title</span>
+                                            <span class="px-1 text-md text-red-500">Title</span>
                                             <input placeholder="Title..." type="text" name="title"
-                                                class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-[#ff4957] focus:outline-none" />
+                                                class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-600 focus:outline-none" />
                                         </div>
                                         <div class="py-1">
-                                            <span class="px-1 text-md text-[#ff4057]">Content</span>
+                                            <span class="px-1 text-md text-red-500">Content</span>
                                             <!-- Text Area -->
                                             <textarea id="textArea" name="content" placeholder="Share your thoughts" type="text"
-                                                class="resize-y text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-[#ff4957] focus:outline-none"></textarea>
+                                                class="resize-y text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-600 focus:outline-none"></textarea>
                                             <!-- Image Area -->
                                             <div class="flex items-center justify-center w-full hidden"
                                                 id="imageUpload">
@@ -189,7 +189,7 @@ session_start();
                                     </div>
                                     <div class="py-2">
                                         <button type="submit" name="submit"
-                                            class="mt-3 w-full bg-[#ff4957] text-white active:bg-[#ff4957] text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition duration-150 ease-in-out hover:bg-red-700">
+                                            class="mt-3 w-full bg-red-600 text-white active:bg-red-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition duration-150 ease-in-out hover:bg-red-700">
                                             Create Post
                                         </button>
                                     </div>
@@ -244,10 +244,10 @@ session_start();
 
                                 <div class="flex flex-col items-center px-2">
 
-                                    <div class="underline text-center font-semibold text-xl text-[#ff4057]">
+                                    <div class="underline text-center font-semibold text-xl text-red-500">
                                         Rules
                                     </div>
-                                    <div class="underline underline-offset-4 mt-3 text-[#ff4057]">
+                                    <div class="underline underline-offset-4 mt-3 text-red-500">
                                         <div class="text-center font-semibold py-1 text-sm">
                                             1. No NSFW Content
                                         </div>

@@ -25,15 +25,15 @@ $postInfo = new IndexPostInfo();
 </head>
 <!-- COLORS: 
 Background: bg-zinc-900
-Red text: text-[#ff4057] hover:text-[#ff4957]
+Red text: text-red-500 hover:text-red-600
 Post content title: text-gray-400
 Post content text: text-gray-500
 -->
 
-<body id="page" class="scroll-smooth bg-zinc-900 md:scrollbar-default ">
+<body id="page" class="scroll-smooth bg-zinc-900 md:scrollbar-default h-screen">
   <!-- Loader -->
   <div id="loader" class="loader fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
-    <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-[#ff4057]"></div>
+    <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-500"></div>
   </div>
   <!-- Header Bar -->
   <header id="header" class="fixed inset-0 z-50 flex h-14 bg-[#1a1a1b] select-none">
@@ -49,11 +49,13 @@ Post content text: text-gray-500
 
         <!-- Search bar -->
         <div class="mx-4 flex flex-1 items-center space-x-3 rounded border border-[#343536] bg-[#272729] px-4 py-1.5">
+          <button>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="h-5 w-5 text-[#878A8C]">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </button>
 
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="h-5 w-5 text-[#878A8C]">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
-          <input class="flex-1 bg-transparent text-sm focus:outline-none text-gray-400" type="text"  placeholder="Search Kleppit" />
+          <input class="flex-1 bg-transparent text-sm focus:outline-none text-gray-400" type="text" placeholder="Search Kleppit" />
         </div>
       </div>
       <!-- User button -->
@@ -61,7 +63,7 @@ Post content text: text-gray-500
         <div class="flex items-center justify-center">
           <div class="relative inline-block text-left dropdown">
             <span class="rounded-md shadow-sm">
-              <button class="flex items-center w-full text-sm font-medium leading-5 text-[#ff4057] transition duration-150 ease-in-out hover:text-red-600" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
+              <button class="flex items-center w-full text-sm font-medium leading-5 text-red-500 transition duration-150 ease-in-out hover:text-red-600" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
                 <!-- if user is not logged in do not display the user photo -->
                 <?php
                 if (isset($_SESSION["id"])) {
@@ -76,7 +78,6 @@ Post content text: text-gray-500
                 ?>
                 <?php
                 if (isset($_SESSION["id"])) {
-                  $id = $_SESSION["id"];
                 ?>
                   <p class="hidden lg:block"><?php echo $_SESSION["username"]; ?></p>
                   <svg class="w-4 h-4 mx-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -89,9 +90,9 @@ Post content text: text-gray-500
             <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
               <div class="absolute right-0 w-56 mt-2 origin-top-right bg-[#1a1a1b] border border-[#343536] divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                 <div class="px-4 py-3">
-                  <p class="text-sm leading-5 text-[#ff4057]">Signed in as</p>
-                  <p class="text-md font-semibold leading-5 text-[#ff4957] truncate"><?php echo $_SESSION["email"]; ?></p>
-                  <p class="text-sm leading-5 text-[#ff4957] truncate py-1">
+                  <p class="text-sm leading-5 text-red-500">Signed in as</p>
+                  <p class="text-md font-semibold leading-5 text-red-600 truncate"><?php echo $_SESSION["email"]; ?></p>
+                  <p class="text-sm leading-5 text-red-600 truncate py-1">
                     1234 Upvotes
                   </p>
                 </div>
@@ -100,10 +101,10 @@ Post content text: text-gray-500
                   <a href="./ContactUs.php" tabindex="1" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Contact Us</a>
                 </div>
                 <div class="py-1">
-                  <a href="./userAgreement.html" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">User Agreement</a>
+                  <a href="./userAgreement.php" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">User Agreement</a>
 
 
-                  <a href="./privacyPolicy.html" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Privacy Policy</a>
+                  <a href="./privacyPolicy.php" tabindex="2" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Privacy Policy</a>
                 </div>
                 <div class="py-1">
                   <a href="..\login\logout.php" tabindex="4" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Sign out</a>
@@ -128,12 +129,12 @@ Post content text: text-gray-500
   </header>
 
   <!-- Main content -->
-  <div id="main" class=" py-12 mt-12 relative">
-    <div id="survey-popup" class="hidden overflow-auto backdrop-blur-sm rounded-lg mx-auto inset-0 z-50 absolute">
+  <div id="main" class=" py-12 mt-12 relative h-screen">
+    <div id="survey-popup" class="hidden overflow-auto backdrop-blur-sm rounded-lg mx-auto inset-0 z-50 absolute ">
       <div class="relative p-4 w-full max-w-lg h-full">
         <div class="border border-gray-500  px-10 py-10 bg-zinc-800 shadow-md rounded-3xl sm:p-10">
           <!-- close button -->
-          <button onclick="closeSurvey()" class=" hover:text-[#ff4057]">
+          <button onclick="closeSurvey()" class=" hover:text-red-500">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
               <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
             </svg>
@@ -142,8 +143,8 @@ Post content text: text-gray-500
           <div class="mx-auto">
             <!-- Headline -->
             <div class="flex flex-col font-sans space-y-6 sm:leading-7 text-center antialiased">
-              <h1 id="title" class="text-3xl font-semibold text-[#ff4057]">Kleppit User Survey</h1>
-              <h4 class="text-md font-medium text-[#ff4057]">Please invest a few moments of your time in answering this survey. Thank you!</h4>
+              <h1 id="title" class="text-3xl font-semibold text-red-500">Kleppit User Survey</h1>
+              <h4 class="text-md font-medium text-red-500">Please invest a few moments of your time in answering this survey. Thank you!</h4>
             </div>
 
             <!-- Form -->
@@ -151,7 +152,7 @@ Post content text: text-gray-500
               <div class="grid grid-cols-6 gap-6 pt-8">
                 <div class="col-span-6 sm:col-span-3">
 
-                  <label for="first_name" class="block text-sm font-medium text-[#ff4057]">
+                  <label for="first_name" class="block text-sm font-medium text-red-500">
                     First name
                   </label>
                   <div class="mt-1 flex rounded-md">
@@ -162,18 +163,18 @@ Post content text: text-gray-500
 
                 <div class="col-span-6 sm:col-span-3">
 
-                  <label id="name-label" for="name" class="block text-sm font-medium text-[#ff4057]">
+                  <label id="name-label" for="name" class="block text-sm font-medium text-red-500">
                     Last name
                   </label>
                   <div class="mt-1 flex rounded-md">
-                    <input placeholder="Your last name" type="text" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-sm text-gray-500 bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:border-zinc-600 text-[#ff4957] focus:outline-none"></input>
+                    <input placeholder="Your last name" type="text" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-sm text-gray-500 bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:border-zinc-600 text-red-600 focus:outline-none"></input>
                   </div>
 
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
 
-                  <label for="name" class="block text-sm font-medium text-[#ff4057]">
+                  <label for="name" class="block text-sm font-medium text-red-500">
                     Current role
                   </label>
                   <div class="mt-1 rounded-md">
@@ -195,7 +196,7 @@ Post content text: text-gray-500
 
                 <div class="col-span-6 sm:col-span-3">
 
-                  <label id="number-label" for="name" class="block text-sm font-medium text-[#ff4057]">
+                  <label id="number-label" for="name" class="block text-sm font-medium text-red-500">
                     Age
                   </label>
                   <div class="mt-1 flex rounded-md">
@@ -205,7 +206,7 @@ Post content text: text-gray-500
                 </div>
 
                 <div class="col-span-6 sm:col-span-6">
-                  <label id="email-label" for="email" class="block text-sm font-medium text-[#ff4057]">
+                  <label id="email-label" for="email" class="block text-sm font-medium text-red-500">
                     Email address
                   </label>
                   <div class="mt-1 flex rounded-md">
@@ -213,7 +214,7 @@ Post content text: text-gray-500
                   </div>
                 </div>
 
-                <div class="col-span-6 sm:col-span-6 mt-2 text-[#ff4057]">
+                <div class="col-span-6 sm:col-span-6 mt-2 text-red-500">
                   <fieldset>
                     <legend class="text-base font-medium ">Would you recommend Kleppit to a friend?
                     </legend>
@@ -249,7 +250,7 @@ Post content text: text-gray-500
                   </fieldset>
                 </div>
 
-                <div class="col-span-6 sm:col-span-6 mt-2 text-[#ff4057]">
+                <div class="col-span-6 sm:col-span-6 mt-2 text-red-500">
                   <fieldset>
                     <legend class="text-base font-medium ">What would you like to see improved?</legend>
                     <p class="text-sm text-gray-500">Check all that apply</p>
@@ -300,7 +301,7 @@ Post content text: text-gray-500
                 </div>
 
                 <div class="col-span-6 sm:col-span-6 mt-2 ">
-                  <label id="textarea" for="textfield" class="block text-sm font-medium text-[#ff4057]">
+                  <label id="textarea" for="textfield" class="block text-sm font-medium text-red-500">
                     Any other feedback?
                   </label>
                   <div class="mt-1 flex rounded-md">
@@ -323,78 +324,75 @@ Post content text: text-gray-500
       </div>
     </div>
     <div id="container" class=" container mx-auto">
-      <div class="flex w-960 mx-auto">
+      <div class="flex w-960 mx-auto h-screen">
         <!-- Posts -->
         <div class="w-11/12 ml-5">
-         <!-- Sort by top, new, old bar -->
-         
-        <div class="flex justify-between">
-              <?php
-                
-                
-                $sortquery = $_SERVER["QUERY_STRING"];
-                parse_str($sortquery, $sortquery);
-                $sortTo ="Default";
-                if(!$sortquery){                 
-                }
-                elseif($sortquery["sort"] == "karma"){
-                  $sortTo ="by Karma";                  
-                }
-                elseif($sortquery["sort"] == "newest"){
-                  $sortTo ="Newest";
-                }
-                elseif($sortquery["sort"] == "oldest"){
-                  $sortTo ="Oldest";             
-                }
-                
-              
-              ?>
+          <!-- Create Post button when md screen -->
+        <div class="-mt-5">
+            <button onclick="location.href = './createPost.php';" class="md:inline-block lg:hidden w-full text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1">
+              Create Post
+            </button>
+          </div>
+          <!-- Sort by top, new, old bar -->
+
+          <div class="flex justify-between">
+
+        
+            <?php
+            $sortquery = $_SERVER["QUERY_STRING"];
+            parse_str($sortquery, $sortquery);
+            $sortTo = "Default";
+            if (!$sortquery) {
+            } elseif ($sortquery["sort"] == "karma") {
+              $sortTo = "by Karma";
+            } elseif ($sortquery["sort"] == "newest") {
+              $sortTo = "Newest";
+            } elseif ($sortquery["sort"] == "oldest") {
+              $sortTo = "Oldest";
+            }
+
+
+            ?>
             <div class="mt-3">
-              <span class="text-xl font-semibold text-gray-500 p-2">All posts</span>
-              <span class="ml-2 text-md text-gray-500 tracking-tight">Sorted by:</span>
-              <span class="ml-0.5 text-lg text-red-500 "><?php echo $sortTo ;?></span>   
+              <span class="text-xl lg:inline-block hidden font-semibold text-gray-500 p-2">All posts</span>
+              <span class="text-md md:inline-block hidden text-gray-500 tracking-tight">Sorted by:</span>
+              <span class="ml-0.5 text-lg text-red-500 ">Newest</span>
             </div>
-            
             <div class="mt-3">
               <span class="text-md text-gray-500">Sort by:</span>
-              <button  onclick="javascript:window.location.href='index.php?sort=karma'" class="px-4 py-2 font-medium text-[#ff4057] border border-[#ff4057] rounded-l-md hover:bg-[#ff4057] hover:text-black transition duration-500 ease-in-out">
+              <button  onclick="javascript:window.location.href='index.php?sort=karma'" class="px-4 py-2 font-medium text-red-500 border border-red-500 rounded-l-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 Top
               </button>
-              <button onclick="javascript:window.location.href='index.php?sort=newest'"  class="px-4 py-2 font-medium text-[#ff4057] border border-[#ff4057] hover:bg-[#ff4057] hover:text-black transition duration-500 ease-in-out">
+              <button onclick="javascript:window.location.href='index.php?sort=newest'"  class="px-4 py-2 font-medium text-red-500 border border-red-500 hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 New
               </button>
-              <button onclick="javascript:window.location.href='index.php?sort=oldest'" class="px-4 py-2 font-medium text-[#ff4057] border border-[#ff4057] rounded-r-md hover:bg-[#ff4057] hover:text-black transition duration-500 ease-in-out">
+              <button onclick="javascript:window.location.href='index.php?sort=oldest'" class="px-4 py-2 font-medium text-red-500 border border-red-500 rounded-r-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 Old
               </button>
             </div>
-          </div>       
-           <?php
+          </div>
+          <?php
 
-           $userId = -1;
-        if($_SESSION) 
-        {
-             $userId = $_SESSION["id"];
-        }
-        if($sortTo == "Default"){
-          $postInfo-> getAllPosts($sortTo,$userId);
-          
-        }
-        elseif($sortTo == "by Karma"){
-          
-          $postInfo->getAllPosts($sortTo,$userId);
-        }
-        elseif($sortTo == "Newest"){
-         
-          $postInfo->getAllPosts($sortTo,$userId);
-        }
-        elseif($sortTo == "Oldest"){
-         
-          $postInfo->getAllPosts($sortTo,$userId);
-        }
-        
-      
-        ?> 
-        
+          $userId = -1;
+          if ($_SESSION) {
+            $userId = $_SESSION["id"];
+          }
+          if ($sortTo == "Default") {
+            $postInfo->getAllPosts($sortTo, $userId);
+          } elseif ($sortTo == "by Karma") {
+
+            $postInfo->getAllPosts($sortTo, $userId);
+          } elseif ($sortTo == "Newest") {
+
+            $postInfo->getAllPosts($sortTo, $userId);
+          } elseif ($sortTo == "Oldest") {
+
+            $postInfo->getAllPosts($sortTo, $userId);
+          }
+
+
+          ?>
+
         </div>
         <!--  Sidebars -->
         <div class="w-1/3 pl-9 hidden lg:block">
@@ -464,11 +462,11 @@ Post content text: text-gray-500
               </div>
               <div class="text-center mt-6">
                 <p class="text-xs leading-tight text-gray-400 font-medium">
-                  <a href="./userAgreement.html" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">User Agreement</a>
+                  <a href="./userAgreement.php" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">User Agreement</a>
                   |
-                  <a href="./PrivacyPolicy.html" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Privacy Policy</a>
+                  <a href="./privacyPolicy.php" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Privacy Policy</a>
                 </p>
-                <p class="text-xs leading-tight font-medium text-[#ff4057] my-1">
+                <p class="text-xs leading-tight font-medium text-red-500 my-1">
                   © 2023 Kleppit, Inc. All rights reserved
                 </p>
               </div>
