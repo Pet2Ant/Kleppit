@@ -50,11 +50,11 @@ class PostInfoView extends PostInfo
     {
        
         $count =0;
-        $maxcount = $this->fetchAllPosts() - 1;
+        $maxcount = $this->fetchAllPosts($id) - 1;
         $row =$this->postRows();
         
         while ($count < $maxcount) {
-            
+
             $votecap = $this->getVotecap($count, $id);
            
             if ($votecap == false) 
@@ -82,19 +82,19 @@ class PostInfoView extends PostInfo
                         <!-- Upvote -->
                         <form action="../karma.php" method="post">
                         
-                        <input type="text" name="post_upvote" value=' . $count . '  hidden>' . $upvote . '
+                        <input type="text" name="post_upvote" value=' . $row[$count]["post_id"] . '  hidden>' . $upvote . '
                     
                         
                         <!-- Vote count -->
                         <span class="text-xs font-semibold my-1 text-gray-500"> ' . $row[$count]["post_karma"] . '</span>
                         <!-- Downvote -->
                         
-                        <input type="text" name="post_downvote" value=' . $count . '  hidden >' . $downvote . '
+                        <input type="text" name="post_downvote" value=' . $row[$count]["post_id"] . '  hidden >' . $downvote . '
                         
                         </form>
                     </div>
                     <!-- Post Information -->
-                    <div class="w-11/12 pt-2 jkjkjl" onclick="javascript:window.location.href=\'../public/page.php?p=' . $count . '\'">
+                    <div class="w-11/12 pt-2 jkjkjl" onclick="javascript:window.location.href=\'../public/page.php?p=' . $row[$count]["post_id"] . '\'">
                     
                         <div class="flex items-center text-xs mb-2">
                             <span class="text-gray-500">Posted by</span>
