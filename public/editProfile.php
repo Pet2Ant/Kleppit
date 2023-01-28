@@ -44,7 +44,7 @@ $profileInfo = new ProfileInfoView();
                 <!-- Search bar -->
                 <?php
                     $searchbar = new Searchbar();
-                    $searchbar->generateSearchbar();
+                    $searchbar->genereElement();
                 ?>
             </div>
             <!-- User button -->

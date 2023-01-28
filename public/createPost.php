@@ -38,7 +38,7 @@ session_start();
             <!-- Search bar -->
             <?php
                 $searchbar = new Searchbar();
-                $searchbar->generateSearchbar();
+                $searchbar->genereElement();
             ?>
           </div>
           <!-- User button -->

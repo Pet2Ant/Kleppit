@@ -2,7 +2,7 @@
 
 class Searchbar {
     
-    public function generateSearchbar() {
+    public function genereElement() {
         echo '
             <div class="mx-4 flex flex-1 items-center space-x-3 rounded border border-[#343536] bg-[#272729] px-4 py-1.5" id="searchbar">
                 <div class="cursor-pointer" onclick="runSearch()">

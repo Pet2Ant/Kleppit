@@ -39,7 +39,7 @@ include '../components/sharebar.php';
         <!-- Search bar -->
         <?php
           $searchbar = new Searchbar();
-          $searchbar->generateSearchbar();
+          $searchbar->genereElement();
         ?>
       </div>
       <!-- User button -->

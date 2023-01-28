@@ -77,7 +77,7 @@ Post content text: text-gray-500
               <!-- Search bar -->
               <?php
                 $searchbar = new Searchbar();
-                $searchbar->generateSearchbar();
+                $searchbar->genereElement();
               ?>
             </div>
             <!-- User button -->
