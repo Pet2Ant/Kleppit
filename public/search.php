@@ -54,7 +54,7 @@ $resultsPerPage = 10;
 $offset = ($pageQuery - 1) * $resultsPerPage;
 
 //Define the sorting column
-$sortingColumn = "post_id";
+$sortingColumn = "date";
 
 //Define the sorting order
 $sortingOrder = "DESC";
@@ -90,4 +90,8 @@ $lastPage = $numPages;
 $firstPage = 1;
 
 //Return the results
-print_r($searchQuery);
+for ($i = 0; $i < $numResults; $i++) {
+    echo "#" .$searchQuery[$i]['post_id']. " | Title: " . $searchQuery[$i]['post_title'] . " | Content: " . $searchQuery[$i]['post_content'];
+    echo "<br>";
+}
+

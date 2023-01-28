@@ -17,7 +17,7 @@ class SearchSQL extends DbCon {
         }
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $results[0];
+        return $results;
         
     }
 
