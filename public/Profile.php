@@ -154,8 +154,8 @@ Post content text: text-gray-500
                     <!-- Posts -->
                     <div class="w-11/12 ml-5">
                         <?php
-                        $postInfo->createPostFe($_SESSION['id']);
-
+                            //Display user posts
+                            $postInfo->createPostFe($_SESSION['id']);
                         ?>
                     </div>
                     <!--  Sidebars -->
