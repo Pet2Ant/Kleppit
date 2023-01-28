@@ -12,6 +12,11 @@ class ProfileInfoView extends ProfileInfo
         $profileInfo = $this->getProfileInfo($id);
         echo $profileInfo[0]["profiles_title"];
     }
+    public function fetchDate($id)
+    {
+        $profileInfo = $this->getProfileInfo($id);
+        echo substr($profileInfo[0]["joined_at"], 0, 10);
+    }
     public function fetchIntroduction($id)
     {
         $profileInfo = $this->getProfileInfo($id);

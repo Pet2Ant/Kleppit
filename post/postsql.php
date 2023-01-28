@@ -45,6 +45,28 @@ class PostInfo extends DbCon
 
         
     }
+
+    public function getUserByName($username)
+    {
+        $stmt = $this -> connect()->prepare('SELECT * FROM users where username = ?;');
+        if(!$stmt->execute(array($username)))
+        {
+            $stmt = null;
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+        if($stmt->rowCount() == 0)
+        {
+            $stmt = null;
+            header('location: profile.php?error=profilenotfound');
+            exit();
+        }
+
+        $profileData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $profileData;
+        
+    }
+
     protected function getPost($postid)
     {
         $stmt = $this->connect()->prepare('SELECT * FROM post p INNER JOIN users u ON u.id = p.users_id WHERE post_id=?');
@@ -68,6 +90,7 @@ class PostInfo extends DbCon
         // exit();
         return $result;
     }
+
     //search function
     protected function searchQuery($search)
     {
@@ -115,6 +138,7 @@ class PostInfo extends DbCon
         $result = $stmt->fetchAll();
         return $result;
     }
+
     protected function postRowsKarmaDesc()
     {
         $stmt = $this->connect()->prepare('SELECT * FROM users u inner join post p on p.users_id = u.id ORDER BY post_karma DESC' );
@@ -127,6 +151,7 @@ class PostInfo extends DbCon
         $result = $stmt->fetchAll();
         return $result;
     }
+
     protected function postRowsSortNewest()
     {
         $stmt = $this->connect()->prepare('SELECT * FROM users u inner join post p on p.users_id = u.id ORDER BY post_id ASC' );
@@ -139,6 +164,7 @@ class PostInfo extends DbCon
         $result = $stmt->fetchAll();
         return $result;
     }
+
     protected function postRowsSortOldest()
     {
         $stmt = $this->connect()->prepare('SELECT * FROM users u inner join post p on p.users_id = u.id ORDER BY post_id DESC' );
@@ -151,6 +177,7 @@ class PostInfo extends DbCon
         $result = $stmt->fetchAll();
         return $result;
     }
+
     protected function getSpecPostId($id)
     {
         $stmt = $this->connect()->prepare('SELECT post_id FROM post where users_id= ?;');
@@ -194,6 +221,7 @@ class PostInfo extends DbCon
         return $count;
 
     }
+
     protected function updatePost($post_title,$post_content,$id)
     {
         $stmt = $this -> connect()->prepare('UPDATE  post SET  
@@ -208,6 +236,7 @@ class PostInfo extends DbCon
 
         $stmt = null;
     }
+
     protected function createPost($post_title,$post_content,$id)
     {
         $stmt = $this -> connect()->prepare('INSERT INTO  post (post_title, 
@@ -224,6 +253,7 @@ class PostInfo extends DbCon
         
         
     }
+
     protected function fetchAllPosts($user)
     {
 

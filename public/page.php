@@ -190,11 +190,9 @@ Post content text: text-gray-500
                             <!-- Post Information -->
                             <div class="w-11/12 pt-2 ">
                                 <div class="flex items-center text-xs mb-2">
-                                    <span class="text-gray-500">Posted by <?php echo $postInfo["username"];?></span>
-                                    <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">u/<?php
-
-                                    ?></a>
-                                    <span class="text-gray-500">2 hours ago</span>
+                                    <span class="text-gray-500">Posted by </span>
+                                    <a href="./Profile.php?u=<?php echo $postInfo["username"] ?>" class="text-gray-500 mx-1 no-underline hover:underline">ku/<?php echo $postInfo["username"] ?></a>
+                                    <span class="text-gray-500"><?php echo $postInfo["date"] ?></span>
                                 </div>
                                 <!-- Post Title -->
                                 <div>
@@ -265,8 +263,8 @@ Post content text: text-gray-500
                                 <div class="flex items-center text-sm mb-2">
                                     <img class="w-8 h-8 rounded-full mr-2" src="https://placeimg.com/192/192/people" alt="Avatar of User">
                                     <span class="text-gray-500">Commented by</span>
-                                    <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">u/<?php ?> •</a>
-                                    <span class="text-gray-500">2 hours ago</span>
+                                    <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">ku/<?php $postInfo["username"] ?> •</a>
+                                    <span class="text-gray-500"><?php echo $postInfo["date"] ?></span>
                                 </div>
                                 <!-- Comment Text -->
                                 <p class="text-gray-400 text-md">
