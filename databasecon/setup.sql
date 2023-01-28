@@ -81,10 +81,11 @@ CREATE TABLE IF NOT EXISTS `profiles` (
   `profiles_title` text NOT NULL,
   `profiles_introduction` text NOT NULL,
   `users_id` int(11) DEFAULT NULL,
+  `joined_at` datetime DEFAULT current_timestamp(),
   PRIMARY KEY (`profiles_id`),
   KEY `users_id` (`users_id`),
   CONSTRAINT `profiles_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
