@@ -50,12 +50,18 @@ class PostInfoView extends PostInfo
     {
 
         $count = 0;
-        $maxcount = $this->fetchAllPosts($id) - 1;
+        $maxcount = $this->fetchAllPosts(-1) - 1; //FIXME convert to db this entire transaction
         $row = $this->postRows();
 
         while ($count < $maxcount) {
 
-            $votecap = $this->getVotecap($count, $id);
+            //Do not show non user posts
+            if ($row[$count]["users_id"] != $id) {
+                $count++;
+                continue;
+            }
+
+            $votecap = $this->getVotecap($row[$count]["post_id"], $id);
 
             if ($votecap == false) {
                 $downvote = $this->downvoteCreator(false);
