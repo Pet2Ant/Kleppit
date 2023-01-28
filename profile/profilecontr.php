@@ -13,7 +13,7 @@ class ProfileInfoController extends ProfileInfo
     public function defaultProfileInfo()
     {
         $profileAbout =" Tell users something about yourself";
-        $profileTitle = "Hello, I am".$this->username;
+        $profileTitle = "Hello, I am ".$this->username;
         $profileText = "0";
         $this->setProfileInfo($profileAbout, $profileTitle, $profileText, $this->id);
         
