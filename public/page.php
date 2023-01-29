@@ -5,7 +5,10 @@ include "../profile/profileinfo.php";
 include "../profile/profilecontr.php";
 include "../profile/profileview.php";
 include '../components/navbar.php';
-
+include "../post/postsql.php";
+include "../post/postcont.php";
+include "../post/pageview.php";
+include "../post/postview.php";
 $fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $postId = $_SERVER["QUERY_STRING"];
 parse_str($postId, $postId);
@@ -17,11 +20,11 @@ $postId = $postId["p"];
 
 
 
-include "../databasecon/dbcon.php";
-include "../post/postsql.php";
-include "../post/postcont.php";
-include "../post/pageview.php";
-include "../post/postview.php";
+
+
+
+
+
 $post = new PageInfo();
 $postInfo =  $post->getPostInfo($postId);
 $comCount = new PostInfo();
@@ -91,8 +94,9 @@ Post content text: text-gray-500
                         <div class="flex rounded">
                             <div class="w-5 mx-4 flex flex-col text-center pt-2">
                                 <!-- Upvote -->
+                                <form action=../karma.php method="post">
                                 <button class="text-xs">
-                                    <input type="text" hidden disabled>
+                                    <input type="text" name="post_upvote" hidden >
                                     <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                         <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
                                     </svg>
@@ -101,11 +105,12 @@ Post content text: text-gray-500
                                 <span class="text-xs font-semibold my-1 text-gray-500"><?php echo $postInfo["post_karma"]; ?></span>
                                 <!-- Downvote -->
                                 <button class="text-xs">
-                                    <input type="text" hidden disabled>
+                                    <input type="text" name="post_downvote" hidden >
                                     <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                         <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
                                     </svg>
                                 </button>
+                                </form>
                             </div>
                             <!-- Post Information -->
                             <div class="w-11/12 pt-2 ">

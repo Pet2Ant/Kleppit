@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   PRIMARY KEY (`post_id`),
   KEY `users_id` (`users_id`),
   CONSTRAINT `post_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
-) 
+)  ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `profiles` (
   `profiles_id` int(11) NOT NULL AUTO_INCREMENT,
   `profiles_about` text NOT NULL,
   `profiles_title` text NOT NULL,
-  `profiles_pic` text NOT NULL,
+  `profile_pic` text NOT NULL,
   `users_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`profiles_id`),
   KEY `users_id` (`users_id`),
