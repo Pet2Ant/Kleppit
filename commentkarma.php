@@ -45,7 +45,7 @@ $comment = new IndexPostInfo();
         exit();
     }
     
-    header("location:public/page.php?p=$post_id");
+    header("location:public/ProfileComments.php?p=$post_id");
     
 }
 
