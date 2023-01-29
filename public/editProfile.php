@@ -69,13 +69,17 @@ $profileInfo = new ProfileInfoView();
 
                                                             //Check if the file is too big (2MB)
                                                             if (this.files[0].size > 2090000) {
-                                                                alert("File is too big!");
+                                                                alert("File is too big! (Max 2MB)");
+                                                                //Refresh the page
+                                                                window.location.reload();
                                                                 return;
                                                             };
 
                                                             //Check if the file is an image
                                                             if (this.files[0].type != "image/jpeg" && this.files[0].type != "image/png" && this.files[0].type != "image/gif" && this.files[0].type != "image/jpg") {
                                                                 alert("File is not an image!");
+                                                                //Refresh the page
+                                                                window.location.reload();
                                                                 return;
                                                             };
 
