@@ -36,6 +36,12 @@ else
     $user_username = $_SESSION["username"];
     $user_email = $_SESSION["email"];
 }
+// echo $user_id;
+
+
+echo ($postInfo->fetchPostKarma($user_id)[0]["SUM(post_karma)"]);
+
+echo $postInfo->fetchCommentKarma($user_id)[0]["SUM(c_karma)"];
 
 
 ?>
@@ -63,12 +69,12 @@ Post content text: text-gray-500
     <div id="loader" class="loader fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
         <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-500"></div>
     </div>
+
     <!-- Nav Bar -->
     <?php
         $navbar = new Navbar();
         $navbar->genereElement();
     ?>
-
     <!-- Main content -->
     <div id="main" class=" py-12 mt-12 relative">
         <div id="container" class=" container mx-auto">

@@ -69,6 +69,7 @@ Post content text: text-gray-500
     <div id="loader" class="loader fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
         <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-500"></div>
     </div>
+
     <!-- Nav Bar -->
     <?php
         $navbar = new Navbar();
@@ -117,7 +118,11 @@ Post content text: text-gray-500
                                 </div>
                                 <!-- Post Description -->
                                 <p class="text-gray-400 break-all">
-                                    <?php echo $postInfo["post_content"]; ?>
+                                    <?php if ($postInfo["postimage"] == 0) {
+                                        echo $postInfo["post_content"];
+                                    } else {
+                                        echo '<img src="../uploads/' . $postInfo["post_content"] . '" alt="no pic found" width="400" height="240">';
+                                    }?>
 
                                 </p>
 

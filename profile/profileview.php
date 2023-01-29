@@ -23,6 +23,7 @@ class ProfileInfoView extends ProfileInfo
         echo $profileInfo[0]["profiles_introduction"];
     }
     
+    
 
 }
 ?>

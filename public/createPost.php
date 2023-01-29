@@ -64,7 +64,7 @@ session_start();
 
 
 
-                                <form action="../post.php" method="post" class="mt-8">
+                                <form enctype="multipart/form-data"  action="../post.php" method="post" class="mt-8">
                                     <div class="mx-auto max-w-lg">
                                         <div class="py-1">
                                             <span class="px-1 text-md text-red-500">Title</span>
@@ -96,7 +96,7 @@ session_start();
                                                         <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG,
                                                             JPG or GIF (MAX. 800x400px)</p>
                                                     </div>
-                                                    <input id="dropzone-file" type="file" class="hidden" />
+                                                    <input id="dropzone-file" type="file"  name ="userfile" class="hidden" />
                                                 </label>
                                             </div>
 
