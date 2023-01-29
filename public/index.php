@@ -273,7 +273,7 @@ Post content text: text-gray-500
             <?php
             $sortquery = $_SERVER["QUERY_STRING"];
             parse_str($sortquery, $sortquery);
-            $sortTo = "Default";
+            $sortTo = "Newest";
             if (!$sortquery) {
             } elseif ($sortquery["sort"] == "Hottest") {
               $sortTo = "Hottest";
@@ -353,9 +353,8 @@ Post content text: text-gray-500
           if ($_SESSION) {
             $userId = $_SESSION["id"];
           }
-          if ($sortTo == "Default") {
-            $postInfo->getAllPosts($sortTo, $userId);
-          } elseif ($sortTo == "Hottest") {
+          
+          if ($sortTo == "Hottest") {
 
             $postInfo->getAllPosts($sortTo, $userId);
           } elseif ($sortTo == "Newest") {
