@@ -28,7 +28,6 @@ We are using these libraries and frameworks:
 - [Tailwind CSS](https://tailwindcss.com/)
 - [PHP](https://www.php.net/)
 - [MySQL](https://www.mysql.com/)
-- [Font Awesome](https://fontawesome.com/)
 - [Heroicons](https://heroicons.com/)
 
 Created by: 
