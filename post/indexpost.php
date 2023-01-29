@@ -40,7 +40,7 @@ class IndexPostInfo extends PostInfo
         $maxcount = $this->fetchAllPosts(-1) - 1;
         if ($sortTo == "Default") {
             $row = $this->postRows();
-        } elseif ($sortTo == "by Karma") {
+        } elseif ($sortTo == "Hottest") {
 
             $row = $this->postRowsKarmaDesc();
         } elseif ($sortTo == "Newest") {

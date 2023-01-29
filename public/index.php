@@ -273,13 +273,13 @@ Post content text: text-gray-500
             <?php
             $sortquery = $_SERVER["QUERY_STRING"];
             parse_str($sortquery, $sortquery);
-            $sortTo = "Newest";
+            $sortTo = "Default";
             if (!$sortquery) {
-            } elseif ($sortquery["sort"] == "karma") {
+            } elseif ($sortquery["sort"] == "Hottest") {
               $sortTo = "Hottest";
-            } elseif ($sortquery["sort"] == "newest") {
+            } elseif ($sortquery["sort"] == "Newest") {
               $sortTo = "Newest";
-            } elseif ($sortquery["sort"] == "oldest") {
+            } elseif ($sortquery["sort"] == "Oldest") {
               $sortTo = "Oldest";
             } else {
               $sortTo = "Sus";
@@ -296,16 +296,16 @@ Post content text: text-gray-500
             </div>
             <div class="mt-3 hidden md:inline-block">
               <span class="text-md text-gray-500">Sort by:</span>
-              <button onclick="javascript:window.location.href='index.php?sort=karma'" class="px-4 py-2 font-medium text-red-500 border border-red-500 rounded-l-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
+              <button onclick="javascript:window.location.href='index.php?sort=Hottest'" class="px-4 py-2 font-medium text-red-500 border border-red-500 rounded-l-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 Top
               </button>
-              <button onclick="javascript:window.location.href='index.php?sort=controversial'" class="px-4 py-2 font-medium text-red-500 border border-red-500 hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
+              <button onclick="javascript:window.location.href='index.php?sort=Sus'" class="px-4 py-2 font-medium text-red-500 border border-red-500 hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 Sus
               </button>
-              <button onclick="javascript:window.location.href='index.php?sort=newest'" class="px-4 py-2 font-medium text-red-500 border border-red-500 hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
+              <button onclick="javascript:window.location.href='index.php?sort=Newest'" class="px-4 py-2 font-medium text-red-500 border border-red-500 hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 New
               </button>
-              <button onclick="javascript:window.location.href='index.php?sort=oldest'" class="px-4 py-2 font-medium text-red-500 border border-red-500 rounded-r-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
+              <button onclick="javascript:window.location.href='index.php?sort=Oldest'" class="px-4 py-2 font-medium text-red-500 border border-red-500 rounded-r-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 Old
               </button>
             </div>
@@ -355,7 +355,7 @@ Post content text: text-gray-500
           }
           if ($sortTo == "Default") {
             $postInfo->getAllPosts($sortTo, $userId);
-          } elseif ($sortTo == "by Karma") {
+          } elseif ($sortTo == "Hottest") {
 
             $postInfo->getAllPosts($sortTo, $userId);
           } elseif ($sortTo == "Newest") {
