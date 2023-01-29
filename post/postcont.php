@@ -12,13 +12,21 @@ class PostContr extends PostInfo
         $this -> post_title = $post_title;
         $this -> post_content = $post_content;
     }
-    public function newPost()
+    public function newPostTxt()
     {
         
-        $this->createPost($this->post_title,$this->post_content,$this->id);
+        $this->createPostTxt($this->post_title,$this->post_content,$this->id);
+       
+        
+    } 
+    public function newPostImage()
+    {
+        
+        $this->createPostImage($this->post_title,$this->post_content,$this->id);
        
         
     }   
+   
 
     public function updateExistingPost($post_title,$post_content,$id)
     {

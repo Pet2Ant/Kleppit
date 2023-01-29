@@ -10,6 +10,8 @@ include "../post/postview.php";
 include "../post/indexpost.php";
 
 $postInfo = new IndexPostInfo();
+$survey =  new PostInfo();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +93,7 @@ Post content text: text-gray-500
               <div class="absolute right-0 w-56 mt-2 origin-top-right bg-[#1a1a1b] border border-[#343536] divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                 <div class="px-4 py-3">
                   <p class="text-sm leading-5 text-red-500">Signed in as</p>
-                  <p class="text-md font-semibold leading-5 text-red-600 truncate"><?php echo $_SESSION["email"]; ?></p>
+                  <p class="text-md font-semibold leading-5 text-red-600 truncate"><?php echo $_SESSION["username"]; ?></p>
                   <p class="text-sm leading-5 text-red-600 truncate py-1">
                     1234 Upvotes
                   </p>
@@ -130,25 +132,34 @@ Post content text: text-gray-500
 
   <!-- Main content -->
   <div id="main" class=" py-12 mt-12 relative h-screen">
+  <?php if($_SESSION)
+              {
+    
+                if($survey->hasTakenSurvey($_SESSION["id"] ))
+                 {
+                ?>
     <div id="survey-popup" class="hidden overflow-auto backdrop-blur-sm rounded-lg mx-auto inset-0 z-50 absolute ">
       <div class="relative p-4 w-full max-w-lg h-full">
         <div class="border border-gray-500  px-10 py-10 bg-zinc-800 shadow-md rounded-3xl sm:p-10">
           <!-- close button -->
-          <button onclick="closeSurvey()" class=" hover:text-red-500">
+          
+          <button onclick="closeSurvey()" class=" hover:text-red-500" >input
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
               <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
             </svg>
           </button>
-
           <div class="mx-auto">
             <!-- Headline -->
+            
             <div class="flex flex-col font-sans space-y-6 sm:leading-7 text-center antialiased">
               <h1 id="title" class="text-3xl font-semibold text-red-500">Kleppit User Survey</h1>
               <h4 class="text-md font-medium text-red-500">Please invest a few moments of your time in answering this survey. Thank you!</h4>
             </div>
 
             <!-- Form -->
-            <form id="survey-form" action="#">
+            <!-- Make sure user takes survey once  -->
+            
+            <form id="survey-form" action="../survey.php" method="post">
               <div class="grid grid-cols-6 gap-6 pt-8">
                 <div class="col-span-6 sm:col-span-3">
 
@@ -156,7 +167,7 @@ Post content text: text-gray-500
                     First name
                   </label>
                   <div class="mt-1 flex rounded-md">
-                    <input placeholder="Name" type="text" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-gray-500 focus:outline-none"></input>
+                    <input placeholder="Name" name="fname" type="text" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-gray-500 focus:outline-none"></input>
                   </div>
 
                 </div>
@@ -167,7 +178,7 @@ Post content text: text-gray-500
                     Last name
                   </label>
                   <div class="mt-1 flex rounded-md">
-                    <input placeholder="Your last name" type="text" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-sm text-gray-500 bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:border-zinc-600 text-red-600 focus:outline-none"></input>
+                    <input placeholder="Your last name" name="lname" type="text" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-sm text-gray-500 bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:border-zinc-600 text-red-600 focus:outline-none"></input>
                   </div>
 
                 </div>
@@ -179,7 +190,7 @@ Post content text: text-gray-500
                   </label>
                   <div class="mt-1 rounded-md">
                     <div class="relative">
-                      <select id="dropdown" type="text" name="name" class="form-select block w-full h-10 px-4 mb-2 text-sm rounded-lg bg-zinc-800 text-gray-500
+                      <select id="dropdown" type="text" name="job" class="form-select block w-full h-10 px-4 mb-2 text-sm rounded-lg bg-zinc-800 text-gray-500
                         border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:border-zinc-600
                         focus:outline-none" placeholder="Employment">
                         <option>Employment Status</option>
@@ -200,7 +211,7 @@ Post content text: text-gray-500
                     Age
                   </label>
                   <div class="mt-1 flex rounded-md">
-                    <input id="number" type="number" min="1" max="99" name="name" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-gray-500 focus:outline-none" placeholder="Your age">
+                    <input id="number" name="age" type="number" min="1" max="99" name="name" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-gray-500 focus:outline-none" placeholder="Your age">
                   </div>
 
                 </div>
@@ -210,7 +221,7 @@ Post content text: text-gray-500
                     Email address
                   </label>
                   <div class="mt-1 flex rounded-md">
-                    <input id="email" type="email" name="name" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-gray-500 focus:outline-none" placeholder="Your email address" required="">
+                    <input id="email" type="email" name="email" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-gray-500 focus:outline-none" placeholder="Your email address" required="">
                   </div>
                 </div>
 
@@ -305,7 +316,7 @@ Post content text: text-gray-500
                     Any other feedback?
                   </label>
                   <div class="mt-1 flex rounded-md">
-                    <textarea id="textArea" placeholder="Share your thoughts" type="text" class="resize-y text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-gray-500 focus:outline-none"></textarea>
+                    <textarea id="textArea" name="feedback" placeholder="Share your thoughts" type="text" class="resize-y text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-gray-500 focus:outline-none"></textarea>
                   </div>
                 </div>
 
@@ -313,16 +324,17 @@ Post content text: text-gray-500
                   <button type="submit" id="submit" class="inline-flex justify-center py-3 px-8 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-500 ease-in-out">
                     Submit
                   </button>
-                </div>
-
-              </div>
-
+                  </div>
+                 </div>
             </form>
           </div>
         </div>
-
       </div>
     </div>
+    <?php 
+            }
+            
+            } ?>
     <div id="container" class=" container mx-auto">
       <div class="flex w-960 mx-auto h-screen">
         <!-- Posts -->
@@ -349,6 +361,9 @@ Post content text: text-gray-500
               $sortTo = "Newest";
             } elseif ($sortquery["sort"] == "oldest") {
               $sortTo = "Oldest";
+            }else
+            {
+              $sortTo = "Controversial";
             }
 
 
@@ -356,12 +371,15 @@ Post content text: text-gray-500
             <div class="mt-3">
               <span class="text-xl lg:inline-block hidden font-semibold text-gray-500 p-2">All posts</span>
               <span class="text-md md:inline-block hidden text-gray-500 tracking-tight">Sorted by:</span>
-              <span class="ml-0.5 text-lg text-red-500 ">Newest</span>
+              <span class="ml-0.5 text-lg text-red-500 "><?php echo $sortTo?></span>
             </div>
             <div class="mt-3">
               <span class="text-md text-gray-500">Sort by:</span>
               <button  onclick="javascript:window.location.href='index.php?sort=karma'" class="px-4 py-2 font-medium text-red-500 border border-red-500 rounded-l-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 Top
+              </button>
+              <button onclick="javascript:window.location.href='index.php?sort=controversial'"  class="px-4 py-2 font-medium text-red-500 border border-red-500 hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
+                Sus
               </button>
               <button onclick="javascript:window.location.href='index.php?sort=newest'"  class="px-4 py-2 font-medium text-red-500 border border-red-500 hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 New
@@ -369,6 +387,8 @@ Post content text: text-gray-500
               <button onclick="javascript:window.location.href='index.php?sort=oldest'" class="px-4 py-2 font-medium text-red-500 border border-red-500 rounded-r-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 Old
               </button>
+
+              
             </div>
           </div>
           <?php
@@ -388,12 +408,17 @@ Post content text: text-gray-500
           } elseif ($sortTo == "Oldest") {
 
             $postInfo->getAllPosts($sortTo, $userId);
+          }else
+          {
+            $postInfo->getAllPosts($sortTo, $userId);
           }
+          
 
 
           ?>
 
         </div>
+      
         <!--  Sidebars -->
         <div class="w-1/3 pl-9 hidden lg:block">
           <!-- Create a Post Sidebar -->
