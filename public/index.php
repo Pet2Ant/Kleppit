@@ -53,7 +53,7 @@ Post content text: text-gray-500
 
       if ($survey->hasTakenSurvey($_SESSION["id"])) {
     ?>
-        <div id="survey-popup" class="hidden backdrop-blur-sm rounded-lg mx-auto inset-0 z-50 absolute overflow-hidden">
+        <div id="survey-popup" class="hidden backdrop-blur-sm rounded-lg mx-auto inset-0 z-50 absolute overflow-visible lg:overflow-hidden">
           <div class="relative p-4 w-full max-w-lg h-full">
             <div class="border border-gray-500  px-10 py-10 bg-zinc-800 shadow-md rounded-3xl sm:p-10">
               <!-- close button -->
