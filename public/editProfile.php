@@ -66,6 +66,19 @@ $profileInfo = new ProfileInfoView();
                                                     //Update the image preview
                                                     document.getElementById('inputAvatar').addEventListener('change', function() {
                                                         if (this.files && this.files[0]) {
+
+                                                            //Check if the file is too big (2MB)
+                                                            if (this.files[0].size > 2090000) {
+                                                                alert("File is too big!");
+                                                                return;
+                                                            };
+
+                                                            //Check if the file is an image
+                                                            if (this.files[0].type != "image/jpeg" && this.files[0].type != "image/png" && this.files[0].type != "image/gif" && this.files[0].type != "image/jpg") {
+                                                                alert("File is not an image!");
+                                                                return;
+                                                            };
+
                                                             var img = document.getElementById('avatarImg');
                                                             img.src = URL.createObjectURL(this.files[0]);
                                                         }
