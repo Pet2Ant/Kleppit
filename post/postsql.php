@@ -94,27 +94,30 @@ class PostInfo extends DbCon
 
     protected function getUserPostKarma($id)
     {
-        $sql=('SELECT SUM(post_karma) FROM users u inner join post p on p.users_id = u.id inner join post_comments pc on pc.users_id = u.id where u.id=?;' );
+        $sql=('SELECT SUM(post_karma) FROM post where users_id=?;' );
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute(); 
-        if ($stmt->rowCount() == 0) 
-        {
+       
+        if (!$stmt->execute(array($id))) {
             $stmt = null;
-            return -1;
+            
+            header('location: post.php?error=stmtfailed');
+            exit();
         }
         $result = $stmt->fetchAll();
         return $result;
     }   
     protected function getUserCommentKarma($id)
     {
-        $sql= ('SELECT SUM(c_karma) FROM users u inner join post p on p.users_id = u.id inner join post_comments pc on pc.users_id = u.id where u.id=?;' );
+        $sql= ('SELECT SUM(c_karma) FROM post_comments where users_id=?;' );
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute();
-        if ($stmt->rowCount() == 0) 
-        {
+        
+        if (!$stmt->execute(array($id))) {
             $stmt = null;
-            return -1;
+            
+            header('location: post.php?error=stmtfailed');
+            exit();
         }
+
         $result = $stmt->fetchAll();
         return $result;
     }
@@ -123,11 +126,11 @@ class PostInfo extends DbCon
     {
         $stmt = $this->connect()->prepare('SELECT * FROM users u inner join post p on p.users_id  = u.id  ;' );
         $stmt->execute();
-        if ($stmt->rowCount() == 0) 
-        {
-            $stmt = null;
-            return -1;
-        }
+        // if ($stmt->rowCount() == 0) 
+        // {
+        //     $stmt = null;
+        //     return -1;
+        // }
        
         $result = $stmt->fetchAll();
         return $result;
