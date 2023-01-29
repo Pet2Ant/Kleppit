@@ -48,7 +48,6 @@ class PostInfoView extends PostInfo
     public function fetchPostKarma($id)
     {
         return $this->getUserPostKarma($id);
-        
     }
     public function fetchCommentKarma($id)
     {
@@ -64,7 +63,7 @@ class PostInfoView extends PostInfo
 
         while ($count < $maxcount) {
             $str = $row[$count]["postimage"];
-           if($str == 0){
+            if ($str == 0) {
                 if ($row[$count]["users_id"] != $id) {
                     $count++;
                     continue;
@@ -92,7 +91,7 @@ class PostInfoView extends PostInfo
                 <div class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer">
                     <div class="w-5 mx-4 flex flex-col text-center pt-2">
                         <!-- Upvote -->
-                        <form action="../karmaposts.php" method="post">
+                        <form action="../karma.php" method="post">
                         
                         <input type="text" name="post_upvote" value=' . $row[$count]["post_id"] . '  hidden>' . $upvote . '
                     
@@ -139,39 +138,38 @@ class PostInfoView extends PostInfo
 
 
                 $count = $count + 1;
+            } else {
 
-            }else{  
-                  
-        
-                
-                        if ($row[$count]["users_id"] != $id) {
-                            $count++;
-                            continue;
-                        }
 
-                        $votecap = $this->getVotecap($row[$count]["post_id"], $id);
 
-                        if ($votecap == false) {
-                            $downvote = $this->downvoteCreator(false);
-                            $upvote = $this->upvoteCreator(false);
-                        } else {
-                            if ($votecap["votecap"] == 1) {
-                                $upvote = $this->upvoteCreator(true);
-                                $downvote = $this->downvoteCreator(false);
-                            } elseif ($votecap["votecap"] == -1) {
-                                $downvote = $this->downvoteCreator(true);
-                                $upvote = $this->upvoteCreator(false);
-                            } else {
-                                $downvote = $this->downvoteCreator(false);
-                                $upvote = $this->upvoteCreator(false);
-                            }
-                        }
+                if ($row[$count]["users_id"] != $id) {
+                    $count++;
+                    continue;
+                }
 
-                        echo '<div id="" class="py-2 mb-4">
+                $votecap = $this->getVotecap($row[$count]["post_id"], $id);
+
+                if ($votecap == false) {
+                    $downvote = $this->downvoteCreator(false);
+                    $upvote = $this->upvoteCreator(false);
+                } else {
+                    if ($votecap["votecap"] == 1) {
+                        $upvote = $this->upvoteCreator(true);
+                        $downvote = $this->downvoteCreator(false);
+                    } elseif ($votecap["votecap"] == -1) {
+                        $downvote = $this->downvoteCreator(true);
+                        $upvote = $this->upvoteCreator(false);
+                    } else {
+                        $downvote = $this->downvoteCreator(false);
+                        $upvote = $this->upvoteCreator(false);
+                    }
+                }
+
+                echo '<div id="" class="py-2 mb-4">
                         <div class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer">
                             <div class="w-5 mx-4 flex flex-col text-center pt-2">
                                 <!-- Upvote -->
-                                <form action="../karmaposts.php" method="post">
+                                <form action="../karma.php" method="post">
                                 
                                 <input type="text" name="post_upvote" value=' . $row[$count]["post_id"] . '  hidden>' . $upvote . '
                             
@@ -200,7 +198,7 @@ class PostInfoView extends PostInfo
                                 </div>
                                 <!-- Post Description -->
                                 <p class="text-gray-500 break-all">
-                                     <img src="../uploads/'.$row[$count]["post_content"].'" alt="no pic found"  height="160" width="180">
+                                     <img src="../uploads/' . $row[$count]["post_content"] . '" alt="no pic found"  height="160" width="180">
 
                                 </p>
                                 <!-- Comments -->
@@ -216,9 +214,8 @@ class PostInfoView extends PostInfo
                         </div>
                     </div>';
 
-                        $count = $count + 1;
-
-                    }
+                $count = $count + 1;
+            }
         }
     }
     public function upvoteCount($post_id, $id)
@@ -312,7 +309,10 @@ class PostInfoView extends PostInfo
         $postComments = $this->fetchCommentDb($post_id);
         $commentCount = count($postComments);
         for ($i = 0; $i < $commentCount; $i++) {
-            
+            // if ($postComments[$i]["users_id"] != $id) {
+            //     $i++;
+            //     continue;
+            // }
 
             $votecap = $this->getVotecapC($postComments[$i][0], $id);
 
@@ -337,7 +337,7 @@ class PostInfoView extends PostInfo
             <div class="w-11/12 pt-2 min-w-full">
             <!-- Comment Information -->
             <div class="flex items-center text-sm mb-2">
-            <img src="../avatars/'.$postComments[$i]["profile_pic"].'" alt="no pic found"  height="16" width="16">
+                <img class="w-8 h-8 rounded-full mr-2" src="https://placeimg.com/192/192/people" alt="Avatar of User">
                 <span class="text-gray-500">Commented by</span>
                 <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">ku/' . $postComments[$i]["username"] . '•</a>
                 <span class="text-gray-500">' . $postComments[$i]["date"] . '</span>
@@ -348,7 +348,7 @@ class PostInfoView extends PostInfo
             </p>
             <!-- Comment Actions -->
             <div class="w-5 mx-4 flex flex-row text-center pt-2 space-x-4">
-                <form action="../pageposts.php" method="post">
+                <form action="../commentkarma.php" method="post">
                     <div class="flex flex-row space-x-3">
                         <!-- Upvote -->
                         <div class="text-gray-500 transition duration-500 hover:text-red-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
@@ -401,7 +401,7 @@ class PostInfoView extends PostInfo
                             <div class="w-11/12 pt-2">
                                 <!-- Comment Information -->
                                 <div class="flex items-center text-sm mb-2">
-                                <img src="../avatars/'.$userComments[$i]["profile_pic"].'" alt="no pic found"  height="16" width="16">
+                                    <img class="w-8 h-8 rounded-full mr-2" src="https://placeimg.com/192/192/people" alt="Avatar of User">
                                     <span class="text-gray-500">Commented by</span>
                                     <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">ku/' . $userComments[$i]["username"] . ' •</a>
                                     <span class="text-gray-500">' . $userComments[$i]["date"] . '</span>
@@ -411,20 +411,21 @@ class PostInfoView extends PostInfo
                                 ' . $userComments[$i]["text"] . '
                                 </p>
                                 <!-- Comment Actions -->
-                               
                                 <div class="w-5 mx-4 flex flex-row text-center pt-2 space-x-4">
-                                    <!-- Upvote -->
-                                    <form action="../commentkarma.php" method="post">
-                                    <input type="text" name="c_upvote" value=' . $userComments[$i][0] . '  hidden>' . $upvote . '
-                                        
-                                            
-                                    <!-- Vote count -->
-                                    <span class="text-xs font-semibold my-1 text-gray-500"> ' . $userComments[$i]["c_karma"] . '</span>
-                                    <!-- Downvote -->
-                                    
-                                    <input type="text" name="c_downvote" value=' . $userComments[$i][0] . '  hidden >' . $downvote . '
-                                </div>
+                                <form action="../commentkarma.php" method="post">
+                                    <div class="flex flex-row space-x-3">
+                                        <!-- Upvote -->
+                                        <div class="text-gray-500 transition duration-500 hover:text-red-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
+                                            <input type="text" name="c_upvote" value=' . $userComments[$i][0] . '  hidden>' . $upvote . '
+                                        </div>  
+                                        <!-- Vote count -->
+                                        <span class="text-xs font-semibold my-1 text-gray-500"> ' . $userComments[$i]["c_karma"] . '</span>
+                                        <div class="text-gray-500 transition duration-500 hover:text-red-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
+                                            <input type="text" name="c_downvote" value=' . $userComments[$i][0] . '  hidden >' . $downvote . '       
+                                        </div>      
+                                    </div>
                                 </form>
+                            </div>
                         </div>
                     </div> ';
         }
@@ -453,7 +454,7 @@ class PostInfoView extends PostInfo
         if ($votecap["votecap"] == -1) {
             $downvotes = $this->downvotesC($c_id);
             $downvotesNew = $downvotes[0]["c_downvote"] - 1;
-            $this->cdownvote($downvotesNew,$c_id);
+            $this->cdownvote($downvotesNew, $c_id);
 
             $upvotes = $this->upvotesC($c_id);
             $upvotesNew = $upvotes[0]["c_upvote"] + 1;
