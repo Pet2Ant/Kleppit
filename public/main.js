@@ -152,3 +152,9 @@ window.onload = function() {
     }
   });
 }
+
+// Open dropdown
+function openDropdown() {
+  document.getElementById("dropdown").classList.toggle("hidden");
+  document.getElementById("dropdown").classList.toggle("block");
+}

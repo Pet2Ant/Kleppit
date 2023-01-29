@@ -106,7 +106,7 @@ class IndexPostInfo extends PostInfo
                     </h2>
                 </div>
                 <!-- Post Description -->
-                <p class="text-gray-500 break-all">
+                <p class="text-gray-500 break-all md:mr-4 md:mb-4 sm:mr-4 sm:mb-4 ">
                      ' . $row[$count]["post_content"] . '
 
                 </p>

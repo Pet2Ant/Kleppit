@@ -42,222 +42,219 @@ Post content text: text-gray-500
   <!-- Nav Bar -->
 
   <?php
-    $navbar = new Navbar();
-    $navbar->genereElement();
+  $navbar = new Navbar();
+  $navbar->genereElement();
   ?>
-      
+
   <!-- Main content -->
   <div id="main" class=" py-12 mt-12 relative h-screen">
 
-  <?php if($_SESSION)
-              {
-    
-                if($survey->hasTakenSurvey($_SESSION["id"] ))
-                 {
-                ?>
+    <?php if ($_SESSION) {
+
+      if ($survey->hasTakenSurvey($_SESSION["id"])) {
+    ?>
         <div id="survey-popup" class="hidden backdrop-blur-sm rounded-lg mx-auto inset-0 z-50 absolute overflow-hidden">
-      <div class="relative p-4 w-full max-w-lg h-full">
-        <div class="border border-gray-500  px-10 py-10 bg-zinc-800 shadow-md rounded-3xl sm:p-10">
-          <!-- close button -->
-          
-          <button onclick="closeSurvey()" class=" hover:text-red-500" >input
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-              <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
-            </svg>
-          </button>
-          <div class="mx-auto">
-            <!-- Headline -->
-            
-            <div class="flex flex-col font-sans space-y-6 sm:leading-7 text-center antialiased">
-              <h1 id="title" class="text-3xl font-semibold text-red-500">Kleppit User Survey</h1>
-              <h4 class="text-md font-medium text-red-500">Please invest a few moments of your time in answering this survey. Thank you!</h4>
+          <div class="relative p-4 w-full max-w-lg h-full">
+            <div class="border border-gray-500  px-10 py-10 bg-zinc-800 shadow-md rounded-3xl sm:p-10">
+              <!-- close button -->
+
+              <button onclick="closeSurvey()" class=" hover:text-red-500 transition duration-300 ease-in-out">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                  <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                </svg>
+              </button>
+              <div class="mx-auto">
+                <!-- Headline -->
+
+                <div class="flex flex-col font-sans space-y-6 sm:leading-7 text-center antialiased">
+                  <h1 id="title" class="text-3xl font-semibold text-red-500">Kleppit User Survey</h1>
+                  <h4 class="text-md font-medium text-red-500">Please invest a few moments of your time in answering this survey. Thank you!</h4>
+                </div>
+
+                <!-- Form -->
+                <!-- Make sure user takes survey once  -->
+
+                <form id="survey-form" action="../survey.php" method="post">
+                  <div class="grid grid-cols-6 gap-6 pt-8">
+                    <div class="col-span-6 sm:col-span-3">
+
+                      <label for="first_name" class="block text-sm font-medium text-red-500">
+                        First name
+                      </label>
+                      <div class="mt-1 flex rounded-md">
+
+
+                        <input placeholder="Name" name="fname" type="text" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-500 focus:outline-none"></input>
+                      </div>
+
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-3">
+
+                      <label id="name-label" for="name" class="block text-sm font-medium text-red-500">
+                        Last name
+                      </label>
+                      <div class="mt-1 flex rounded-md">
+
+
+                        <input placeholder="Your last name" name="lname" type="text" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-sm text-red-500 bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:border-zinc-600 focus:outline-none"></input>
+                      </div>
+
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-3">
+
+                      <label for="name" class="block text-sm font-medium text-red-500">
+                        Current role
+                      </label>
+                      <div class="mt-1 rounded-md">
+                        <div class="relative">
+
+                          <select id="dropdown" type="text" name="job" class="form-select block w-full h-10 px-4 mb-2 text-sm rounded-lg bg-zinc-800 text-red-500 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:border-zinc-600 focus:outline-none" placeholder="Employment">
+                            <option>Employment Status</option>
+                            <option>Student</option>
+                            <option>Full-time job</option>
+                            <option>Full-time learner</option>
+                            <option>Prefer not to say</option>
+                            <option>Other</option>
+                          </select>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-3">
+
+                      <label id="number-label" for="name" class="block text-sm font-medium text-red-500">
+                        Age
+                      </label>
+                      <div class="mt-1 flex rounded-md">
+
+                        <input id="number" name="age" type="number" min="1" max="99" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-500 focus:outline-none" placeholder="Your age">
+                      </div>
+
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-6">
+                      <label id="email-label" for="email" class="block text-sm font-medium text-red-500">
+                        Email address
+                      </label>
+                      <div class="mt-1 flex rounded-md">
+
+                        <input id="email" type="email" name="email" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-500 focus:outline-none" placeholder="Your email address" required="">
+                      </div>
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-6 mt-2 text-red-500">
+                      <fieldset>
+                        <legend class="text-base font-medium ">Would you recommend Kleppit to a friend?
+                        </legend>
+                        <div class="mt-4 space-y-4">
+
+                          <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                              <input id="comments" name="user_answer" type="radio" value="definitely" class="h-4 w-4 accent-red-500 focus:accent-red-600 rounded">
+                            </div>
+                            <div class="ml-3 text-sm">
+                              <label for="comments" class="font-medium ">Definitely</label>
+                            </div>
+                          </div>
+
+                          <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                              <input id="comments" name="user_answer" type="radio" value="maybe" class="h-4 w-4 accent-red-500 focus:accent-red-600 rounded">
+                            </div>
+                            <div class="ml-3 text-sm">
+                              <label for="comments" class="font-medium ">Maybe</label>
+                            </div>
+                          </div>
+
+                          <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                              <input id="comments" name="user_answer" type="radio" value="not_sure" class="h-4 w-4 accent-red-500 focus:accent-red-600 rounded">
+                            </div>
+                            <div class="ml-3 text-sm">
+                              <label for="comments" class="font-medium ">Not sure</label>
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-6 mt-2 text-red-500">
+                      <fieldset>
+                        <legend class="text-base font-medium ">What would you like to see improved?</legend>
+                        <p class="text-sm text-gray-500">Check all that apply</p>
+                        <div class="mt-4 space-y-4">
+
+
+                          <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                              <input id="comments" name="comments" type="checkbox" value="FE" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
+                            </div>
+                            <div class="ml-3 text-sm">
+                              <label for="comments" class="font-medium ">Overall feel</label>
+                              <p class="text-gray-500">The overall feel of the site</p>
+                            </div>
+                          </div>
+
+                          <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                              <input id="comments" name="comments" type="checkbox" value="FE" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
+                            </div>
+                            <div class="ml-3 text-sm">
+                              <label for="comments" class="font-medium ">Front-end</label>
+                              <p class="text-gray-500">Things like HTML, CSS or JS</p>
+                            </div>
+                          </div>
+
+                          <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                              <input id="comments" name="comments" type="checkbox" value="BE" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
+                            </div>
+                            <div class="ml-3 text-sm">
+                              <label for="comments" class="font-medium ">Back-end</label>
+                              <p class="text-gray-500">Database improvements, PHP, NodeJS</p>
+                            </div>
+                          </div>
+
+                          <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                              <input id="comments" name="comments" type="checkbox" value="FS" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
+                            </div>
+                            <div class="ml-3 text-sm">
+                              <label for="comments" class="font-medium ">Full-stack</label>
+                              <p class="text-gray-500">The complete Stack for an End-to-End understanding</p>
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-6 mt-2 ">
+                      <label id="textarea" for="textfield" class="block text-sm font-medium text-red-500">
+                        Any other feedback?
+                      </label>
+                      <div class="mt-1 flex rounded-md">
+
+                        <textarea id="textArea" name="feedback" placeholder="Share your thoughts" type="text" class="resize-y text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-500 focus:outline-none"></textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-2 mt-2">
+                      <button type="submit" id="submit" class="inline-flex justify-center py-3 px-8 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-500 ease-in-out">
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
-
-            <!-- Form -->
-            <!-- Make sure user takes survey once  -->
-            
-            <form id="survey-form" action="../survey.php" method="post">
-              <div class="grid grid-cols-6 gap-6 pt-8">
-                <div class="col-span-6 sm:col-span-3">
-
-                  <label for="first_name" class="block text-sm font-medium text-red-500">
-                    First name
-                  </label>
-                  <div class="mt-1 flex rounded-md">
-
-
-                    <input placeholder="Name" name="fname" type="text" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-500 focus:outline-none"></input>
-                  </div>
-
-                </div>
-
-                <div class="col-span-6 sm:col-span-3">
-
-                  <label id="name-label" for="name" class="block text-sm font-medium text-red-500">
-                    Last name
-                  </label>
-                  <div class="mt-1 flex rounded-md">
-
-
-                    <input placeholder="Your last name" name="lname" type="text" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-sm text-red-500 bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:border-zinc-600 focus:outline-none"></input>
-                  </div>
-
-                </div>
-
-                <div class="col-span-6 sm:col-span-3">
-
-                  <label for="name" class="block text-sm font-medium text-red-500">
-                    Current role
-                  </label>
-                  <div class="mt-1 rounded-md">
-                    <div class="relative">
-
-                      <select id="dropdown" type="text" name="job" class="form-select block w-full h-10 px-4 mb-2 text-sm rounded-lg bg-zinc-800 text-red-500 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:border-zinc-600 focus:outline-none" placeholder="Employment">
-                        <option>Employment Status</option>
-                        <option>Student</option>
-                        <option>Full-time job</option>
-                        <option>Full-time learner</option>
-                        <option>Prefer not to say</option>
-                        <option>Other</option>
-                      </select>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="col-span-6 sm:col-span-3">
-
-                  <label id="number-label" for="name" class="block text-sm font-medium text-red-500">
-                    Age
-                  </label>
-                  <div class="mt-1 flex rounded-md">
-
-                    <input id="number" name="age" type="number" min="1" max="99" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-500 focus:outline-none" placeholder="Your age">
-                  </div>
-
-                </div>
-
-                <div class="col-span-6 sm:col-span-6">
-                  <label id="email-label" for="email" class="block text-sm font-medium text-red-500">
-                    Email address
-                  </label>
-                  <div class="mt-1 flex rounded-md">
-
-                    <input id="email" type="email" name="email" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-500 focus:outline-none" placeholder="Your email address" required="">
-                  </div>
-                </div>
-
-                <div class="col-span-6 sm:col-span-6 mt-2 text-red-500">
-                  <fieldset>
-                    <legend class="text-base font-medium ">Would you recommend Kleppit to a friend?
-                    </legend>
-                    <div class="mt-4 space-y-4">
-
-                      <div class="flex items-start">
-                        <div class="flex items-center h-5">
-                          <input id="comments" name="user_answer" type="radio" value="definitely" class="h-4 w-4 accent-red-500 focus:accent-red-600 rounded">
-                        </div>
-                        <div class="ml-3 text-sm">
-                          <label for="comments" class="font-medium ">Definitely</label>
-                        </div>
-                      </div>
-
-                      <div class="flex items-start">
-                        <div class="flex items-center h-5">
-                          <input id="comments" name="user_answer" type="radio" value="maybe" class="h-4 w-4 accent-red-500 focus:accent-red-600 rounded">
-                        </div>
-                        <div class="ml-3 text-sm">
-                          <label for="comments" class="font-medium ">Maybe</label>
-                        </div>
-                      </div>
-
-                      <div class="flex items-start">
-                        <div class="flex items-center h-5">
-                          <input id="comments" name="user_answer" type="radio" value="not_sure" class="h-4 w-4 accent-red-500 focus:accent-red-600 rounded">
-                        </div>
-                        <div class="ml-3 text-sm">
-                          <label for="comments" class="font-medium ">Not sure</label>
-                        </div>
-                      </div>
-                    </div>
-                  </fieldset>
-                </div>
-
-                <div class="col-span-6 sm:col-span-6 mt-2 text-red-500">
-                  <fieldset>
-                    <legend class="text-base font-medium ">What would you like to see improved?</legend>
-                    <p class="text-sm text-gray-500">Check all that apply</p>
-                    <div class="mt-4 space-y-4">
-
-
-                      <div class="flex items-start">
-                        <div class="flex items-center h-5">
-                          <input id="comments" name="comments" type="checkbox" value="FE" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
-                        </div>
-                        <div class="ml-3 text-sm">
-                          <label for="comments" class="font-medium ">Overall feel</label>
-                          <p class="text-gray-500">The overall feel of the site</p>
-                        </div>
-                      </div>
-
-                      <div class="flex items-start">
-                        <div class="flex items-center h-5">
-                          <input id="comments" name="comments" type="checkbox" value="FE" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
-                        </div>
-                        <div class="ml-3 text-sm">
-                          <label for="comments" class="font-medium ">Front-end</label>
-                          <p class="text-gray-500">Things like HTML, CSS or JS</p>
-                        </div>
-                      </div>
-
-                      <div class="flex items-start">
-                        <div class="flex items-center h-5">
-                          <input id="comments" name="comments" type="checkbox" value="BE" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
-                        </div>
-                        <div class="ml-3 text-sm">
-                          <label for="comments" class="font-medium ">Back-end</label>
-                          <p class="text-gray-500">Database improvements, PHP, NodeJS</p>
-                        </div>
-                      </div>
-
-                      <div class="flex items-start">
-                        <div class="flex items-center h-5">
-                          <input id="comments" name="comments" type="checkbox" value="FS" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
-                        </div>
-                        <div class="ml-3 text-sm">
-                          <label for="comments" class="font-medium ">Full-stack</label>
-                          <p class="text-gray-500">The complete Stack for an End-to-End understanding</p>
-                        </div>
-                      </div>
-                    </div>
-                  </fieldset>
-                </div>
-
-                <div class="col-span-6 sm:col-span-6 mt-2 ">
-                  <label id="textarea" for="textfield" class="block text-sm font-medium text-red-500">
-                    Any other feedback?
-                  </label>
-                  <div class="mt-1 flex rounded-md">
-
-                    <textarea id="textArea" name="feedback" placeholder="Share your thoughts" type="text" class=class="resize-y text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-500 focus:outline-none"></textarea>
-                  </div>
-                </div>
-
-                <div class="col-span-6 sm:col-span-2 mt-2">
-                  <button type="submit" id="submit" class="inline-flex justify-center py-3 px-8 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-500 ease-in-out">
-                    Submit
-                  </button>
-                  </div>
-                 </div>
-            </form>
           </div>
         </div>
-      </div>
-    </div>
-    <?php 
-            }
-            
-            } ?>
+    <?php
+      }
+    } ?>
     <div id="container" class=" container mx-auto">
       <div class="flex w-960 mx-auto">
         <!-- Posts -->
@@ -279,41 +276,75 @@ Post content text: text-gray-500
             $sortTo = "Default";
             if (!$sortquery) {
             } elseif ($sortquery["sort"] == "karma") {
-              $sortTo = "by Karma";
+              $sortTo = "Hottest";
             } elseif ($sortquery["sort"] == "newest") {
               $sortTo = "Newest";
             } elseif ($sortquery["sort"] == "oldest") {
               $sortTo = "Oldest";
-            }else
-            {
-              $sortTo = "Controversial";
+            } else {
+              $sortTo = "Sus";
             }
 
 
             ?>
             <div class="mt-3">
-              <span class="text-xl lg:inline-block hidden font-semibold text-gray-500 p-2">All posts</span>
+              <span class="text-xl md:inline-block hidden font-semibold text-gray-500 p-2">All posts</span>
               <span class="text-md md:inline-block hidden text-gray-500 tracking-tight">Sorted by:</span>
 
-              <span class="ml-0.5 text-lg text-red-500 "><?php echo $sortTo?></span>
+              <span class="ml-0.5 md:inline-block hidden text-lg text-red-500 "><?php echo $sortTo ?></span>
 
             </div>
-            <div class="mt-3">
-              <span class="md:inline-block hidden text-md text-gray-500">Sort by:</span>
+            <div class="mt-3 hidden md:inline-block">
+              <span class="text-md text-gray-500">Sort by:</span>
               <button onclick="javascript:window.location.href='index.php?sort=karma'" class="px-4 py-2 font-medium text-red-500 border border-red-500 rounded-l-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 Top
               </button>
-              <button onclick="javascript:window.location.href='index.php?sort=controversial'"  class="px-4 py-2 font-medium text-red-500 border border-red-500 hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
+              <button onclick="javascript:window.location.href='index.php?sort=controversial'" class="px-4 py-2 font-medium text-red-500 border border-red-500 hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 Sus
               </button>
-              <button onclick="javascript:window.location.href='index.php?sort=newest'"  class="px-4 py-2 font-medium text-red-500 border border-red-500 hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
+              <button onclick="javascript:window.location.href='index.php?sort=newest'" class="px-4 py-2 font-medium text-red-500 border border-red-500 hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 New
               </button>
               <button onclick="javascript:window.location.href='index.php?sort=oldest'" class="px-4 py-2 font-medium text-red-500 border border-red-500 rounded-r-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 Old
               </button>
+            </div>
 
-              
+            <!-- Dropdown that shows the sort by options when screen is smaller than md -->
+
+            <div class="mt-3 md:hidden">
+              <span class="text-md text-gray-500">Sort by:</span>
+              <div class="inline-block relative w-32">
+                <button onclick="openDropdown()" class="px-4 py-2 font-medium text-red-500 border border-red-500 rounded-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
+                  <span><?php echo $sortTo ?></span>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                  </svg>
+
+                </button>
+                <ul id="dropdown" class="space-y-3 hidden absolute w-32 text-left top-0 mt-12">
+                  <li>
+                    <button onclick="javascript:window.location.href='index.php?sort=karma'" class="px-4 py-2 mt-2 font-medium text-white border border-red-500 bg-red-500 rounded-md hover:bg-red-600 hover:text-black transition duration-500 ease-in-out">
+                      Top
+                    </button>
+                  </li>
+                  <li>
+                    <button onclick="javascript:window.location.href='index.php?sort=controversial'" class="px-4 py-2 font-medium text-white border border-red-500 bg-red-500 rounded-md hover:bg-red-600 hover:text-black transition duration-500 ease-in-out">
+                      Sus
+                    </button>
+                  </li>
+                  <li>
+                    <button onclick="javascript:window.location.href='index.php?sort=newest'" class="px-4 py-2 font-medium text-white border border-red-500 bg-red-500 rounded-md hover:bg-red-600 hover:text-black transition duration-500 ease-in-out">
+                      New
+                    </button>
+                  </li>
+                  <li>
+                    <button onclick="javascript:window.location.href='index.php?sort=oldest'" class="px-4 py-2 font-medium text-white border border-red-500 bg-red-500 rounded-md hover:bg-red-600 hover:text-black transition duration-500 ease-in-out">
+                      Old
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
           <?php
@@ -333,17 +364,16 @@ Post content text: text-gray-500
           } elseif ($sortTo == "Oldest") {
 
             $postInfo->getAllPosts($sortTo, $userId);
-          }else
-          {
+          } else {
             $postInfo->getAllPosts($sortTo, $userId);
           }
-          
+
 
 
           ?>
 
         </div>
-      
+
         <!--  Sidebars -->
         <div class="w-1/3 pl-9 hidden lg:block">
           <!-- Create a Post Sidebar -->
@@ -398,23 +428,16 @@ Post content text: text-gray-500
           <!-- Kleppit Information Sidebar -->
           <div class="rounded border border-gray-500 my-10 mb-4">
             <div class="p-3">
-              <div class="flex justify-between">
-                <div>
-                  <a href="./About.php" class="block no-underline text-xs font-semibold text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">About</a>
-                </div>
+              <div class="flex justify-center">
                 <div>
                   <a href="./ContactUs.php" class="block no-underline text-xs font-semibold text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Contact Us</a>
-                </div>
-                <div>
-                  <a href="./nonprofit.php" class="block no-underline text-xs font-semibold text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Non-Profit
-                  </a>
                 </div>
               </div>
               <div class="text-center mt-6">
                 <p class="text-xs leading-tight text-gray-400 font-medium">
-                  <a href="./userAgreement.html" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">User Agreement</a>
+                  <a href="./userAgreement.php" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">User Agreement</a>
                   |
-                  <a href="./PrivacyPolicy.html" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Privacy Policy</a>
+                  <a href="./PrivacyPolicy.php" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Privacy Policy</a>
                 </p>
                 <p class="text-xs leading-tight font-medium text-red-500 my-1">
                   © 2023 Kleppit, Inc. All rights reserved
@@ -427,14 +450,14 @@ Post content text: text-gray-500
     </div>
     <!-- Scroll to the top button -->
     <div class="fixed bottom-0 right-0 mb-10 mr-10">
-        <div class="flex flex-col gap-2">
-            <button onclick="topFunction()" class="w-full w-12 h-12 bg-red-500 rounded-full hover:bg-red-600 transition ease-in duration-300 flex justify-center ">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 place-self-center">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
-                </svg>
+      <div class="flex flex-col gap-2">
+        <button onclick="topFunction()" class="w-full w-12 h-12 bg-red-500 rounded-full hover:bg-red-600 transition ease-in duration-300 flex justify-center ">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 place-self-center">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
+          </svg>
 
-            </button>
-        </div>
+        </button>
+      </div>
     </div>
   </div>
 </body>
