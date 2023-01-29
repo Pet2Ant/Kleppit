@@ -13,14 +13,12 @@ $postInfo = new PostInfoView();
 
 
 //Check if url query has the username
-if(isset($_GET["u"]))
-{   
+if (isset($_GET["u"])) {
     //TODO fetch user info from database
     $userInfo = $postInfo->getUserByName($_GET["u"]);
 
     //Check if user exists
-    if($userInfo == null)
-    {
+    if ($userInfo == null) {
         //TODO redirect to 404 page
         echo "User does not exist";
         exit();
@@ -29,9 +27,7 @@ if(isset($_GET["u"]))
     $user_id = $userInfo[0]["id"];
     $user_username = $userInfo[0]["username"];
     $user_email = $userInfo[0]["email"];
-}
-else
-{
+} else {
     $user_id = $_SESSION["id"];
     $user_username = $_SESSION["username"];
     $user_email = $_SESSION["email"];
@@ -72,8 +68,8 @@ Post content text: text-gray-500
 
     <!-- Nav Bar -->
     <?php
-        $navbar = new Navbar();
-        $navbar->genereElement();
+    $navbar = new Navbar();
+    $navbar->genereElement();
     ?>
     <!-- Main content -->
     <div id="main" class=" py-12 mt-12 relative">
@@ -82,13 +78,13 @@ Post content text: text-gray-500
                 <div class="flex justify-start flex-row mb-3 ml-5">
                     <!-- Posts button to display all posts -->
                     <span class="inline-flex rounded-md shadow-sm">
-                        <button type="button" id="textButton" onclick="javascript:window.location.href='./Profile.php?u=<?php echo $user_username?>'" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-red-600 transition duration-300 ease-in-out">
+                        <button type="button" id="textButton" onclick="javascript:window.location.href='./Profile.php?u=<?php echo $user_username ?>'" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-red-600 transition duration-300 ease-in-out">
                             Posts
                         </button>
                     </span>
                     <!-- Comments button to display all comments -->
                     <span class="ml-3 inline-flex rounded-md shadow-sm">
-                        <button type="button" id="imageButton" onclick="javascript:window.location.href='./ProfileComments.php?u=<?php echo $user_username?>'"  class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-red-500 bg-zinc-800 hover:text-red-600 focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-red-600 transition duration-300 ease-in-out hover:bg-red-600 hover:text-white">
+                        <button type="button" id="imageButton" onclick="javascript:window.location.href='./ProfileComments.php?u=<?php echo $user_username ?>'" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-red-500 bg-zinc-800 hover:text-red-600 focus:outline-none focus:border-[#ff4957] focus:shadow-outline-[#ff4957] active:bg-red-600 transition duration-300 ease-in-out hover:bg-red-600 hover:text-white">
                             Comments
                         </button>
                     </span>
@@ -99,8 +95,8 @@ Post content text: text-gray-500
                     <!-- Posts -->
                     <div class="w-11/12 ml-5">
                         <?php
-                            //Display user posts
-                            $postInfo->createPostFe($user_id);
+                        //Display user posts
+                        $postInfo->createPostFe($user_id);
                         ?>
                     </div>
                     <!--  Sidebars -->
@@ -119,7 +115,7 @@ Post content text: text-gray-500
                                     <div class="flex justify-center items-center">
                                         <h1 class="text-2xl font-bold text-gray-300">
                                             <?php
-                                                echo $user_username;
+                                            echo $user_username;
                                             ?>
                                         </h1>
                                     </div>
@@ -163,23 +159,16 @@ Post content text: text-gray-500
                             <!-- Kleppit Information Sidebar -->
                             <div class="rounded border border-gray-500 my-10 mb-4">
                                 <div class="p-3">
-                                    <div class="flex justify-between">
-                                        <div>
-                                            <a href="./About.php" class="block no-underline text-xs font-semibold text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">About</a>
-                                        </div>
+                                    <div class="flex justify-center">
                                         <div>
                                             <a href="./ContactUs.php" class="block no-underline text-xs font-semibold text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Contact Us</a>
-                                        </div>
-                                        <div>
-                                            <a href="./nonprofit.php" class="block no-underline text-xs font-semibold text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Non-Profit
-                                            </a>
                                         </div>
                                     </div>
                                     <div class="text-center mt-6">
                                         <p class="text-xs leading-tight text-gray-400 font-medium">
                                             <a href="./userAgreement.php" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">User Agreement</a>
                                             |
-                                            <a href="./privacyPolicy.php" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Privacy Policy</a>
+                                            <a href="./PrivacyPolicy.php" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Privacy Policy</a>
                                         </p>
                                         <p class="text-xs leading-tight font-medium text-red-500 my-1">
                                             © 2023 Kleppit, Inc. All rights reserved

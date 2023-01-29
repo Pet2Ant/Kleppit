@@ -72,8 +72,8 @@ Post content text: text-gray-500
 
     <!-- Nav Bar -->
     <?php
-        $navbar = new Navbar();
-        $navbar->genereElement();
+    $navbar = new Navbar();
+    $navbar->genereElement();
     ?>
 
     <!-- Main content -->
@@ -122,7 +122,7 @@ Post content text: text-gray-500
                                         echo $postInfo["post_content"];
                                     } else {
                                         echo '<img src="../uploads/' . $postInfo["post_content"] . '" alt="no pic found" width="400" height="240">';
-                                    }?>
+                                    } ?>
 
                                 </p>
 
@@ -132,38 +132,38 @@ Post content text: text-gray-500
                                         <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                             <path d="M10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"></path>
                                         </svg>
-                                        <span class="ml-2 text-xs font-semibold text-gray-500"><?php echo count($comCount->getCommentsCountFromPost($postId))?> Comments</span>
+                                        <span class="ml-2 text-xs font-semibold text-gray-500"><?php echo count($comCount->getCommentsCountFromPost($postId)) ?> Comments</span>
                                     </div>
                                 </div>
                                 <hr class="border-b-1 border-zinc-700 mx-auto">
                             </div>
 
                         </div>
-                         <?php if ($_SESSION) { ?>
-                        <div class="relative w-11/12 mx-auto py-10 min-w-[200px] border-b-1 border-zinc-700 border-dashed ">
-                            <div class="pb-1">
-                                <label for="textArea" class="text-sm text-gray-500 ">
-                                    Comment as <a class="no-underline hover:underline" href="./Profile.php">ku/<?php
+                        <?php if ($_SESSION) { ?>
+                            <div class="relative w-11/12 mx-auto py-10 min-w-[200px] border-b-1 border-zinc-700 border-dashed ">
+                                <div class="pb-1">
+                                    <label for="textArea" class="text-sm text-gray-500 ">
+                                        Comment as <a class="no-underline hover:underline" href="./Profile.php">ku/<?php
 
-                                    echo $_SESSION["username"];
+                                                                                                                    echo $_SESSION["username"];
 
-                                    ?></label></a>
-                            </div>
-                            <form action="../comment.php" method="post">
-                                <input type="text" name="post_id" value="<?php echo $postId ?>" hidden>
-                                <textarea id="textArea" name="comment" placeholder="Share your thoughts" type="text" class="resize-y text-sm block  px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-600 focus:outline-none"></textarea>
-                                <div class="flex justify-end">
-                                    <button type="submit" name="submit" class="mt-3 w-32 bg-red-600 text-white active:bg-red-600 text-sm font-semibold uppercase px-2 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition duration-150 ease-in-out hover:bg-red-700">
-                                        Comment
-                                    </button>
+                                                                                                                    ?></label></a>
                                 </div>
-                            </form>
-                        </div>
+                                <form action="../comment.php" method="post">
+                                    <input type="text" name="post_id" value="<?php echo $postId ?>" hidden>
+                                    <textarea id="textArea" name="comment" placeholder="Share your thoughts" type="text" class="resize-y text-sm block  px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-600 focus:outline-none"></textarea>
+                                    <div class="flex justify-end">
+                                        <button type="submit" name="submit" class="mt-3 w-32 bg-red-600 text-white active:bg-red-600 text-sm font-semibold uppercase px-2 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition duration-150 ease-in-out hover:bg-red-700">
+                                            Comment
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         <?php } else {
-                             echo '<button  onclick="javascipt:window.location.href=\'./loginform.php\'"   class="button rounded-lg  font-bold text-black bg-red-500   px-4 py-2 my-2 ml-6 transition duration-500 ease-in-out  hover:bg-red-600" role="menuitem">Log in to comment</button>';
-                         } ?>
-                                
-                        
+                            echo '<button  onclick="javascipt:window.location.href=\'./loginform.php\'"   class="button rounded-lg  font-bold text-black bg-red-500   px-4 py-2 my-2 ml-6 transition duration-500 ease-in-out  hover:bg-red-600" role="menuitem">Log in to comment</button>';
+                        } ?>
+
+
 
                         <hr class="border-t-1 border-zinc-700">
                     </div>
@@ -178,10 +178,10 @@ Post content text: text-gray-500
                             <?php
                             $comments = new PostInfoView();
 
-                            if($_SESSION){
-                              $comments->fetchComment($postId,$_SESSION['id']);
-                            }else{
-                              $comments->fetchComment($postId,-1);
+                            if ($_SESSION) {
+                                $comments->fetchComment($postId, $_SESSION['id']);
+                            } else {
+                                $comments->fetchComment($postId, -1);
                             }
                             ?>
 
@@ -242,23 +242,16 @@ Post content text: text-gray-500
                     <!-- Kleppit Information Sidebar -->
                     <div class="rounded border border-gray-500 my-10 mb-4">
                         <div class="p-3">
-                            <div class="flex justify-between">
-                                <div>
-                                    <a href="./About.php" class="block no-underline text-xs font-semibold text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">About</a>
-                                </div>
+                            <div class="flex justify-center">
                                 <div>
                                     <a href="./ContactUs.php" class="block no-underline text-xs font-semibold text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Contact Us</a>
-                                </div>
-                                <div>
-                                    <a href="./nonprofit.php" class="block no-underline text-xs font-semibold text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Non-Profit
-                                    </a>
                                 </div>
                             </div>
                             <div class="text-center mt-6">
                                 <p class="text-xs leading-tight text-gray-400 font-medium">
                                     <a href="./userAgreement.php" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">User Agreement</a>
                                     |
-                                    <a href="./privacyPolicy.php" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Privacy Policy</a>
+                                    <a href="./PrivacyPolicy.php" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Privacy Policy</a>
                                 </p>
                                 <p class="text-xs leading-tight font-medium text-red-500 my-1">
                                     © 2023 Kleppit, Inc. All rights reserved

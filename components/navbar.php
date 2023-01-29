@@ -51,7 +51,7 @@ class Navbar {
                     <div class="py-1">
                         <a href="..\login\logout.php" tabindex="4" class="text-gray-400 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left transition duration-500 ease-in-out hover:text-gray-500" role="menuitem">Sign out</a>
                     </div>
-                    <div>
+                <div>
             ';
     
         } else {
