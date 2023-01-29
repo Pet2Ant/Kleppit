@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
      {
         $imageFileType = $_FILES['userfile']['type'];
         $imagefilesize = $_FILES['userfile']['size'];
-        $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
+        $uploadfile = $uploaddir . basename($_FILES['userfile']['name'].".".$post_title);
         if (($imageFileType == "image/jpg" || $imageFileType == "image/png" || $imageFileType == "image/jpeg" 
         || $imageFileType =="image/gif") && ($imagefilesize < 5000000))
          {
@@ -40,7 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     {   
         $imageFileType = $_FILES['userfile']['type'];
         $imagefilesize = $_FILES['userfile']['size'];
-        $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
+        $uploadfile = $uploaddir . basename($_FILES['userfile']['name'].".".$post_title);
         if (
             ($imageFileType == "image/jpg" || $imageFileType == "image/png" || $imageFileType == "image/jpeg"
                 || $imageFileType == "image/gif") && ($imagefilesize < 5000000)) {
