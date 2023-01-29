@@ -47,7 +47,7 @@ Post content text: text-gray-500
   ?>
 
   <!-- Main content -->
-  <div id="main" class=" py-12 mt-12 relative h-screen">
+  <div id="main" class=" py-12 mt-12 relative h-max">
 
     <?php if ($_SESSION) {
 
@@ -55,7 +55,7 @@ Post content text: text-gray-500
     ?>
         <div id="survey-popup" class="hidden backdrop-blur-sm rounded-lg mx-auto inset-0 z-50 absolute overflow-visible lg:overflow-hidden">
           <div class="relative p-4 w-full max-w-lg h-full">
-            <div class="border border-gray-500  px-10 py-10 bg-zinc-800 shadow-md rounded-3xl sm:p-10">
+            <div class="border border-gray-500 px-10 py-10 bg-zinc-800 shadow-md rounded-3xl sm:p-10">
               <!-- close button -->
 
               <button onclick="closeSurvey()" class=" hover:text-red-500 transition duration-300 ease-in-out">
@@ -65,15 +65,12 @@ Post content text: text-gray-500
               </button>
               <div class="mx-auto">
                 <!-- Headline -->
-
                 <div class="flex flex-col font-sans space-y-6 sm:leading-7 text-center antialiased">
                   <h1 id="title" class="text-3xl font-semibold text-red-500">Kleppit User Survey</h1>
                   <h4 class="text-md font-medium text-red-500">Please invest a few moments of your time in answering this survey. Thank you!</h4>
                 </div>
-
                 <!-- Form -->
                 <!-- Make sure user takes survey once  -->
-
                 <form id="survey-form" action="../survey.php" method="post">
                   <div class="grid grid-cols-6 gap-6 pt-8">
                     <div class="col-span-6 sm:col-span-3">
@@ -95,11 +92,8 @@ Post content text: text-gray-500
                         Last name
                       </label>
                       <div class="mt-1 flex rounded-md">
-
-
                         <input placeholder="Your last name" name="lname" type="text" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-sm text-red-500 bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:border-zinc-600 focus:outline-none"></input>
                       </div>
-
                     </div>
 
                     <div class="col-span-6 sm:col-span-3">
@@ -320,9 +314,8 @@ Post content text: text-gray-500
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                   </svg>
-
                 </button>
-                <ul id="dropdown" class="space-y-3 hidden absolute w-32 text-left top-0 mt-12">
+                <ul id="dropdownID" class="space-y-3 hidden absolute w-32 text-center top-0 mt-12">
                   <li>
                     <button onclick="javascript:window.location.href='index.php?sort=karma'" class="px-4 py-2 mt-2 font-medium text-white border border-red-500 bg-red-500 rounded-md hover:bg-red-600 hover:text-black transition duration-500 ease-in-out">
                       Top
@@ -346,6 +339,7 @@ Post content text: text-gray-500
                 </ul>
               </div>
             </div>
+
           </div>
           <?php
 
@@ -353,7 +347,7 @@ Post content text: text-gray-500
           if ($_SESSION) {
             $userId = $_SESSION["id"];
           }
-          
+
           if ($sortTo == "Hottest") {
 
             $postInfo->getAllPosts($sortTo, $userId);
