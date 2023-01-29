@@ -13,7 +13,6 @@ For Apache (on XAMPP) you will need to enable the `file_uploads` directive in th
 ### Instructions: 
 - Copy `databasecon/dbcon.php.example` to `databasecon/dbcon.php` and edit the file to match your database credentials.
 - On your database, run the SQL script `databasecon/setup.sql` to create the database and tables. Alternatively, you can use the `databasecon/setup_with_test_data.sql` script to create the database and tables with test data.
-- Create the folder `avatars/` and folder `uploads/`. These will be used to store user avatars and uploaded images.
 
 # Using Kleppit
 
