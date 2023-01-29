@@ -278,13 +278,13 @@ Post content text: text-gray-500
                     <!-- Pagination -->
                     <div class="mt-3 flex justify-between">
                         <span class="text-md text-gray-500">Display results: <?php
-                                                                                // show which results are being displayed
-                                                                                if ($numResults > 0) {
-                                                                                    $startResult = ($pageQuery - 1) * $resultsPerPage + 1;
-                                                                                    $endResult = $startResult + $numResults - 1;
-                                                                                    echo $startResult . ' - ' . $endResult . ' of ' . $numAllResults;
-                                                                                }
-                                                                                ?>
+                        // show which results are being displayed
+                            if ($numResults > 0) {
+                                $startResult = ($pageQuery - 1) * $resultsPerPage + 1;
+                                $endResult = $startResult + $numResults - 1;
+                                echo $startResult . ' - ' . $endResult . ' of ' . $numAllResults;
+                            }
+                            ?> 
                         </span>
 
                         <?php
