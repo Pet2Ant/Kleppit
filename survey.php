@@ -24,31 +24,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
     if ($overallFeel1) 
     {
-        $str = $str +  "1";
+        $str = $str . "1";
     } else 
     {
-        $str = $str + "0";
+        $str = $str . "0";
     }
     if ($overallFeel2) 
     {
-        $str = $str +  "1";
+        $str = $str .  "1";
     } else 
     {
-        $str = $str + "0";
+        $str = $str . "0";
     }
     if ($overallFeel3) 
     {
-        $str = $str +  "1";
+        $str = $str .  "1";
     } else 
     {
-        $str = $str + "0";
+        $str = $str . "0";
     }
     if ($overallFeel4) 
     {
-        $str = $str +  "1";
+        $str = $str .  "1";
     } else 
     {
-        $str = $str + "0";
+        $str = $str . "0";
     }
     
 
