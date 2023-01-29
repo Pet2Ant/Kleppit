@@ -255,7 +255,13 @@ Post content text: text-gray-500
 
                                     </p>
                                     <!-- Comments -->
-                                    <div class="inline-flex items-center my-1">                         
+                                    <div class="inline-flex items-center my-1">
+                                        <div class="flex transition duration-500 hover:bg-gray-700 p-1 rounded-lg">
+                                            <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                <path d="M10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"></path>
+                                            </svg>
+                                            <span class="ml-2 text-xs font-semibold text-gray-500">Comments</span>
+                                        </div>                    
                                     </div>
                                 </div>
                             </div>
@@ -266,25 +272,31 @@ Post content text: text-gray-500
             ?>
 
             <!-- Pagination -->
-            <div class="mt-3">
-                <span class="text-md text-gray-500">Display results <?php 
+            <div class="mt-3 flex justify-between">
+                <span class="text-md text-gray-500">Display results: <?php
                 // show which results are being displayed
                 if ($numResults > 0) {
                     $startResult = ($pageQuery - 1) * $resultsPerPage + 1;
                     $endResult = $startResult + $numResults - 1;
                     echo $startResult . ' - ' . $endResult . ' of ' . $numAllResults;
                 } 
-                ?><span class="ml-0.5 text-lg text-red-500 "></span>| Go to </span>
+                ?>
+                </span>
 
                     <?php 
-
+                    echo '<div class="space-x-4">
+                    <span class="ml-0.5 text-lg font-semibold text-gray-500 ">Go to:</span>';
+                                       
                         for ($i = 1; $i <= $numPages; $i++) {
 
                             if ($i == $pageQuery) {
                                 echo '
+                                
+                                
                                     <button onclick="javascript:window.location.href=\'./search.php?query=' . $_GET['query'] . '&page=' . $i . '&sort=' . $sortingColumn . '&order=' . $sortingOrder . '\'" class="px-4 py-2 font-medium text-white bg-red-500 border border-red-500 rounded-md hover:bg-white-500 hover:text-black transition duration-500 ease-in-out">
                                         ' . $i . '
                                     </button>
+                                    
                                 ';
                                 continue;
                             } 
@@ -294,7 +306,9 @@ Post content text: text-gray-500
                                     ' . $i . '
                                 </button>
                             ';
+                        
                         }
+                        echo '</div>';
 
                     ?>
                 </div>

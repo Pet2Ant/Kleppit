@@ -28,7 +28,7 @@ $survey =  new PostInfo();
 </head>
 <!-- COLORS: 
 Background: bg-zinc-900
-Red text: text-red-500 hover:text-red-600
+Red text: text-red-500 hover:text-[#ff4957]
 Post content title: text-gray-400
 Post content text: text-gray-500
 -->
@@ -48,13 +48,14 @@ Post content text: text-gray-500
       
   <!-- Main content -->
   <div id="main" class=" py-12 mt-12 relative h-screen">
+
   <?php if($_SESSION)
               {
     
                 if($survey->hasTakenSurvey($_SESSION["id"] ))
                  {
                 ?>
-    <div id="survey-popup" class="hidden overflow-auto backdrop-blur-sm rounded-lg mx-auto inset-0 z-50 absolute ">
+        <div id="survey-popup" class="hidden backdrop-blur-sm rounded-lg mx-auto inset-0 z-50 absolute overflow-hidden">
       <div class="relative p-4 w-full max-w-lg h-full">
         <div class="border border-gray-500  px-10 py-10 bg-zinc-800 shadow-md rounded-3xl sm:p-10">
           <!-- close button -->
@@ -83,7 +84,9 @@ Post content text: text-gray-500
                     First name
                   </label>
                   <div class="mt-1 flex rounded-md">
-                    <input placeholder="Name" name="fname" type="text" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-gray-500 focus:outline-none"></input>
+
+
+                    <input placeholder="Name" name="fname" type="text" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-500 focus:outline-none"></input>
                   </div>
 
                 </div>
@@ -94,7 +97,9 @@ Post content text: text-gray-500
                     Last name
                   </label>
                   <div class="mt-1 flex rounded-md">
-                    <input placeholder="Your last name" name="lname" type="text" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-sm text-gray-500 bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:border-zinc-600 text-red-600 focus:outline-none"></input>
+
+
+                    <input placeholder="Your last name" name="lname" type="text" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-sm text-red-500 bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:border-zinc-600 focus:outline-none"></input>
                   </div>
 
                 </div>
@@ -106,9 +111,8 @@ Post content text: text-gray-500
                   </label>
                   <div class="mt-1 rounded-md">
                     <div class="relative">
-                      <select id="dropdown" type="text" name="job" class="form-select block w-full h-10 px-4 mb-2 text-sm rounded-lg bg-zinc-800 text-gray-500
-                        border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:border-zinc-600
-                        focus:outline-none" placeholder="Employment">
+
+                      <select id="dropdown" type="text" name="job" class="form-select block w-full h-10 px-4 mb-2 text-sm rounded-lg bg-zinc-800 text-red-500 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:border-zinc-600 focus:outline-none" placeholder="Employment">
                         <option>Employment Status</option>
                         <option>Student</option>
                         <option>Full-time job</option>
@@ -127,7 +131,8 @@ Post content text: text-gray-500
                     Age
                   </label>
                   <div class="mt-1 flex rounded-md">
-                    <input id="number" name="age" type="number" min="1" max="99" name="name" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-gray-500 focus:outline-none" placeholder="Your age">
+
+                    <input id="number" name="age" type="number" min="1" max="99" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-500 focus:outline-none" placeholder="Your age">
                   </div>
 
                 </div>
@@ -137,7 +142,8 @@ Post content text: text-gray-500
                     Email address
                   </label>
                   <div class="mt-1 flex rounded-md">
-                    <input id="email" type="email" name="email" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-gray-500 focus:outline-none" placeholder="Your email address" required="">
+
+                    <input id="email" type="email" name="email" class="text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-500 focus:outline-none" placeholder="Your email address" required="">
                   </div>
                 </div>
 
@@ -149,7 +155,7 @@ Post content text: text-gray-500
 
                       <div class="flex items-start">
                         <div class="flex items-center h-5">
-                          <input id="comments" name="user_answer" type="radio" value="definitely" class="form-radio h-4 w-4 border-gray-300 rounded">
+                          <input id="comments" name="user_answer" type="radio" value="definitely" class="h-4 w-4 accent-red-500 focus:accent-red-600 rounded">
                         </div>
                         <div class="ml-3 text-sm">
                           <label for="comments" class="font-medium ">Definitely</label>
@@ -158,7 +164,7 @@ Post content text: text-gray-500
 
                       <div class="flex items-start">
                         <div class="flex items-center h-5">
-                          <input id="comments" name="user_answer" type="radio" value="maybe" class="form-radio h-4 w-4 border-gray-300 rounded">
+                          <input id="comments" name="user_answer" type="radio" value="maybe" class="h-4 w-4 accent-red-500 focus:accent-red-600 rounded">
                         </div>
                         <div class="ml-3 text-sm">
                           <label for="comments" class="font-medium ">Maybe</label>
@@ -167,7 +173,7 @@ Post content text: text-gray-500
 
                       <div class="flex items-start">
                         <div class="flex items-center h-5">
-                          <input id="comments" name="user_answer" type="radio" value="not_sure" class="form-radio h-4 w-4 border-gray-300 rounded">
+                          <input id="comments" name="user_answer" type="radio" value="not_sure" class="h-4 w-4 accent-red-500 focus:accent-red-600 rounded">
                         </div>
                         <div class="ml-3 text-sm">
                           <label for="comments" class="font-medium ">Not sure</label>
@@ -186,7 +192,7 @@ Post content text: text-gray-500
 
                       <div class="flex items-start">
                         <div class="flex items-center h-5">
-                          <input id="comments" name="comments" type="checkbox" value="FE" class="h-4 w-4 border-gray-300 rounded">
+                          <input id="comments" name="comments" type="checkbox" value="FE" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
                         </div>
                         <div class="ml-3 text-sm">
                           <label for="comments" class="font-medium ">Overall feel</label>
@@ -196,7 +202,7 @@ Post content text: text-gray-500
 
                       <div class="flex items-start">
                         <div class="flex items-center h-5">
-                          <input id="comments" name="comments" type="checkbox" value="FE" class="h-4 w-4 border-gray-300 rounded">
+                          <input id="comments" name="comments" type="checkbox" value="FE" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
                         </div>
                         <div class="ml-3 text-sm">
                           <label for="comments" class="font-medium ">Front-end</label>
@@ -206,7 +212,7 @@ Post content text: text-gray-500
 
                       <div class="flex items-start">
                         <div class="flex items-center h-5">
-                          <input id="comments" name="comments" type="checkbox" value="BE" class="h-4 w-4 border-gray-300 rounded">
+                          <input id="comments" name="comments" type="checkbox" value="BE" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
                         </div>
                         <div class="ml-3 text-sm">
                           <label for="comments" class="font-medium ">Back-end</label>
@@ -216,7 +222,7 @@ Post content text: text-gray-500
 
                       <div class="flex items-start">
                         <div class="flex items-center h-5">
-                          <input id="comments" name="comments" type="checkbox" value="FS" class="h-4 w-4 border-gray-300 rounded">
+                          <input id="comments" name="comments" type="checkbox" value="FS" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
                         </div>
                         <div class="ml-3 text-sm">
                           <label for="comments" class="font-medium ">Full-stack</label>
@@ -232,7 +238,8 @@ Post content text: text-gray-500
                     Any other feedback?
                   </label>
                   <div class="mt-1 flex rounded-md">
-                    <textarea id="textArea" name="feedback" placeholder="Share your thoughts" type="text" class="resize-y text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-gray-500 focus:outline-none"></textarea>
+
+                    <textarea id="textArea" name="feedback" placeholder="Share your thoughts" type="text" class=class="resize-y text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-500 focus:outline-none"></textarea>
                   </div>
                 </div>
 
@@ -252,11 +259,11 @@ Post content text: text-gray-500
             
             } ?>
     <div id="container" class=" container mx-auto">
-      <div class="flex w-960 mx-auto h-screen">
+      <div class="flex w-960 mx-auto">
         <!-- Posts -->
         <div class="w-11/12 ml-5">
           <!-- Create Post button when md screen -->
-        <div class="-mt-5">
+          <div class="-mt-5">
             <button onclick="location.href = './createPost.php';" class="md:inline-block lg:hidden w-full text-md font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1">
               Create Post
             </button>
@@ -265,7 +272,7 @@ Post content text: text-gray-500
 
           <div class="flex justify-between">
 
-        
+
             <?php
             $sortquery = $_SERVER["QUERY_STRING"];
             parse_str($sortquery, $sortquery);
@@ -287,11 +294,13 @@ Post content text: text-gray-500
             <div class="mt-3">
               <span class="text-xl lg:inline-block hidden font-semibold text-gray-500 p-2">All posts</span>
               <span class="text-md md:inline-block hidden text-gray-500 tracking-tight">Sorted by:</span>
+
               <span class="ml-0.5 text-lg text-red-500 "><?php echo $sortTo?></span>
+
             </div>
             <div class="mt-3">
-              <span class="text-md text-gray-500">Sort by:</span>
-              <button  onclick="javascript:window.location.href='index.php?sort=karma'" class="px-4 py-2 font-medium text-red-500 border border-red-500 rounded-l-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
+              <span class="md:inline-block hidden text-md text-gray-500">Sort by:</span>
+              <button onclick="javascript:window.location.href='index.php?sort=karma'" class="px-4 py-2 font-medium text-red-500 border border-red-500 rounded-l-md hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
                 Top
               </button>
               <button onclick="javascript:window.location.href='index.php?sort=controversial'"  class="px-4 py-2 font-medium text-red-500 border border-red-500 hover:bg-red-500 hover:text-black transition duration-500 ease-in-out">
@@ -403,9 +412,9 @@ Post content text: text-gray-500
               </div>
               <div class="text-center mt-6">
                 <p class="text-xs leading-tight text-gray-400 font-medium">
-                  <a href="./userAgreement.php" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">User Agreement</a>
+                  <a href="./userAgreement.html" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">User Agreement</a>
                   |
-                  <a href="./privacyPolicy.php" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Privacy Policy</a>
+                  <a href="./PrivacyPolicy.html" class="no-underline text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Privacy Policy</a>
                 </p>
                 <p class="text-xs leading-tight font-medium text-red-500 my-1">
                   © 2023 Kleppit, Inc. All rights reserved
@@ -415,6 +424,17 @@ Post content text: text-gray-500
           </div>
         </div>
       </div>
+    </div>
+    <!-- Scroll to the top button -->
+    <div class="fixed bottom-0 right-0 mb-10 mr-10">
+        <div class="flex flex-col gap-2">
+            <button onclick="topFunction()" class="w-full w-12 h-12 bg-red-500 rounded-full hover:bg-red-600 transition ease-in duration-300 flex justify-center ">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 place-self-center">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
+                </svg>
+
+            </button>
+        </div>
     </div>
   </div>
 </body>
