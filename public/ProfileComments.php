@@ -102,7 +102,7 @@ Post content text: text-gray-500
                                     <div class="p-3 bg-[url('../assets/kleppit-high-resolution-logo-white-on-black-background-cropped.png')] bg-contain object-cover h-16"></div>
                                     <div class="flex justify-center avatar">
                                         <div class="w-48 ">
-                                            <img class="border-2 my-5 border-red-500 rounded-full" src="https://placeimg.com/192/192/people" />
+                                        <?php echo '<img class="border-2 my-5 border-red-500 rounded-full" alt="no pic" src="../avatars/'.$profileInfo->fetchAvatar($user_id)[0]['profile_pic'].'">' ?>
                                         </div>
                                     </div>
 
