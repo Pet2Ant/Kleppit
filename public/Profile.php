@@ -39,9 +39,7 @@ else
 // echo $user_id;
 
 
-echo ($postInfo->fetchPostKarma($user_id)[0]["SUM(post_karma)"]);
 
-echo $postInfo->fetchCommentKarma($user_id)[0]["SUM(c_karma)"];
 
 
 ?>
