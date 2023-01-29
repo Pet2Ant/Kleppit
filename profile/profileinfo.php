@@ -26,7 +26,7 @@ class ProfileInfo extends DbCon
     protected function setNewProfileInfo($profileAbout,$profileTitle,$id)
     {
         $stmt = $this -> connect()->prepare('UPDATE  profiles SET profiles_about=? 
-        ,profiles_title= ? WHERE users_id=?;');
+        ,profiles_title=? WHERE users_id=?;');
         if(!$stmt->execute(array($profileAbout,$profileTitle,$id)))
         {
             $stmt = null;
@@ -46,7 +46,8 @@ class ProfileInfo extends DbCon
             header('location: profile.php?error=stmtfailed');
             exit();
         }
-            
+               
+
         $stmt = null;
     }
     protected function getAvatar($id)
@@ -67,7 +68,7 @@ class ProfileInfo extends DbCon
     protected function setProfileInfo($profileAbout,$profileTitle,$profileimage,$id)
     {
         $stmt = $this -> connect()->prepare('INSERT INTO  profiles (profiles_about, 
-        profiles_title,profiles_pic,users_id) VALUES (?,?,?) ;');
+        profiles_title,profile_pic,users_id) VALUES (?,?,?) ;');
         if(!$stmt->execute(array($profileAbout,$profileTitle,$profileimage,$id)))
         {
             $stmt = null;

@@ -96,7 +96,7 @@ Post content text: text-gray-500
                                 <!-- Upvote -->
                                 <form action=../karma.php method="post">
                                 <button class="text-xs">
-                                    <input type="text" name="post_upvote" hidden >
+                                <input type="text" name="post_upvote" value="<?php echo $postInfo['post_id'] ?> " hidden>
                                     <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                         <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"></path>
                                     </svg>
@@ -105,7 +105,7 @@ Post content text: text-gray-500
                                 <span class="text-xs font-semibold my-1 text-gray-500"><?php echo $postInfo["post_karma"]; ?></span>
                                 <!-- Downvote -->
                                 <button class="text-xs">
-                                    <input type="text" name="post_downvote" hidden >
+                                    <input type="text" name="post_downvote" value="<?php echo $postInfo['post_id'] ?> " hidden>
                                     <svg class="w-5 fill-current text-gray-500 transition duration-500 hover:text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                         <path d="M7 10V2h6v8h5l-8 8-8-8h5z"></path>
                                     </svg>
