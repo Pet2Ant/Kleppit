@@ -418,6 +418,187 @@ Post content text: text-gray-500
             </div>
           </div>
 
+          <!-- Kleppit Widget 1 by Dio -->
+          <div class="rounded border border-gray-500 my-10 mb-4">
+            <div class="p-3">
+              <div class="flex justify-center">
+                <div>
+                  <p class="block no-underline text-xs font-semibold text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">BitCoin Price</p>
+                </div>
+              </div>
+              <div class="text-center mt-6">
+                <h3 id="widget2_btc" class="text-xs leading-tight text-red-400 font-medium">Currently a BitCoin is: Loading..</h3>
+                <p class="text-xs leading-tight font-medium text-red-500 my-1">
+                  Information fetched from Coindesk
+                </p>
+              </div>
+            </div>
+          </div>
+          <script>
+            fetch("https://api.coindesk.com/v1/bpi/currentprice.json")
+              .then((response) => response.json())
+              .then((data) => {
+                document.getElementById("widget2_btc").innerHTML = "Currently a BitCoin is: " + data.bpi.USD.rate + "$";
+              });
+          </script>
+
+          <!-- Kleppit Widget 2 by Antonis -->
+          <div class="rounded border border-gray-500 my-10 mb-4">
+            <div class="p-3">
+              <div class="flex justify-center">
+                <div>
+                  <p class="block no-underline text-xs font-semibold text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Time in other regions</p>
+                </div>
+              </div>
+              <div class="text-center mt-6">
+                <h3 id="widget3_local" class="text-xs leading-tight text-red-400 font-medium">Local time: </h3>
+                <h3 id="widget3_london" class="text-xs leading-tight text-red-400 font-medium">London: </h3>
+                <h3 id="widget3_ny" class="text-xs leading-tight text-red-400 font-medium">New York: </h3>
+                <h3 id="widget3_tokyo" class="text-xs leading-tight text-red-400 font-medium">Tokyo: </h3>
+                <p class="text-xs leading-tight font-medium text-red-500 my-1">
+                  Information fetched from Coindesk
+                </p>
+              </div>
+            </div>
+          </div>
+          <script>
+            //Wait for the page to load
+            window.addEventListener("load", (event) => {
+
+              //Get the local time, minutes and seconds and update every second
+              let localTime = new Date();
+              let localMinutes = localTime.getMinutes();
+              let localSeconds = localTime.getSeconds();
+              setInterval(function () {
+                localSeconds++;
+                if (localSeconds == 60) {
+                  localSeconds = 0;
+                  localMinutes++;
+                }
+                if (localMinutes == 60) {
+                  localMinutes = 0;
+                }
+                document.getElementById("widget3_local").innerHTML = "Local time: " + localTime.getHours() + " " + localMinutes + " " + localSeconds;
+              }, 1000);
+
+              //Get the time in New York
+              let nyTime = new Date();
+              //Convert the time to New York time
+              nyTime.setHours(nyTime.getHours() - 5);
+              let nyMinutes = nyTime.getMinutes();
+              let nySeconds = nyTime.getSeconds();              
+
+              setInterval(function () {
+                nySeconds++;
+                if (nySeconds == 60) {
+                  nySeconds = 0;
+                  nyMinutes++;
+                }
+                if (nyMinutes == 60) {
+                  nyMinutes = 0;
+                }
+                document.getElementById("widget3_ny").innerHTML = "New York time: " + nyTime.getHours() + " " + nyMinutes + " " + nySeconds;
+              }, 1000);
+
+              //Get the time in London
+              let londonTime = new Date();
+              //Convert the time to London time
+              londonTime.setHours(londonTime.getHours() - 1);
+              let londonMinutes = londonTime.getMinutes();
+              let londonSeconds = londonTime.getSeconds();
+              setInterval(function () {
+                londonSeconds++;
+                if (londonSeconds == 60) {
+                  londonSeconds = 0;
+                  londonMinutes++;
+                }
+                if (londonMinutes == 60) {
+                  londonMinutes = 0;
+                }
+                document.getElementById("widget3_london").innerHTML = "London time: " + londonTime.getHours() + " " + londonMinutes + " " + londonSeconds;
+              }, 1000);
+
+              //Get the time in Tokyo
+              let tokyoTime = new Date();
+              //Convert the time to Tokyo time
+              tokyoTime.setHours(tokyoTime.getHours() + 9);
+              let tokyoMinutes = tokyoTime.getMinutes();
+              let tokyoSeconds = tokyoTime.getSeconds();
+              setInterval(function () {
+                tokyoSeconds++;
+                if (tokyoSeconds == 60) {
+                  tokyoSeconds = 0;
+                  tokyoMinutes++;
+                }
+                if (tokyoMinutes == 60) {
+                  tokyoMinutes = 0;
+                }
+                document.getElementById("widget3_tokyo").innerHTML = "Tokyo time: " + tokyoTime.getHours() + " " + tokyoMinutes + " " + tokyoSeconds;
+              }, 1000);
+
+            });            
+          </script>
+
+          <!-- Kleppit Widget 3 by Chris -->
+          <div class="rounded border border-gray-500 my-10 mb-4">
+            <div class="p-3">
+              <div class="flex justify-center">
+                <div>
+                  <p class="block no-underline text-xs font-semibold text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Weather Widget</p>
+                </div>
+              </div>
+              <div class="text-center mt-6">
+                <h3 class="text-xs leading-tight text-red-400 font-medium">Weather in Athens</h3>
+                <h3 id="widget1_tempature" class="text-xs leading-tight text-red-400 font-medium">Temperature: Loading..</h3>
+                <h3 id="widget1_winds" class="text-xs leading-tight text-red-400 font-medium">Winds: Loading..</h3>
+                <p class="text-xs leading-tight font-medium text-red-500 my-1">
+                  Information fetched from OpenWeatherMap
+                </p>
+              </div>
+            </div>
+          </div>
+          <script>
+            const temp = document.getElementById("widget1_tempature"); 
+            const wind = document.getElementById("widget1_winds");
+            //Fetch from openmeteo
+            const url = "https://api.open-meteo.com/v1/forecast?latitude=37.98&longitude=23.73&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m"
+            fetch(url)
+              .then((response) => response.json())
+              .then((data) => {
+                temp.innerHTML = "Temperature: " + data.current_weather.temperature + "°C";
+                wind.innerHTML = "Winds: " + data.current_weather.windspeed + "m/s";
+              });
+          </script>
+
+          <!-- Kleppit Widget 4 by Nikos -->
+          <div class="rounded border border-gray-500 my-10 mb-4">
+            <div class="p-3">
+              <div class="flex justify-center">
+                <div>
+                  <p class="block no-underline text-xs font-semibold text-gray-400 transition duration-500 ease-in-out hover:text-gray-500">Nasa Astronauts in Space </p>
+                </div>
+              </div>
+              <div class="text-center mt-6">
+                <h3 id="widget2_astronauts" class="text-xs leading-tight text-red-400 font-medium">Astronauts: Loading..</h3>
+                <p class="text-xs leading-tight font-medium text-red-500 my-1">
+                  Information fetched from Nasa
+                </p>
+              </div>
+            </div>
+          </div>
+          <script>
+            const astronauts = document.getElementById("widget2_astronauts");
+            const nasaURL = "../api/astros.php";
+            fetch(nasaURL)
+              .then((response) => response.json())
+              .then((data) => {
+                astronauts.innerHTML = "Astronauts: " + data.number;
+                for (let i = 0; i < data.number; i++) {
+                  astronauts.innerHTML += "<br>" + data.people[i].name;
+                }
+            });
+          </script>
+
           <!-- Kleppit Information Sidebar -->
           <div class="rounded border border-gray-500 my-10 mb-4">
             <div class="p-3">
@@ -438,6 +619,7 @@ Post content text: text-gray-500
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
