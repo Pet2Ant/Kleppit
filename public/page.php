@@ -17,14 +17,6 @@ if (!$postId) {
     exit();
 }
 $postId = $postId["p"];
-
-
-
-
-
-
-
-
 $post = new PageInfo();
 $postInfo =  $post->getPostInfo($postId);
 $comCount = new PostInfo();
