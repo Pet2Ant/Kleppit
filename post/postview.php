@@ -45,6 +45,15 @@ class PostInfoView extends PostInfo
         $postInfo = $this->getUserPosts($id);
         echo $postInfo[0]["post_content"];
     }
+    public function fetchPostKarma($id)
+    {
+        return $this->getUserPostKarma($id);
+        
+    }
+    public function fetchCommentKarma($id)
+    {
+        return $this->getUserCommentKarma($id);
+    }
 
     public function createPostFe($id)
     {
