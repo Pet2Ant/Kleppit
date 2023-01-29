@@ -31,6 +31,14 @@ class ProfileInfoView extends ProfileInfo
     {
         return $this->getUserCommentKarma($id);
     }
+    public function fetchAvatar($id)
+    {
+        return $this->getAvatar($id);
+    }
+    public function updateAvatar($id,$newPfp)
+    {
+        $this->updatesAvatar($id,$newPfp);
+    }
 
     
 

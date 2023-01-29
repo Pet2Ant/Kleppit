@@ -14,17 +14,17 @@ class ProfileInfoController extends ProfileInfo
     {
         $profileAbout =" Tell users something about yourself";
         $profileTitle = "Hello, I am ".$this->username;
-       
-        $this->setProfileInfo($profileAbout, $profileTitle, $this->id);
+        $profileimage = "";
+        $this->setProfileInfo($profileAbout, $profileTitle,$profileimage, $this->id);
         
     }   
 
-    public function updateProfileInfo($about,$intro,)
+    public function updateProfileInfo($about,$intro)
     {
         //error handlers
         if($this->emptyInputsCheck($about,$intro))
         {
-            header('Location:public/profilesettings.php?error=emptyinput');
+            header('Location:public/profile.php');
             exit();
         }
         //update profile info

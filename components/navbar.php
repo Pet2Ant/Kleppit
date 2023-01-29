@@ -7,8 +7,9 @@ class Navbar {
     private function userImage() {
 
         if (isset($_SESSION["id"])) {
-
-            return '<img class="w-8 h-8 mr-2 rounded-full" src="../assets/tacejm6avjx41.jpg" alt="user photo" />';
+            $avatar = new ProfileInfoView();
+                    
+            return '<img class="w-8 h-8 mr-2 rounded-full" src="../avatars/'.$avatar->fetchAvatar($_SESSION["id"])[0]['profile_pic'].'" alt="user photo" />';
 
         } else {
 
