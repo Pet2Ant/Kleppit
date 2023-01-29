@@ -337,9 +337,9 @@ class PostInfoView extends PostInfo
             <div class="w-11/12 pt-2 min-w-full">
             <!-- Comment Information -->
             <div class="flex items-center text-sm mb-2">
-                <img class="w-8 h-8 rounded-full mr-2" src="https://placeimg.com/192/192/people" alt="Avatar of User">
+            <img class="w-8 h-8 rounded-full mr-2" src="../avatars/'.$postComments[$i]['profile_pic'].'" alt="Avatar of User">
                 <span class="text-gray-500">Commented by</span>
-                <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">ku/' . $postComments[$i]["username"] . '•</a>
+                <a href="../public/Profile.php?u='.$postComments[$i]["username"].'" class="text-gray-500 mx-1 no-underline hover:underline">ku/' . $postComments[$i]["username"] . '•</a>
                 <span class="text-gray-500">' . $postComments[$i]["date"] . '</span>
             </div>
             <!-- Comment Text -->
@@ -395,15 +395,16 @@ class PostInfoView extends PostInfo
                     $upvote = $this->upvoteCreator(false);
                 }
             }
+          
             echo '  
                         <div class="flex border border-[#343536] bg-[#272729] rounded p-3 ">
                             <!-- Comment Body -->
                             <div class="w-11/12 pt-2">
                                 <!-- Comment Information -->
                                 <div class="flex items-center text-sm mb-2">
-                                    <img class="w-8 h-8 rounded-full mr-2" src="https://placeimg.com/192/192/people" alt="Avatar of User">
+                                    <img class="w-8 h-8 rounded-full mr-2" src="../avatars/'.$userComments[$i]['profile_pic'].'" alt="Avatar of User">
                                     <span class="text-gray-500">Commented by</span>
-                                    <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">ku/' . $userComments[$i]["username"] . ' •</a>
+                                    <a href="../public/Profile.php?u='.$userComments[$i]["username"].'" class="text-gray-500 mx-1 no-underline hover:underline">ku/' . $userComments[$i]["username"] . ' •</a>
                                     <span class="text-gray-500">' . $userComments[$i]["date"] . '</span>
                                 </div>
                                 <!-- Comment Text -->
