@@ -41,7 +41,7 @@ $profileInfo = new ProfileInfoView();
                 <div class="container mx-auto">
                     <div class="w-full max-w-2xl p-6 mx-auto">
                         <!--Change avatar-->
-                        <form action="../pfp.php" method="post">
+                        <form enctype="multipart/form-data" action="../pfp.php" method="post">
                             <div class="w-full pt-4">
                                 <h2 class="text-2xl font-bold text-red-500">Personal Info</h2>
                                 <hr class="mt-6 border-t border-gray-400 pt-4 w-full">

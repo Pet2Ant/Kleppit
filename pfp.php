@@ -10,11 +10,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $propfp = new ProfileInfoView();
     $id = $_SESSION["id"];
     $imageFileType = $_FILES['userfile']['type'];
+    echo $imageFileType;
     $imagefilesize = $_FILES['userfile']['size'];
+    echo $imagefilesize;
     $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
     if (
-        ($imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "jpeg"
-        || $imageFileType == "gif") && ($imagefilesize < 5000000)
+        ($imageFileType == "image/jpg" || $imageFileType == "image/png" || $imageFileType == "image/jpeg"
+        || $imageFileType == "image/gif") && ($imagefilesize < 5000000) &&( $imagefilesize > 0)
     ) {
         if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
 
@@ -25,8 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     else
     {
-        echo "error";
-        exit();
+        header('location:public/profile.php');
     }
 
     
