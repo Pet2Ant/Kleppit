@@ -23,11 +23,11 @@ class ProfileInfo extends DbCon
         return $profileData;
 
     }
-    protected function setNewProfileInfo($profileAbout,$profileTitle,$profileText,$id)
+    protected function setNewProfileInfo($profileAbout,$profileTitle,$id)
     {
         $stmt = $this -> connect()->prepare('UPDATE  profiles SET profiles_about=? 
-        ,profiles_title= ?,profiles_introduction=? WHERE users_id=?;');
-        if(!$stmt->execute(array($profileAbout,$profileTitle,$profileText,$id)))
+        ,profiles_title= ? WHERE users_id=?;');
+        if(!$stmt->execute(array($profileAbout,$profileTitle,$id)))
         {
             $stmt = null;
             header('location: profile.php?error=stmtfailed');
@@ -37,11 +37,38 @@ class ProfileInfo extends DbCon
 
         $stmt = null;
     }
-    protected function setProfileInfo($profileAbout,$profileTitle,$profileText,$id)
+    protected function updatesAvatar($id,$newPfp)
+    {
+        $stmt = $this->connect()->prepare('UPDATE  profiles SET profile_pic=? WHERE users_id=?;');
+        if(!$stmt->execute(array($newPfp,$id)))
+        {
+            $stmt = null;
+            header('location: profile.php?error=stmtfailed');
+            exit();
+        }
+            
+        $stmt = null;
+    }
+    protected function getAvatar($id)
+    {
+        $stmt = $this -> connect()->prepare('SELECT profile_pic FROM profiles WHERE users_id=?;');
+        if(!$stmt->execute(array($id)))
+        {
+            $stmt = null;
+            header('location: profile.php?error=stmtfailed');
+            exit();
+        }
+            
+        $profileInfo = $stmt->fetchAll();
+        // echo ($profileInfo)[0]['profile_pic'];
+        // exit();
+        return $profileInfo;
+    }
+    protected function setProfileInfo($profileAbout,$profileTitle,$profileimage,$id)
     {
         $stmt = $this -> connect()->prepare('INSERT INTO  profiles (profiles_about, 
-        profiles_title,profiles_introduction,users_id) VALUES (?,?,?,?) ;');
-        if(!$stmt->execute(array($profileAbout,$profileTitle,$profileText,$id)))
+        profiles_title,profiles_pic,users_id) VALUES (?,?,?) ;');
+        if(!$stmt->execute(array($profileAbout,$profileTitle,$profileimage,$id)))
         {
             $stmt = null;
             header('location: profile.php?error=stmtfailed');
@@ -50,7 +77,35 @@ class ProfileInfo extends DbCon
 
         $stmt = null;
     }
-    
+    protected function getUserPostKarma($id)
+    {
+        $sql=('SELECT SUM(post_karma) FROM post where users_id=?;' );
+        $stmt = $this->connect()->prepare($sql);
+       
+        if (!$stmt->execute(array($id))) {
+            $stmt = null;
+            
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+        $result = $stmt->fetchAll();
+        return $result;
+    }   
+    protected function getUserCommentKarma($id)
+    {
+        $sql= ('SELECT SUM(c_karma) FROM post_comments where users_id=?;' );
+        $stmt = $this->connect()->prepare($sql);
+        
+        if (!$stmt->execute(array($id))) {
+            $stmt = null;
+            
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+
+        $result = $stmt->fetchAll();
+        return $result;
+    }
 
 }
 ?>

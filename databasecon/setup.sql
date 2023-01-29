@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               10.4.25-MariaDB - mariadb.org binary distribution
+-- Server version:               10.4.27-MariaDB - mariadb.org binary distribution
 -- Server OS:                    Win64
 -- HeidiSQL Version:             12.3.0.6589
 -- --------------------------------------------------------
@@ -16,7 +16,7 @@
 
 
 -- Dumping database structure for athtech_forum
-CREATE DATABASE IF NOT EXISTS `athtech_forum` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+CREATE DATABASE IF NOT EXISTS `athtech_forum` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `athtech_forum`;
 
 -- Dumping structure for table athtech_forum.ckarma
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `ckarma` (
   `ckarma_id` int(11) NOT NULL AUTO_INCREMENT,
   `votecap` int(11) DEFAULT NULL,
   PRIMARY KEY (`ckarma_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `pkarma` (
   `votecap` int(11) NOT NULL,
   PRIMARY KEY (`pkarma_id`),
   UNIQUE KEY `pkarma_id` (`pkarma_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -51,11 +51,12 @@ CREATE TABLE IF NOT EXISTS `post` (
   `post_upvote` int(11) NOT NULL,
   `post_downvote` int(11) NOT NULL,
   `post_karma` int(11) NOT NULL,
+  `postimage` int(11) NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`post_id`),
   KEY `users_id` (`users_id`),
   CONSTRAINT `post_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+)  ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -70,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `post_comments` (
   `c_downvote` int(11) DEFAULT NULL,
   `c_karma` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -79,23 +80,28 @@ CREATE TABLE IF NOT EXISTS `profiles` (
   `profiles_id` int(11) NOT NULL AUTO_INCREMENT,
   `profiles_about` text NOT NULL,
   `profiles_title` text NOT NULL,
-  `profiles_introduction` text NOT NULL,
+  `profile_pic` text NOT NULL,
   `users_id` int(11) DEFAULT NULL,
-  `joined_at` datetime DEFAULT current_timestamp(),
   PRIMARY KEY (`profiles_id`),
   KEY `users_id` (`users_id`),
   CONSTRAINT `profiles_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
--- Dumping structure for table athtech_forum.userimages
-CREATE TABLE IF NOT EXISTS `userimages` (
+-- Dumping structure for table athtech_forum.survey
+CREATE TABLE IF NOT EXISTS `survey` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `usersid` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `fname` varchar(50) NOT NULL,
+  `lname` varchar(50) NOT NULL,
+  `age` int(3) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `recKlep` varchar(50) NOT NULL,
+  `job` varchar(50) NOT NULL,
+  `comments` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -106,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(100) NOT NULL,
   `users_pwd` varchar(300) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 

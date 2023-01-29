@@ -41,7 +41,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         $imageFileType = $_FILES['userfile']['type'];
         $imagefilesize = $_FILES['userfile']['size'];
         $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
-        $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
         if (
             ($imageFileType = "jpg" || $imageFileType = "png" || $imageFileType = "jpeg"
                 || $imageFileType = "gif") && ($imagefilesize < 5000000)) {

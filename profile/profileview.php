@@ -22,7 +22,24 @@ class ProfileInfoView extends ProfileInfo
         $profileInfo = $this->getProfileInfo($id);
         echo $profileInfo[0]["profiles_introduction"];
     }
-    
+    public function fetchPostKarma($id)
+    {
+        return $this->getUserPostKarma($id);
+        
+    }
+    public function fetchCommentKarma($id)
+    {
+        return $this->getUserCommentKarma($id);
+    }
+    public function fetchAvatar($id)
+    {
+        return $this->getAvatar($id);
+    }
+    public function updateAvatar($id,$newPfp)
+    {
+        $this->updatesAvatar($id,$newPfp);
+    }
+
     
 
 }
