@@ -317,22 +317,22 @@ Post content text: text-gray-500
                 </button>
                 <ul id="dropdownID" class="space-y-3 hidden absolute w-32 text-center top-0 mt-12">
                   <li>
-                    <button onclick="javascript:window.location.href='index.php?sort=karma'" class="px-4 py-2 mt-2 font-medium text-white border border-red-500 bg-red-500 rounded-md hover:bg-red-600 hover:text-black transition duration-500 ease-in-out">
+                    <button onclick="javascript:window.location.href='index.php?sort=Hottest'" class="px-4 py-2 mt-2 font-medium text-white border border-red-500 bg-red-500 rounded-md hover:bg-red-600 hover:text-black transition duration-500 ease-in-out">
                       Top
                     </button>
                   </li>
                   <li>
-                    <button onclick="javascript:window.location.href='index.php?sort=controversial'" class="px-4 py-2 font-medium text-white border border-red-500 bg-red-500 rounded-md hover:bg-red-600 hover:text-black transition duration-500 ease-in-out">
+                    <button onclick="javascript:window.location.href='index.php?sort=Sus'" class="px-4 py-2 font-medium text-white border border-red-500 bg-red-500 rounded-md hover:bg-red-600 hover:text-black transition duration-500 ease-in-out">
                       Sus
                     </button>
                   </li>
                   <li>
-                    <button onclick="javascript:window.location.href='index.php?sort=newest'" class="px-4 py-2 font-medium text-white border border-red-500 bg-red-500 rounded-md hover:bg-red-600 hover:text-black transition duration-500 ease-in-out">
+                    <button onclick="javascript:window.location.href='index.php?sort=Newest'" class="px-4 py-2 font-medium text-white border border-red-500 bg-red-500 rounded-md hover:bg-red-600 hover:text-black transition duration-500 ease-in-out">
                       New
                     </button>
                   </li>
                   <li>
-                    <button onclick="javascript:window.location.href='index.php?sort=oldest'" class="px-4 py-2 font-medium text-white border border-red-500 bg-red-500 rounded-md hover:bg-red-600 hover:text-black transition duration-500 ease-in-out">
+                    <button onclick="javascript:window.location.href='index.php?sort=Oldest'" class="px-4 py-2 font-medium text-white border border-red-500 bg-red-500 rounded-md hover:bg-red-600 hover:text-black transition duration-500 ease-in-out">
                       Old
                     </button>
                   </li>
