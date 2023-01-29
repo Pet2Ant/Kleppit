@@ -42,10 +42,7 @@ Post content text: text-gray-500
     $navbar = new Navbar();
     $navbar->genereElement();
   ?>
-
-
-<!-- END HEADER -->
-            
+      
   <!-- Main content -->
   <div id="main" class=" py-12 mt-12 relative h-screen">
     <div id="survey-popup" class="hidden overflow-auto backdrop-blur-sm rounded-lg mx-auto inset-0 z-50 absolute ">
