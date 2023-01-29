@@ -68,7 +68,7 @@ class ProfileInfo extends DbCon
     protected function setProfileInfo($profileAbout,$profileTitle,$profileimage,$id)
     {
         $stmt = $this -> connect()->prepare('INSERT INTO  profiles (profiles_about, 
-        profiles_title,profile_pic,users_id) VALUES (?,?,?) ;');
+        profiles_title,profile_pic,users_id) VALUES (?,?,?,?) ;');
         if(!$stmt->execute(array($profileAbout,$profileTitle,$profileimage,$id)))
         {
             $stmt = null;

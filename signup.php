@@ -21,6 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     $id = $signup->fetchUserId($username);
     include "profile\profileinfo.php";
     include "profile\profilecontr.php";
+    include "profile\profileview.php";
     $pfp = "defaultavatar.png";
     $profileInfo = new ProfileInfoController($id,$username,$pfp);
     $profileInfo->defaultProfileInfo();

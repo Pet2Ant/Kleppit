@@ -16,7 +16,6 @@ class ProfileInfoController extends ProfileInfo
     {
         $profileAbout =" Tell users something about yourself";
         $profileTitle = "Hello, I am ".$this->username;
-
         $this->setProfileInfo($profileAbout, $profileTitle,$this->pfp, $this->id);
         
     }   
