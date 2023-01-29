@@ -284,13 +284,15 @@ Post content text: text-gray-500
                 </span>
 
                     <?php 
-                    echo '<div class="space-x-4">';
+                    echo '<div class="space-x-4">
+                    <span class="ml-0.5 text-lg font-semibold text-gray-500 ">Go to:</span>';
+                                       
                         for ($i = 1; $i <= $numPages; $i++) {
 
                             if ($i == $pageQuery) {
                                 echo '
                                 
-                                <span class="ml-0.5 text-lg font-semibold text-gray-500 ">Go to:</span>
+                                
                                     <button onclick="javascript:window.location.href=\'./search.php?query=' . $_GET['query'] . '&page=' . $i . '&sort=' . $sortingColumn . '&order=' . $sortingOrder . '\'" class="px-4 py-2 font-medium text-white bg-red-500 border border-red-500 rounded-md hover:bg-white-500 hover:text-black transition duration-500 ease-in-out">
                                         ' . $i . '
                                     </button>

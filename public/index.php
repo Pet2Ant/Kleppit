@@ -45,7 +45,7 @@ Post content text: text-gray-500
       
   <!-- Main content -->
   <div id="main" class=" py-12 mt-12 relative h-screen">
-    <div id="survey-popup" class="hidden overflow-auto backdrop-blur-sm rounded-lg mx-auto inset-0 z-50 absolute ">
+    <div id="survey-popup" class="hidden backdrop-blur-sm rounded-lg mx-auto inset-0 z-50 absolute overflow-hidden">
       <div class="relative p-4 w-full max-w-lg h-full">
         <div class="border border-gray-500  px-10 py-10 bg-zinc-800 shadow-md rounded-3xl sm:p-10">
           <!-- close button -->
