@@ -129,7 +129,7 @@ Post content text: text-gray-500
                                             ?>
                                         </h1>
                                     </div>
-                                    <div class="flex justify-center items-center py-1">
+                                    <div class="flex justify-center items-center py-1 break-all">
                                         <p class="text-sm text-gray-400"><?php $profileInfo->fetchTitle($user_id); ?></p>
                                     </div>
                                     <div class="flex justify-center items-center py-1">
