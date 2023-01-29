@@ -69,7 +69,7 @@ $profileInfo = new ProfileInfoView();
 
                                                             //Check if the file is too big (2MB)
                                                             if (this.files[0].size > 2090000) {
-                                                                alert("File is too big! (Max 2MB)");
+                                                                alert("File is too big! (Max 2MB, current: " + this.files[0].size / 1000000 + "MB)");
                                                                 //Refresh the page
                                                                 window.location.reload();
                                                                 return;
