@@ -1,3 +1,4 @@
+# Ignore the database connection file
 /databasecon/dbcon.php
 
 # Ignore image files .jpg .png .gif .jpeg .tiff from the uploads/ directory
