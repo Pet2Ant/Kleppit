@@ -312,10 +312,7 @@ class PostInfoView extends PostInfo
         $postComments = $this->fetchCommentDb($post_id);
         $commentCount = count($postComments);
         for ($i = 0; $i < $commentCount; $i++) {
-            // if ($postComments[$i]["users_id"] != $id) {
-            //     $i++;
-            //     continue;
-            // }
+            
 
             $votecap = $this->getVotecapC($postComments[$i][0], $id);
 
@@ -351,7 +348,7 @@ class PostInfoView extends PostInfo
             </p>
             <!-- Comment Actions -->
             <div class="w-5 mx-4 flex flex-row text-center pt-2 space-x-4">
-                <form action="../karmaposts.php" method="post">
+                <form action="../pageposts.php" method="post">
                     <div class="flex flex-row space-x-3">
                         <!-- Upvote -->
                         <div class="text-gray-500 transition duration-500 hover:text-red-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
