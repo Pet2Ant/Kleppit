@@ -53,10 +53,7 @@ include '../components/navbar.php';
                       class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-red-600 focus:outline-none">
                   </div>
                   <div class="flex justify-start">
-                <a href="./forgotPassword.html"
-                  class="italic text-sm font-semibold text-red-700 transition duration-300 ease-in-out hover:text-red-700 px-1 py-2">
-                  Forgot Password?
-                </a>
+               
                 
               </div>
               <ul>
