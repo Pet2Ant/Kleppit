@@ -340,7 +340,7 @@ class PostInfoView extends PostInfo
             <div class="w-11/12 pt-2 min-w-full">
             <!-- Comment Information -->
             <div class="flex items-center text-sm mb-2">
-            <img src="../uploads/'.$postComments[$i]["post_content"].'" alt="no pic found"  height="160" width="180">
+            <img src="../avatars/'.$postComments[$i]["profile_pic"].'" alt="no pic found"  height="16" width="16">
                 <span class="text-gray-500">Commented by</span>
                 <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">ku/' . $postComments[$i]["username"] . '•</a>
                 <span class="text-gray-500">' . $postComments[$i]["date"] . '</span>
@@ -404,7 +404,7 @@ class PostInfoView extends PostInfo
                             <div class="w-11/12 pt-2">
                                 <!-- Comment Information -->
                                 <div class="flex items-center text-sm mb-2">
-                                <img src="../uploads/'.$userComments[$i]["post_content"].'" alt="no pic found"  height="160" width="180">
+                                <img src="../avatars/'.$userComments[$i]["profile_pic"].'" alt="no pic found"  height="16" width="16">
                                     <span class="text-gray-500">Commented by</span>
                                     <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">ku/' . $userComments[$i]["username"] . ' •</a>
                                     <span class="text-gray-500">' . $userComments[$i]["date"] . '</span>
