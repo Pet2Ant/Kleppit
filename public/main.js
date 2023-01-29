@@ -88,7 +88,7 @@ setTimeout(function() {
       document.getElementById("container").classList.add("backdrop-blur-md");
       document.querySelector("body").classList.remove("overflow-hidden");
   }
-}, 3000);
+}, 5 * 60 * 1000);
 }
 
 //remove the logo from the header when screen width is less than 500px
@@ -119,4 +119,36 @@ function enableButtonOnCheck() {
   else {
     document.getElementById("submit").disabled = true;
   }
+}
+
+function performSearch(query) {
+
+  //Handle empty search
+  if (query == "") return;
+
+  //Redirect to search page
+  window.location.href = "./search.php?query=" + query + "&page=1";
+
+}
+
+function runSearch() {
+  const search = document.querySelector("#searchbar input");
+
+  //Handle empty search
+  if (search.value == "") return;
+
+  performSearch(search.value);
+ 
+}
+
+//SEARCHBAR: wait for page to load
+window.onload = function() {
+  //listen for search enter keypress
+  const search = document.querySelector("#searchbar input");
+  search.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      performSearch(search.value);
+    }
+  });
 }
