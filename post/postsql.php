@@ -480,7 +480,7 @@ class PostInfo extends DbCon
     }
     protected function fetchCommentDb($post_id)
     {
-        $SQL = ('SELECT * FROM post_comments p INNER JOIN  users u on u.id = p.users_id where post_id = ?');
+        $SQL = ('SELECT * FROM post_comments p INNER JOIN  users u on u.id = p.users_id INNER JOIN profiles pc on pc.users_id = p.users_id where post_id = ?');
         $stmt = $this->connect()->prepare($SQL);
         if(!$stmt->execute(array($post_id)))    
         {
@@ -493,7 +493,7 @@ class PostInfo extends DbCon
     }
     protected function fetchUserCommentDb($users_id)
     {
-        $SQL = ('SELECT * FROM post_comments p INNER JOIN  users u on u.id = p.users_id where  users_id=?');
+        $SQL = ('SELECT * FROM post_comments p INNER JOIN  users u on u.id = p.users_id INNER JOIN profiles pc on pc.users_id = p.users_id where  p.users_id=?');
         $stmt = $this->connect()->prepare($SQL);
         if(!$stmt->execute(array($users_id)))
         {

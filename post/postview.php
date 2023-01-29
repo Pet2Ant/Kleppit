@@ -92,7 +92,7 @@ class PostInfoView extends PostInfo
                 <div class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer">
                     <div class="w-5 mx-4 flex flex-col text-center pt-2">
                         <!-- Upvote -->
-                        <form action="../karma.php" method="post">
+                        <form action="../karmaposts.php" method="post">
                         
                         <input type="text" name="post_upvote" value=' . $row[$count]["post_id"] . '  hidden>' . $upvote . '
                     
@@ -171,7 +171,7 @@ class PostInfoView extends PostInfo
                         <div class="flex border border-[#343536] bg-[#272729] transition duration-500 ease-in-out hover:border-red-500 rounded cursor-pointer">
                             <div class="w-5 mx-4 flex flex-col text-center pt-2">
                                 <!-- Upvote -->
-                                <form action="../karma.php" method="post">
+                                <form action="../karmaposts.php" method="post">
                                 
                                 <input type="text" name="post_upvote" value=' . $row[$count]["post_id"] . '  hidden>' . $upvote . '
                             
@@ -312,10 +312,7 @@ class PostInfoView extends PostInfo
         $postComments = $this->fetchCommentDb($post_id);
         $commentCount = count($postComments);
         for ($i = 0; $i < $commentCount; $i++) {
-            // if ($postComments[$i]["users_id"] != $id) {
-            //     $i++;
-            //     continue;
-            // }
+            
 
             $votecap = $this->getVotecapC($postComments[$i][0], $id);
 
@@ -340,7 +337,7 @@ class PostInfoView extends PostInfo
             <div class="w-11/12 pt-2 min-w-full">
             <!-- Comment Information -->
             <div class="flex items-center text-sm mb-2">
-                <img class="w-8 h-8 rounded-full mr-2" src="https://placeimg.com/192/192/people" alt="Avatar of User">
+            <img src="../avatars/'.$postComments[$i]["profile_pic"].'" alt="no pic found"  height="16" width="16">
                 <span class="text-gray-500">Commented by</span>
                 <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">ku/' . $postComments[$i]["username"] . '•</a>
                 <span class="text-gray-500">' . $postComments[$i]["date"] . '</span>
@@ -351,7 +348,7 @@ class PostInfoView extends PostInfo
             </p>
             <!-- Comment Actions -->
             <div class="w-5 mx-4 flex flex-row text-center pt-2 space-x-4">
-                <form action="../commentkarma.php" method="post">
+                <form action="../pageposts.php" method="post">
                     <div class="flex flex-row space-x-3">
                         <!-- Upvote -->
                         <div class="text-gray-500 transition duration-500 hover:text-red-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
@@ -404,7 +401,7 @@ class PostInfoView extends PostInfo
                             <div class="w-11/12 pt-2">
                                 <!-- Comment Information -->
                                 <div class="flex items-center text-sm mb-2">
-                                    <img class="w-8 h-8 rounded-full mr-2" src="https://placeimg.com/192/192/people" alt="Avatar of User">
+                                <img src="../avatars/'.$userComments[$i]["profile_pic"].'" alt="no pic found"  height="16" width="16">
                                     <span class="text-gray-500">Commented by</span>
                                     <a href="#" class="text-gray-500 mx-1 no-underline hover:underline">ku/' . $userComments[$i]["username"] . ' •</a>
                                     <span class="text-gray-500">' . $userComments[$i]["date"] . '</span>
