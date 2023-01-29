@@ -352,19 +352,16 @@ class PostInfoView extends PostInfo
             <!-- Comment Actions -->
             <div class="w-5 mx-4 flex flex-row text-center pt-2 space-x-4">
                 <form action="../commentkarma.php" method="post">
-                <div class="flex flex-row space-x-3">
-                    <!-- Upvote -->
-                    <div class="text-gray-500 transition duration-500 hover:text-red-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row cursor-pointer">
-                        <input type="text" name="c_upvote" value=' . $postComments[$i][0] . '  hidden>' . $upvote . '
-                        <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 ">Upvote</span>
-                    </div>  
-                    <!-- Vote count -->
-                    <span class="text-xs font-semibold my-1 text-gray-500"> ' . $postComments[$i]["c_karma"] . '</span>
-                    <div class="text-gray-500 transition duration-500 hover:text-red-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row cursor-pointer">
-                        <input type="text" name="c_downvote" value=' . $postComments[$i][0] . '  hidden >' . $downvote . '
-                        <span class="ml-2 text-xs font-semibold text-gray-500 py-0.5 ">Downvote</span>
-                </div>
-                        
+                    <div class="flex flex-row space-x-3">
+                        <!-- Upvote -->
+                        <div class="text-gray-500 transition duration-500 hover:text-red-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
+                            <input type="text" name="c_upvote" value=' . $postComments[$i][0] . '  hidden>' . $upvote . '
+                        </div>  
+                        <!-- Vote count -->
+                        <span class="text-xs font-semibold my-1 text-gray-500"> ' . $postComments[$i]["c_karma"] . '</span>
+                        <div class="text-gray-500 transition duration-500 hover:text-red-500 duration-500 hover:bg-gray-700 p-0.5 rounded-lg flex flex-row">
+                            <input type="text" name="c_downvote" value=' . $postComments[$i][0] . '  hidden >' . $downvote . '       
+                        </div>      
                     </div>
                 </form>
             </div>
