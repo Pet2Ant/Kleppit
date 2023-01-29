@@ -1,3 +1,18 @@
 /databasecon/dbcon.php
-uploads/
-avatars/
+
+# Ignore image files .jpg .png .gif .jpeg .tiff from the uploads/ directory
+uploads/*.jpg
+uploads/*.png
+uploads/*.gif
+uploads/*.jpeg
+uploads/*.tiff
+
+# Ignore image files .jpg .png .gif .jpeg .tiff from the avatars/ directory
+avatars/*.jpg
+avatars/*.png
+avatars/*.gif
+avatars/*.jpeg
+avatars/*.tiff
+
+# Do not ignore the default avatar
+!avatars/defaultavatar.png
