@@ -75,7 +75,7 @@ $profileInfo = new ProfileInfoView();
                                         </div>
                                     </div>
                                 </div>
-                                <hr class="mt-6 border-t border-gray-700 pt-4 w-1/2 mx-auto">
+                                <hr class="border-t border-gray-700 pt-4 w-1/2 mx-auto mt-8 mb-4">
                                 <div class='w-full md:w-full px-3 mb-6'>
                                     <label class="block uppercase tracking-wide text-red-500 text-xs font-bold mb-2">Profile
                                         Title
