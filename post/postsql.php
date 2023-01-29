@@ -92,24 +92,30 @@ class PostInfo extends DbCon
     }
     
 
-    //search function
-    protected function searchQuery($search)
+    protected function getUserPostKarma($id)
     {
-        $stmt = $this->connect()->prepare("SELECT post_id FROM post WHERE post_title LIKE '%$search%' OR post_content LIKE '%$search%';");
-        if(!$stmt->execute(array($search)))
+        $sql=('SELECT SUM(post_karma) FROM users u inner join post p on p.users_id = u.id inner join post_comments pc on pc.users_id = u.id where u.id=?;' );
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute(); 
+        if ($stmt->rowCount() == 0) 
         {
             $stmt = null;
-            header('location: post.php?error=stmtfailed');
-            exit();
+            return -1;
         }
-        if($stmt->rowCount() == 0)
+        $result = $stmt->fetchAll();
+        return $result;
+    }   
+    protected function getUserCommentKarma($id)
+    {
+        $sql= ('SELECT SUM(c_karma) FROM users u inner join post p on p.users_id = u.id inner join post_comments pc on pc.users_id = u.id where u.id=?;' );
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        if ($stmt->rowCount() == 0) 
         {
             $stmt = null;
-            // nothing found during the search
-            header('location: profile.php?error=profilenotfound');
-            exit();
+            return -1;
         }
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll();
         return $result;
     }
 
@@ -238,10 +244,25 @@ class PostInfo extends DbCon
         $stmt = null;
     }
 
-    protected function createPost($post_title,$post_content,$id)
+    protected function createPostTxt($post_title,$post_content,$id)
     {
         $stmt = $this -> connect()->prepare('INSERT INTO  post (post_title, 
-        post_content,users_id,post_upvote,post_downvote,post_karma) VALUES (?,?,?,0,0,0) ;');
+        post_content,users_id,post_upvote,post_downvote,post_karma,postimage) VALUES (?,?,?,0,0,0,0) ;');
+        
+        if(!$stmt->execute(array($post_title,$post_content,$id)))
+        {
+            $stmt = null;
+            header('location: post.php?error=stmtfailed');
+            exit();
+        }
+
+        $stmt = null;
+        
+        
+    }protected function createPostImage($post_title,$post_content,$id)
+    {
+        $stmt = $this -> connect()->prepare('INSERT INTO  post (post_title, 
+        post_content,users_id,post_upvote,post_downvote,post_karma,postimage) VALUES (?,?,?,0,0,0,1) ;');
         
         if(!$stmt->execute(array($post_title,$post_content,$id)))
         {
