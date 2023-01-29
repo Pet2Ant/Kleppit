@@ -190,7 +190,7 @@ Post content text: text-gray-500
 
                           <div class="flex items-start">
                             <div class="flex items-center h-5">
-                              <input id="comments" name="comments" type="checkbox" value="FE" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
+                              <input id="comments" name="comments1" type="checkbox" value="FE" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
                             </div>
                             <div class="ml-3 text-sm">
                               <label for="comments" class="font-medium ">Overall feel</label>
@@ -200,7 +200,7 @@ Post content text: text-gray-500
 
                           <div class="flex items-start">
                             <div class="flex items-center h-5">
-                              <input id="comments" name="comments" type="checkbox" value="FE" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
+                              <input id="comments" name="comments2" type="checkbox" value="FE" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
                             </div>
                             <div class="ml-3 text-sm">
                               <label for="comments" class="font-medium ">Front-end</label>
@@ -210,7 +210,7 @@ Post content text: text-gray-500
 
                           <div class="flex items-start">
                             <div class="flex items-center h-5">
-                              <input id="comments" name="comments" type="checkbox" value="BE" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
+                              <input id="comments" name="comments3" type="checkbox" value="BE" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
                             </div>
                             <div class="ml-3 text-sm">
                               <label for="comments" class="font-medium ">Back-end</label>
@@ -220,7 +220,7 @@ Post content text: text-gray-500
 
                           <div class="flex items-start">
                             <div class="flex items-center h-5">
-                              <input id="comments" name="comments" type="checkbox" value="FS" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
+                              <input id="comments" name="comments4" type="checkbox" value="FS" class="appearance-none h-4 w-4 border border-red-500 rounded-sm bg-red-500 checked:bg-red-700 checked:border-red-800 focus:outline-none transition duration-200 mt-1 align-top bg-center bg-contain mr-2 cursor-pointer">
                             </div>
                             <div class="ml-3 text-sm">
                               <label for="comments" class="font-medium ">Full-stack</label>
@@ -273,7 +273,7 @@ Post content text: text-gray-500
             <?php
             $sortquery = $_SERVER["QUERY_STRING"];
             parse_str($sortquery, $sortquery);
-            $sortTo = "Default";
+            $sortTo = "Newest";
             if (!$sortquery) {
             } elseif ($sortquery["sort"] == "karma") {
               $sortTo = "Hottest";
