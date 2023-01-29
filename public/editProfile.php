@@ -51,37 +51,49 @@ $profileInfo = new ProfileInfoView();
                                     </label>
                                     <div class="flex justify-center avatar">
                                         <div class="w-48  space-y-4">
+                                            <input id="inputAvatar" type="file" name="userfile" class="invisible">
                                             <button id="avatarChanger" class="hover:opacity-75">
-                                                <input id="inputAvatar" type="file" name="userfile" class="invisible">
-                                                <img class="w-48 h-48 mr-2 rounded-full border-2 border-red-500" src="../avatars/<?php echo $profileInfo->fetchAvatar($_SESSION["id"])[0]['profile_pic'] ?>" alt="user photo" />
+                                                <img id="avatarImg" class="w-48 h-48 mr-2 rounded-full border-2 border-red-500" src="../avatars/<?php echo $profileInfo->fetchAvatar($_SESSION["id"])[0]['profile_pic'] ?>" alt="user photo" />
+                                            </button>
+                                            <button type="submit" name="submit" class="w-full text-md font-bold bg-red-500 transition duration-500 ease-in-out hover:bg-red-600 rounded-md p-1">
+                                                Change avatar
                                             </button>
                                             <script>
-                                                const avatarInput = document.getElementById("inputAvatar");
-                                                // Prevent avatar changer from submitting form
-                                                document.getElementById("avatarChanger").addEventListener("click", function(event) {
-                                                    event.preventDefault();
-                                                    //FIXME avatarInput.click();
+                                                // We want to prevent form submission, but still allow the user to upload a file
+                                                document.getElementById('avatarChanger').addEventListener('click', function(e) {
+                                                    e.preventDefault();
+                                                    document.getElementById('inputAvatar').click();
+                                                    //Update the image preview
+                                                    document.getElementById('inputAvatar').addEventListener('change', function() {
+                                                        if (this.files && this.files[0]) {
+                                                            var img = document.getElementById('avatarImg');
+                                                            img.src = URL.createObjectURL(this.files[0]);
+                                                        }
+                                                    });
                                                 });
                                             </script>
                                         </div>
                                     </div>
                                 </div>
+                                <hr class="mt-6 border-t border-gray-700 pt-4 w-1/2 mx-auto">
                                 <div class='w-full md:w-full px-3 mb-6'>
                                     <label class="block uppercase tracking-wide text-red-500 text-xs font-bold mb-2">Profile
                                         Title
                                     </label>
-                                    <textarea placeholder="Display name" type="text" name="name" class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-red-600 focus:outline-none "></textarea>
-                                </div>
-                                <div class='w-full md:w-full px-3 mb-6'>
-                                    <label class='block uppercase tracking-wide text-red-500 text-xs font-bold mb-2'>
-                                        Description
-                                    </label>
-                                    <textarea id="textArea" placeholder="Write something about yourself!" type="text" name="description" class="resize-y text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-600 focus:outline-none"></textarea>
-                                </div>
-                                <button type="submit" name="submit" class="w-full text-md font-bold bg-red-500 transition duration-500 ease-in-out hover:bg-red-600 rounded-md p-1">
-                                    Save Changes
-                                </button>
-                        </form>
+                                    </form>
+                                <form action="../profile.php" method="post">
+                                        <textarea placeholder="Display name" type="text" name="name" class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-red-600 focus:outline-none "></textarea>
+                                    </div>
+                                    <div class='w-full md:w-full px-3 mb-6'>
+                                        <label class='block uppercase tracking-wide text-red-500 text-xs font-bold mb-2'>
+                                            Description
+                                        </label>
+                                        <textarea id="textArea" placeholder="Write something about yourself!" type="text" name="description" class="resize-y text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-600 focus:outline-none"></textarea>
+                                    </div>
+                                    <button type="submit" name="submit" class="w-full text-md font-bold bg-red-500 transition duration-500 ease-in-out hover:bg-red-600 rounded-md p-1">
+                                        Save Changes
+                                    </button>
+                            </form>
                     </div>
                 </div>
             </div>
