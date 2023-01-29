@@ -93,9 +93,7 @@ class IndexPostInfo extends PostInfo
                 </form>
             </div>
             <!-- Post Information -->
-            <div class="w-11/12 pt-2" onclick="javascript:window.location.href=\'../public/page.php?p=' . $row[$count]["post_id"] . '\'">
-    
-            
+            <div class="w-11/12 pt-2" onclick="javascript:window.location.href=\'../public/page.php?p=' . $row[$count]["post_id"] . '\'">            
                 <div class="flex items-center text-xs mb-2">
                     <span class="text-gray-500">Posted by</span>
                     <a href="../public/Profile.php?u=' . $row[$count]["username"] . '" class="text-gray-500 mx-1 no-underline hover:underline">ku/' . $row[$count]["username"] . '</a>
