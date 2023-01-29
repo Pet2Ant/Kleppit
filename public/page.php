@@ -1,5 +1,9 @@
 <?php
 session_start();
+include "../databasecon/dbcon.php";
+include "../profile/profileinfo.php";
+include "../profile/profilecontr.php";
+include "../profile/profileview.php";
 include '../components/navbar.php';
 
 $fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
