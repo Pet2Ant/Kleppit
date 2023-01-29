@@ -10,7 +10,7 @@ include "../post/postview.php";
 include '../components/navbar.php';
 $profileInfo = new ProfileInfoView();
 $postInfo = new PostInfoView();
-
+$user_id = -1;
 
 //Check if url query has the username
 if(isset($_GET["u"]))
@@ -32,9 +32,16 @@ if(isset($_GET["u"]))
 }
 else
 {
-    $user_id = $_SESSION["id"];
-    $user_username = $_SESSION["username"];
-    $user_email = $_SESSION["email"];
+    if ($_SESSION) 
+    {
+        $user_id = $_SESSION["id"];
+        $user_username = $_SESSION["username"];
+        $user_email = $_SESSION["email"];
+    }else
+    {
+        header("location:loginform.php");
+        exit();
+    }
 }
 // echo $user_id;
 
@@ -127,11 +134,29 @@ Post content text: text-gray-500
                                     <div class="flex justify-center items-center py-1">
                                         <p class="text-xs text-gray-400">Joined <?php $profileInfo->fetchDate($user_id); ?></p>
                                     </div>
+                                    <div class="flex justify-center items-center py-1">
+                                        <p class="text-xs text-gray-400 font-bold">Post Karma: <?php if ($profileInfo->fetchPostKarma($user_id)[0]["SUM(post_karma)"] == 0) {
+                                            echo 0;
+                                        } else {
+                                            echo $profileInfo->fetchPostKarma($user_id)[0]["SUM(post_karma)"]; }  ?> 
+                                        Comment Karma: <?php if ($profileInfo->fetchCommentKarma($user_id)[0]["SUM(c_karma)"] == 0) {
+                                            echo 0;
+                                        } else {
+                                            echo $profileInfo->fetchCommentKarma($user_id)[0]["SUM(c_karma)"]; } ?></p>
+                                    </div>
                                     <!-- Profile Button -->
                                     <div class="flex justify-center items-center py-1">
-                                        <button onclick="location.href = './editProfile.php';" class="w-40 text-sm font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1">
-                                            Edit Profile
-                                        </button>
+                                        <?php
+                                        if($_SESSION)
+                                            {
+                                                if($user_id == $_SESSION["id"])
+                                                {
+                                                    echo '<button onclick="javascript:window.location.href =\'./editProfile.php\'" class="w-40 text-sm font-bold bg-gray-300 transition duration-500 ease-in-out hover:bg-gray-400 rounded-full p-1">
+                                                    Edit Profile
+                                                    </button>';
+                                                }
+                                            }
+                                        ?>
                                     </div>
 
                                     <div class="px-2">

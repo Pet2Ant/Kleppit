@@ -17,8 +17,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     
     $profileInfo = new ProfileInfoController($id,$username);
     
-    $placeholder = "this is a text";
-    $profileInfo->updateProfileInfo($description, $name,$placeholder);
+    
+    $profileInfo->updateProfileInfo($description, $name);
     header('location:public/profile.php');
     
     

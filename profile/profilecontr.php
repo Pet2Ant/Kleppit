@@ -14,26 +14,26 @@ class ProfileInfoController extends ProfileInfo
     {
         $profileAbout =" Tell users something about yourself";
         $profileTitle = "Hello, I am ".$this->username;
-        $profileText = "0";
-        $this->setProfileInfo($profileAbout, $profileTitle, $profileText, $this->id);
+       
+        $this->setProfileInfo($profileAbout, $profileTitle, $this->id);
         
     }   
 
-    public function updateProfileInfo($about,$intro,$text)
+    public function updateProfileInfo($about,$intro,)
     {
         //error handlers
-        if($this->emptyInputsCheck($about,$intro,$text))
+        if($this->emptyInputsCheck($about,$intro))
         {
             header('Location:public/profilesettings.php?error=emptyinput');
             exit();
         }
         //update profile info
-        $this->setNewProfileInfo($about, $intro, $text, $this->id);
+        $this->setNewProfileInfo($about, $intro,  $this->id);
 
     }
-    private function emptyInputsCheck($about,$intro,$text)
+    private function emptyInputsCheck($about,$intro)
     {
-        if(empty($about) || empty($intro) || empty($text))
+        if(empty($about) || empty($intro)  )
         {
             return true;
         }

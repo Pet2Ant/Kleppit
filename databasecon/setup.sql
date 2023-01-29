@@ -80,7 +80,6 @@ CREATE TABLE IF NOT EXISTS `profiles` (
   `profiles_id` int(11) NOT NULL AUTO_INCREMENT,
   `profiles_about` text NOT NULL,
   `profiles_title` text NOT NULL,
-  `profiles_introduction` text NOT NULL,
   `users_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`profiles_id`),
   KEY `users_id` (`users_id`),

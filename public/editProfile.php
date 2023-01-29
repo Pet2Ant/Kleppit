@@ -85,12 +85,12 @@ $profileInfo = new ProfileInfoView();
                                 </div>
 
                                 <div class='w-full md:w-full px-3 mb-6'>
-                                    <label class="block uppercase tracking-wide text-red-500 text-xs font-bold mb-2">Username</label>
-                                    <textarea placeholder="Display name" type="text" name="name" class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-red-600 focus:outline-none "><?php $profileInfo->fetchAbout($_SESSION['id']); ?></textarea>
+                                    <label class="block uppercase tracking-wide text-red-500 text-xs font-bold mb-2">Profile Title</label>
+                                    <textarea placeholder="Display name" type="text" name="name" class="text-sm block px-3 py-2 rounded-lg w-full bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-800 focus:border-zinc-600 text-red-600 focus:outline-none "></textarea>
                                 </div>
                                 <div class='w-full md:w-full px-3 mb-6'>
                                     <label class='block uppercase tracking-wide text-red-500 text-xs font-bold mb-2'>Description</label>
-                                    <textarea id="textArea" placeholder="Write something about yourself!" type="text" name="description" class="resize-y text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-600 focus:outline-none"><?php echo $profileInfo->fetchAbout($_SESSION['id']); ?></textarea>
+                                    <textarea id="textArea" placeholder="Write something about yourself!" type="text" name="description" class="resize-y text-sm block px-3 py-2 rounded-lg w-full placeholder-text-lg bg-zinc-800 border-2 border-zinc-700 placeholder-zinc-600 shadow-md focus:placeholder-zinc-500 focus:bg-zinc-900 focus:border-zinc-600 text-red-600 focus:outline-none"></textarea>
                                 </div>
                                 <div class="flex justify-end">
                                     <button type="submit" name="submit" class="w-full text-md font-bold bg-red-500 transition duration-500 ease-in-out hover:bg-red-600 rounded-md p-1">

@@ -1,9 +1,9 @@
 <?php
-
 include 'searchbar.php';
 
 class Navbar {
-
+    
+    
     private function userImage() {
 
         if (isset($_SESSION["id"])) {
@@ -19,6 +19,7 @@ class Navbar {
     }
 
     private function userDropdown() {
+       
         if (isset($_SESSION["id"])) {
             return '
                 <p class="hidden lg:block">'. $_SESSION["username"] .'</p>
@@ -35,7 +36,6 @@ class Navbar {
                         <p class="text-sm leading-5 text-red-500">Signed in as</p>
                         <p class="text-md font-semibold leading-5 text-red-600 truncate">'. $_SESSION["email"] .'</p>
                         <p class="text-sm leading-5 text-red-600 truncate py-1">
-                            1234 Upvotes
                         </p>
                     </div>
                     <div class="py-1">
