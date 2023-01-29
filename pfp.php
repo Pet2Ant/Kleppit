@@ -13,8 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imagefilesize = $_FILES['userfile']['size'];
     $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
     if (
-        ($imageFileType = "jpg" || $imageFileType = "png" || $imageFileType = "jpeg"
-        || $imageFileType = "gif") && ($imagefilesize < 5000000)
+        ($imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "jpeg"
+        || $imageFileType == "gif") && ($imagefilesize < 5000000)
     ) {
         if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
 
