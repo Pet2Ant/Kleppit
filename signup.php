@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     include "profile\profilecontr.php";
     $profileInfo = new ProfileInfoController($id,$username);
     $profileInfo->defaultProfileInfo();
-    header('location:public/index.php');
+    header('location:public/loginform.php');
 
 }
 ?>
