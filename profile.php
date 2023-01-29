@@ -17,7 +17,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     include "signup\signupquery.php";
     include "signup\signuperror.php";
     $signup = new Signup($username,$email,$password,$confirm);
-    $profileInfo = new ProfileInfoController($id,$username);
+    $profileInfo = new ProfileInfoController($id,$username,$pfp);
     
     
     $profileInfo->updateProfileInfo($description, $name);

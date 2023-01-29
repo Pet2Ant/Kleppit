@@ -4,18 +4,20 @@ class ProfileInfoController extends ProfileInfo
 {
     private $id;
     private $username;
+    private $pfp;
 
-    public function __construct($id,$username)
+    public function __construct($id,$username,$pfp)
     {
         $this -> id = $id;
         $this -> username = $username;
+        $this-> pfp = $pfp;
     }
     public function defaultProfileInfo()
     {
         $profileAbout =" Tell users something about yourself";
         $profileTitle = "Hello, I am ".$this->username;
-        $profileimage = "";
-        $this->setProfileInfo($profileAbout, $profileTitle,$profileimage, $this->id);
+
+        $this->setProfileInfo($profileAbout, $profileTitle,$this->pfp, $this->id);
         
     }   
 

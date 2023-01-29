@@ -1,7 +1,11 @@
 <?php
 session_start();
-include '../components/navbar.php';
 include "../databasecon/dbcon.php";
+include '../components/navbar.php';
+include "../profile/profileinfo.php";
+include "../profile/profilecontr.php";
+include "../profile/profileview.php";
+
 include '../post/searchsql.php';
 
 $search = new SearchSQL();
