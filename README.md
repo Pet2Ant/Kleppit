@@ -30,9 +30,15 @@ We are using these libraries and frameworks:
 - [MySQL](https://www.mysql.com/)
 - [Heroicons](https://heroicons.com/)
 
+# Contributions
+
+This project was a collaborative effort as a student project.
 Created by: 
-- Antonis Niotis
-- Christos Kanellopoulos
-- Nikolas Smyrloglou
-- Dionisis Pefanis 
-- Georgos Konstantes
+- Antonios Niotis
+- [Christos Kanellopoulos](https://github.com/Ckanel/)
+- [Aurora Takemi](https://github.com/alepouna)
+
+My contributions to the project include: 
+- Frontend Development: I was responsible for the development of the front end using tailwind from the start, basing my design to [Reddit's](https://reddit.com/) dark mode.
+- Backend Assistance: I assisted Chris and Aurora with the development of the PHP backend, resolving any bugs they encountered
+  
